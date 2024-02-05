@@ -1,0 +1,101 @@
+body {
+  background-color: #303333;
+}
+#playerName {
+  color: #769656;
+  margin-left: 70%;
+  margin-top: -2%;
+}
+
+.message {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: auto;
+}
+
+#turnMessage {
+  color: #fff;
+  font-size: 25px;
+  /* margin-left: 47%; */
+}
+.chess_board {
+  display: flex;
+  flex-wrap: wrap;
+  /* position: relative; */
+  width: 740px;
+  height: 760px;
+  margin: 0 auto;
+  border: 8px solid #000000;
+  border-radius: 10px;
+  margin-top: 1%;
+}
+
+.black {
+  float: left;
+  width: 90px;
+  height: 90px;
+  text-align: center;
+  background-color: #769656;
+  /* font-size: 55px; */
+}
+.white {
+  float: left;
+  width: 90px;
+  height: 90px;
+  text-align: center;
+  background-color: #eeeed2;
+  /* font-size: 55px; */
+}
+
+.btn {
+  margin: auto;
+  width: 200px;
+}
+
+.start_button {
+  margin-top: 1%;
+  border: none;
+  color: white;
+  padding: 16px 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.start_button {
+  background-color: #769656;
+}
+
+.leave_button {
+  background-color: #ff4747;
+  padding: 10px 20px;
+  display: none;
+  border-radius: 5px;
+  color: #ffffffd2;
+  font-size: 16px;
+  cursor: pointer;
+  margin: auto 5px;
+  border: none;
+  /* display: none; */
+}
+
+.leave_button:disabled {
+  background: #757575;
+}
+
+img {
+  width: 90px;
+  height: 90px;
+  align-items: center;
+  cursor: grab;
+}
+
+#turnTimer {
+  font-size: 25px;
+  color: #fff;
+}

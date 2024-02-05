@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="images/logo/logo.png" type="image/x-icon" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Multi Player Chess Game</title>
+  </head>
+  <body>
+    <div class="btn">
+      <button id="chess_button" class="start_button">Play</button>
+    </div>
+    <h2 id="roundTimer" style="text-align: center; color: #fff"></h2>
+    <h2 id="playerName">Player name</h2>
+    <div class="message">
+      <button id="leave_button" class="leave_button">Leave</button>
+      <h3 id="turnTimer"></h3>
+      <h3 id="turnMessage">Player Turn</h3>
+    </div>
+    <div class="chess_board" id="maindiv" style="pointer-events: none">
+      <table>
+        <tr>
+          <td class="white" onclick="chessClick('0')" id="0">
+            <img
+              src="./images/pieces/black/black_rook.png"
+              class="BLACK_PIECE"
+              id="BLACK_ROOK_1"
+            />
+          </td>
+
+          <td class="black" onclick="chessClick('1')" id="1">
+            <img
+              class="BLACK_PIECE"
+              src="images/pieces/black/black_knight.png"
+              id="BLACK_KNIGHT_1"
+            />
+          </td>
+
+          <td class="white" onclick="chessClick('2')" id="2">
+            <img
+              class="BLACK_PIECE"
+              src="images/pieces/black/black_bishop.png"
+              id="BLACK_BISHOP_1"
+            />
+          </td>
+
+          <td class="black" onclick="chessClick('3')" id="3">
+            <img
+              class="BLACK_PIECE"
+              src="images/pieces/black/black_queen.png"
+              id="BLACK_QUREEN_1"
+            />
+          </td>
+
+          <td class="white" onclick="chessClick('4')" id="4">
+            <img
+              class="BLACK_PIECE"
+              src="images/pieces/black/black_king.png"
+              id="BLACK_KING"
+            />
+          </td>
+
+          <td class="black" onclick="chessClick('5')" id="5">
+            <img
+              class="BLACK_PIECE"
+              src="images/pieces/black/black_bishop.png"
+              id="BLACK_BISHOP_2"
+            />
+          </td>
+
+          <td class="white" onclick="chessClick('6')" id="6">
+            <img
+              class="BLACK_PIECE"
+              src="images/pieces/black/black_knight.png"
+              id="BLACK_KNIGHT_2"
+            />
+          </td>
+
+          <td class="black" onclick="chessClick('7')" id="7">
+            <img
+              class="BLACK_PIECE"
+              src="images/pieces/black/black_rook.png"
+              id="BLACK_ROOK_2"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td class="black" onclick="chessClick('8')" id="8">
+            <img
+              class="BLACK_PIECE"
+              src="images/pieces/black/black_pawn.png"
+              id="BLACK_PAWN_1"
+            />
+          </td>
+
+          <td class="white" onclick="chessClick('9')" id="9">
+            <img
+              class="BLACK_PIECE"
+              src="images/pieces/black/black_pawn.png"
+              id="BLACK_PAWN_2"
+            />
+          </td>
+
+          <td class="black" onclick="chessClick('10')" id="10">
+            <img
+              class="BLACK_PIECE"
+              src="images/pieces/black/black_pawn.png"
+              id="BLACK_PAWN_3"
+            />
+          </td>
+
+          <td class="white" onclick="chessClick('11')" id="11">
+            <img
+              class="BLACK_PIECE"
+              src="images/pieces/black/black_pawn.png"
+              id="BLACK_PAWN_4"
+            />
+          </td>
+
+          <td class="black" onclick="chessClick('12')" id="12">
+            <img
+              class="BLACK_PIECE"
+              src="images/pieces/black/black_pawn.png"
+              id="BLACK_PAWN_5"
+            />
+          </td>
+
+          <td class="white" onclick="chessClick('13')" id="13">
+            <img
+              class="BLACK_PIECE"
+              src="images/pieces/black/black_pawn.png"
+              id="BLACK_PAWN_6"
+            />
+          </td>
+
+          <td class="black" onclick="chessClick('14')" id="14">
+            <img
+              class="BLACK_PIECE"
+              src="images/pieces/black/black_pawn.png"
+              id="BLACK_PAWN_7"
+            />
+          </td>
+
+          <td class="white" onclick="chessClick('15')" id="15">
+            <img
+              class="BLACK_PIECE"
+              src="images/pieces/black/black_pawn.png"
+              id="BLACK_PAWN_8"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td class="white" onclick="chessClick('16')" id="16"></td>
+
+          <td class="black" onclick="chessClick('17')" id="17"></td>
+
+          <td class="white" onclick="chessClick('18')" id="18"></td>
+
+          <td class="black" onclick="chessClick('19')" id="19"></td>
+
+          <td class="white" onclick="chessClick('20')" id="20"></td>
+
+          <td class="black" onclick="chessClick('21')" id="21"></td>
+
+          <td class="white" onclick="chessClick('22')" id="22"></td>
+
+          <td class="black" onclick="chessClick('23')" id="23"></td>
+        </tr>
+
+        <tr>
+          <td class="black" onclick="chessClick('24')" id="24"></td>
+
+          <td class="white" onclick="chessClick('25')" id="25"></td>
+
+          <td class="black" onclick="chessClick('26')" id="26"></td>
+
+          <td class="white" onclick="chessClick('27')" id="27"></td>
+
+          <td class="black" onclick="chessClick('28')" id="28"></td>
+
+          <td class="white" onclick="chessClick('29')" id="29"></td>
+
+          <td class="black" onclick="chessClick('30')" id="30"></td>
+
+          <td class="white" onclick="chessClick('31')" id="31"></td>
+        </tr>
+
+        <tr>
+          <td class="white" onclick="chessClick('32')" id="32"></td>
+
+          <td class="black" onclick="chessClick('33')" id="33"></td>
+
+          <td class="white" onclick="chessClick('34')" id="34"></td>
+
+          <td class="black" onclick="chessClick('35')" id="35"></td>
+
+          <td class="white" onclick="chessClick('36')" id="36"></td>
+
+          <td class="black" onclick="chessClick('37')" id="37"></td>
+
+          <td class="white" onclick="chessClick('38')" id="38"></td>
+
+          <td class="black" onclick="chessClick('39')" id="39"></td>
+        </tr>
+
+        <tr>
+          <td class="black" onclick="chessClick('40')" id="40"></td>
+
+          <td class="white" onclick="chessClick('41')" id="41"></td>
+
+          <td class="black" onclick="chessClick('42')" id="42"></td>
+
+          <td class="white" onclick="chessClick('43')" id="43"></td>
+
+          <td class="black" onclick="chessClick('44')" id="44"></td>
+
+          <td class="white" onclick="chessClick('45')" id="45"></td>
+
+          <td class="black" onclick="chessClick('46')" id="46"></td>
+
+          <td class="white" onclick="chessClick('47')" id="47"></td>
+        </tr>
+
+        <tr>
+          <td class="white" onclick="chessClick('48')" id="48">
+            <img
+              class="WHITE_PIECE"
+              src="images/pieces/white/white_pawn.png"
+              id="WHITE_PAWN_1"
+            />
+          </td>
+
+          <td class="black" onclick="chessClick('49')" id="49">
+            <img
+              class="WHITE_PIECE"
+              src="images/pieces/white/white_pawn.png"
+              id="WHITE_PAWN_2"
+            />
+          </td>
+
+          <td class="white" onclick="chessClick('50')" id="50">
+            <img
+              class="WHITE_PIECE"
+              src="images/pieces/white/white_pawn.png"
+              id="WHITE_PAWN_3"
+            />
+          </td>
+
+          <td class="black" onclick="chessClick('51')" id="51">
+            <img
+              class="WHITE_PIECE"
+              src="images/pieces/white/white_pawn.png"
+              id="WHITE_PAWN_4"
+            />
+          </td>
+
+          <td class="white" onclick="chessClick('52')" id="52">
+            <img
+              class="WHITE_PIECE"
+              src="images/pieces/white/white_pawn.png"
+              id="WHITE_PAWN_5"
+            />
+          </td>
+
+          <td class="black" onclick="chessClick('53')" id="53">
+            <img
+              class="WHITE_PIECE"
+              src="images/pieces/white/white_pawn.png"
+              id="WHITE_PAWN_6"
+            />
+          </td>
+
+          <td class="white" onclick="chessClick('54')" id="54">
+            <img
+              class="WHITE_PIECE"
+              src="images/pieces/white/white_pawn.png"
+              id="WHITE_PAWN_7"
+            />
+          </td>
+
+          <td class="black" onclick="chessClick('55')" id="55">
+            <img
+              class="WHITE_PIECE"
+              src="images/pieces/white/white_pawn.png"
+              id="WHITE_PAWN_8"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td class="black" onclick="chessClick('56')" id="56">
+            <img
+              class="WHITE_PIECE"
+              src="images/pieces/white/white_rook.png"
+              id="WHITE_ROOK_1"
+            />
+          </td>
+
+          <td class="white" onclick="chessClick('57')" id="57">
+            <img
+              class="WHITE_PIECE"
+              src="images/pieces/white/white_knight.png"
+              id="WHITE_KNIGHT_1"
+            />
+          </td>
+
+          <td class="black" onclick="chessClick('58')" id="58">
+            <img
+              class="WHITE_PIECE"
+              src="images/pieces/white/white_bishop.png"
+              id="WHITE_BISHOP_1"
+            />
+          </td>
+
+          <td class="white" onclick="chessClick('59')" id="59">
+            <img
+              class="WHITE_PIECE"
+              src="images/pieces/white/white_queen.png"
+              id="WHITE_QUREEN"
+            />
+          </td>
+
+          <td class="black" onclick="chessClick('60')" id="60">
+            <img
+              class="WHITE_PIECE"
+              src="images/pieces/white/white_king.png"
+              id="WHITE_KING"
+            />
+          </td>
+
+          <td class="white" onclick="chessClick('61')" id="61">
+            <img
+              class="WHITE_PIECE"
+              src="images/pieces/white/white_bishop.png"
+              id="WHITE_BISHOP_2"
+            />
+          </td>
+
+          <td class="black" onclick="chessClick('62')" id="62">
+            <img
+              class="WHITE_PIECE"
+              src="images/pieces/white/white_knight.png"
+              id="WHITE_KNIGHT_2"
+            />
+          </td>
+
+          <td class="white" onclick="chessClick('63')" id="63">
+            <img
+              class="WHITE_PIECE"
+              src="images/pieces/white/white_rook.png"
+              id="WHITE_ROOK_2"
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

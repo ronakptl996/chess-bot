@@ -8,6 +8,7 @@ import {
   botBlackQueenMove,
   botBlackRookMove,
 } from "./moveForBot";
+import botBlackKingMove from "./moveForBot/botBlackKingMove";
 
 const botPossibleMove = async (tableData: IChess) => {
   // try {
@@ -167,6 +168,8 @@ const botPossibleMove = async (tableData: IChess) => {
       await botBlackBishopMove(chooseTurnItem, tableData);
     } else if (chooseTurnItem.name.includes("BLACK_QUREEN")) {
       await botBlackQueenMove(chooseTurnItem, tableData);
+    } else if (chooseTurnItem.name.includes("BLACK_KING")) {
+      await botBlackKingMove(chooseTurnItem, tableData);
     }
   } catch (error) {
     logger.error("ERROR in botPossibleMove: ", error);

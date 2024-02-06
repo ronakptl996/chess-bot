@@ -1252,7 +1252,7 @@ const botBlackQueenMove = async (
     return;
   }
 
-  // FOR +1 MOVE
+  // FOR +1 MOVE AND -1 MOVE
   if (currentLineBetween) {
     if (
       Number(chooseTurnItem.id) + 1 <= 63 &&

@@ -7,8 +7,9 @@ import {
   botBlackKnightMove,
   botBlackQueenMove,
   botBlackRookMove,
+  botBlackKingMove,
+  botBlackPawnMove,
 } from "./moveForBot";
-import botBlackKingMove from "./moveForBot/botBlackKingMove";
 
 const botPossibleMove = async (tableData: IChess) => {
   // try {
@@ -75,92 +76,8 @@ const botPossibleMove = async (tableData: IChess) => {
     console.log("======????????", chooseTurnItem);
 
     if (chooseTurnItem.name.includes("BLACK_PAWN")) {
-      if (chooseTurnItem.isFirstMove) {
-        let firstTurnMovePawn = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
-        console.log("firstTurnMovePawn >>", firstTurnMovePawn);
-        if (firstTurnMovePawn == 1) {
-          if (board[chooseTurnItem.id + 8] === null) {
-            chooseTurnItem.isFirstMove = false;
-            board[chooseTurnItem.id] = null;
-            board[chooseTurnItem.id + 8] = {
-              id: chooseTurnItem.id + 8,
-              name: chooseTurnItem.name,
-              isFirstMove: chooseTurnItem.isFirstMove,
-            };
-            botMoveChange(tableData);
-          } else if (board[chooseTurnItem.id + 8]?.name.includes("WHITE")) {
-            chooseTurnItem.isFirstMove = false;
-            board[chooseTurnItem.id] = null;
-            board[chooseTurnItem.id + 8] = {
-              id: chooseTurnItem.id + 8,
-              name: chooseTurnItem.name,
-              isFirstMove: chooseTurnItem.isFirstMove,
-            };
-            botMoveChange(tableData);
-          }
-        } else {
-          if (board[chooseTurnItem.id + 16] === null) {
-            chooseTurnItem.isFirstMove = false;
-            board[chooseTurnItem.id] = null;
-            board[chooseTurnItem.id + 16] = {
-              id: chooseTurnItem.id + 16,
-              name: chooseTurnItem.name,
-              isFirstMove: chooseTurnItem.isFirstMove,
-            };
-            botMoveChange(tableData);
-          } else if (board[chooseTurnItem.id + 16]?.name.includes("WHITE")) {
-            chooseTurnItem.isFirstMove = false;
-            board[chooseTurnItem.id] = null;
-            board[chooseTurnItem.id + 16] = {
-              id: chooseTurnItem.id + 16,
-              name: chooseTurnItem.name,
-              isFirstMove: chooseTurnItem.isFirstMove,
-            };
-            botMoveChange(tableData);
-          }
-        }
-      } else {
-        if (
-          board[chooseTurnItem.id + 7] &&
-          board[chooseTurnItem.id + 7]?.name.includes("WHITE")
-        ) {
-          board[chooseTurnItem.id] = null;
-          board[chooseTurnItem.id + 7] = null;
-          board[chooseTurnItem.id + 7] = {
-            id: chooseTurnItem.id + 7,
-            name: chooseTurnItem.name,
-            isFirstMove: chooseTurnItem.isFirstMove,
-          };
-          botMoveChange(tableData);
-        } else if (
-          board[chooseTurnItem.id + 9] &&
-          board[chooseTurnItem.id + 9]?.name.includes("WHITE")
-        ) {
-          board[chooseTurnItem.id] = null;
-          board[chooseTurnItem.id + 9] = null;
-          board[chooseTurnItem.id + 9] = {
-            id: chooseTurnItem.id + 9,
-            name: chooseTurnItem.name,
-            isFirstMove: chooseTurnItem.isFirstMove,
-          };
-          botMoveChange(tableData);
-        } else if (
-          board[chooseTurnItem.id + 8]?.name.includes("WHITE") ||
-          board[chooseTurnItem.id + 8] == null
-        ) {
-          board[chooseTurnItem.id] = null;
-          board[chooseTurnItem.id + 8] = null;
-          board[chooseTurnItem.id + 8] = {
-            id: chooseTurnItem.id + 8,
-            name: chooseTurnItem.name,
-            isFirstMove: chooseTurnItem.isFirstMove,
-          };
-          botMoveChange(tableData);
-        }
-      }
-    }
-
-    if (chooseTurnItem.name.includes("BLACK_ROOK")) {
+      await botBlackPawnMove(chooseTurnItem, tableData);
+    } else if (chooseTurnItem.name.includes("BLACK_ROOK")) {
       await botBlackRookMove(chooseTurnItem, tableData);
     } else if (chooseTurnItem.name.includes("BLACK_KNIGHT")) {
       await botBlackKnightMove(chooseTurnItem, tableData);

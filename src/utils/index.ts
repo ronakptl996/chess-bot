@@ -40,6 +40,17 @@ const cornerNumber = [
   58, 59, 60, 61, 62, 63,
 ];
 
+const currentLine = [
+  [0, 7],
+  [8, 15],
+  [16, 23],
+  [24, 31],
+  [32, 39],
+  [40, 47],
+  [48, 55],
+  [56, 63],
+];
+
 const makeBotBoard = (board: any, chooseTurnItem: any, move: number) => {
   board[Number(chooseTurnItem.id)] = null;
   board[Number(chooseTurnItem.id) + move] = null;
@@ -52,4 +63,4 @@ const makeBotBoard = (board: any, chooseTurnItem: any, move: number) => {
   return board;
 };
 
-export { remainTimeCalculation, cornerNumber, makeBotBoard };
+export { remainTimeCalculation, cornerNumber, makeBotBoard, currentLine };

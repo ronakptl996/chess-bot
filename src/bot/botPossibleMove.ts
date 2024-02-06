@@ -5,6 +5,7 @@ import isBotMoveValid from "./isBotMoveValid";
 import {
   botBlackBishopMove,
   botBlackKnightMove,
+  botBlackQueenMove,
   botBlackRookMove,
 } from "./moveForBot";
 
@@ -164,6 +165,8 @@ const botPossibleMove = async (tableData: IChess) => {
       await botBlackKnightMove(chooseTurnItem, tableData);
     } else if (chooseTurnItem.name.includes("BLACK_BISHOP")) {
       await botBlackBishopMove(chooseTurnItem, tableData);
+    } else if (chooseTurnItem.name.includes("BLACK_QUREEN")) {
+      await botBlackQueenMove(chooseTurnItem, tableData);
     }
   } catch (error) {
     logger.error("ERROR in botPossibleMove: ", error);

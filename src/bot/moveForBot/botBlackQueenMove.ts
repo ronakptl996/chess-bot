@@ -23,7 +23,7 @@ const botBlackQueenMove = async (
     Number(chooseTurnItem.id) + 7 <= 63 &&
     board[Number(chooseTurnItem.id) + 7]?.name.includes("WHITE")
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, 7);
+    tableData.board = makeBotBoard(board, chooseTurnItem, 7, tableData._id);
     botMoveChange(tableData);
     return;
   } else if (
@@ -35,7 +35,7 @@ const botBlackQueenMove = async (
       Number(chooseTurnItem.id) + 14 <= 63 &&
       board[Number(chooseTurnItem.id) + 14]?.name.includes("WHITE")
     ) {
-      tableData.board = makeBotBoard(board, chooseTurnItem, 14);
+      tableData.board = makeBotBoard(board, chooseTurnItem, 14, tableData._id);
       botMoveChange(tableData);
       return;
     } else if (
@@ -47,7 +47,12 @@ const botBlackQueenMove = async (
         Number(chooseTurnItem.id) + 21 <= 63 &&
         board[Number(chooseTurnItem.id) + 21]?.name.includes("WHITE")
       ) {
-        tableData.board = makeBotBoard(board, chooseTurnItem, 21);
+        tableData.board = makeBotBoard(
+          board,
+          chooseTurnItem,
+          21,
+          tableData._id
+        );
         botMoveChange(tableData);
         return;
       } else if (
@@ -59,7 +64,12 @@ const botBlackQueenMove = async (
           Number(chooseTurnItem.id) + 28 <= 63 &&
           board[Number(chooseTurnItem.id) + 28]?.name.includes("WHITE")
         ) {
-          tableData.board = makeBotBoard(board, chooseTurnItem, 28);
+          tableData.board = makeBotBoard(
+            board,
+            chooseTurnItem,
+            28,
+            tableData._id
+          );
           botMoveChange(tableData);
           return;
         } else if (
@@ -71,7 +81,12 @@ const botBlackQueenMove = async (
             Number(chooseTurnItem.id) + 35 <= 63 &&
             board[Number(chooseTurnItem.id) + 35]?.name.includes("WHITE")
           ) {
-            tableData.board = makeBotBoard(board, chooseTurnItem, 35);
+            tableData.board = makeBotBoard(
+              board,
+              chooseTurnItem,
+              35,
+              tableData._id
+            );
             botMoveChange(tableData);
             return;
           } else if (
@@ -83,7 +98,12 @@ const botBlackQueenMove = async (
               Number(chooseTurnItem.id) + 42 <= 63 &&
               board[Number(chooseTurnItem.id) + 42]?.name.includes("WHITE")
             ) {
-              tableData.board = makeBotBoard(board, chooseTurnItem, 42);
+              tableData.board = makeBotBoard(
+                board,
+                chooseTurnItem,
+                42,
+                tableData._id
+              );
               botMoveChange(tableData);
               return;
             } else if (
@@ -95,7 +115,12 @@ const botBlackQueenMove = async (
                 Number(chooseTurnItem.id) + 49 <= 63 &&
                 board[Number(chooseTurnItem.id) + 49]?.name.includes("WHITE")
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, 49);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  49,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               } else if (
@@ -107,7 +132,12 @@ const botBlackQueenMove = async (
                   Number(chooseTurnItem.id) + 56 <= 63 &&
                   board[Number(chooseTurnItem.id) + 56]?.name.includes("WHITE")
                 ) {
-                  tableData.board = makeBotBoard(board, chooseTurnItem, 56);
+                  tableData.board = makeBotBoard(
+                    board,
+                    chooseTurnItem,
+                    56,
+                    tableData._id
+                  );
                   botMoveChange(tableData);
                   return;
                 }
@@ -124,7 +154,7 @@ const botBlackQueenMove = async (
     Number(chooseTurnItem.id) + 9 <= 63 &&
     board[Number(chooseTurnItem.id) + 9]?.name.includes("WHITE")
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, 9);
+    tableData.board = makeBotBoard(board, chooseTurnItem, 9, tableData._id);
     botMoveChange(tableData);
     return;
   } else if (
@@ -136,7 +166,7 @@ const botBlackQueenMove = async (
       Number(chooseTurnItem.id) + 18 <= 63 &&
       board[Number(chooseTurnItem.id) + 18]?.name.includes("WHITE")
     ) {
-      tableData.board = makeBotBoard(board, chooseTurnItem, 18);
+      tableData.board = makeBotBoard(board, chooseTurnItem, 18, tableData._id);
       botMoveChange(tableData);
       return;
     } else if (
@@ -148,7 +178,12 @@ const botBlackQueenMove = async (
         Number(chooseTurnItem.id) + 27 <= 63 &&
         board[Number(chooseTurnItem.id) + 27]?.name.includes("WHITE")
       ) {
-        tableData.board = makeBotBoard(board, chooseTurnItem, 27);
+        tableData.board = makeBotBoard(
+          board,
+          chooseTurnItem,
+          27,
+          tableData._id
+        );
         botMoveChange(tableData);
         return;
       } else if (
@@ -160,7 +195,12 @@ const botBlackQueenMove = async (
           Number(chooseTurnItem.id) + 36 <= 63 &&
           board[Number(chooseTurnItem.id) + 36]?.name.includes("WHITE")
         ) {
-          tableData.board = makeBotBoard(board, chooseTurnItem, 36);
+          tableData.board = makeBotBoard(
+            board,
+            chooseTurnItem,
+            36,
+            tableData._id
+          );
           botMoveChange(tableData);
           return;
         } else if (
@@ -172,7 +212,12 @@ const botBlackQueenMove = async (
             Number(chooseTurnItem.id) + 45 <= 63 &&
             board[Number(chooseTurnItem.id) + 45]?.name.includes("WHITE")
           ) {
-            tableData.board = makeBotBoard(board, chooseTurnItem, 45);
+            tableData.board = makeBotBoard(
+              board,
+              chooseTurnItem,
+              45,
+              tableData._id
+            );
             botMoveChange(tableData);
             return;
           } else if (
@@ -184,7 +229,12 @@ const botBlackQueenMove = async (
               Number(chooseTurnItem.id) + 54 <= 63 &&
               board[Number(chooseTurnItem.id) + 54]?.name.includes("WHITE")
             ) {
-              tableData.board = makeBotBoard(board, chooseTurnItem, 54);
+              tableData.board = makeBotBoard(
+                board,
+                chooseTurnItem,
+                54,
+                tableData._id
+              );
               botMoveChange(tableData);
               return;
             } else if (
@@ -196,14 +246,24 @@ const botBlackQueenMove = async (
                 Number(chooseTurnItem.id) + 63 <= 63 &&
                 board[Number(chooseTurnItem.id) + 63]?.name.includes("WHITE")
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, 63);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  63,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               } else if (
                 Number(chooseTurnItem.id) + 63 <= 63 &&
                 board[Number(chooseTurnItem.id) + 63] == null
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, 63);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  63,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               }
@@ -243,51 +303,81 @@ const botBlackQueenMove = async (
                 Number(chooseTurnItem.id) + 56 <= 63 &&
                 board[Number(chooseTurnItem.id) + 56] == null
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, 56);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  56,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               } else if (
                 board[Number(chooseTurnItem.id) + 56]?.name.includes("WHITE")
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, 56);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  56,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               }
             } else if (
               board[Number(chooseTurnItem.id) + 48]?.name.includes("WHITE")
             ) {
-              tableData.board = makeBotBoard(board, chooseTurnItem, 48);
+              tableData.board = makeBotBoard(
+                board,
+                chooseTurnItem,
+                48,
+                tableData._id
+              );
               botMoveChange(tableData);
               return;
             }
           } else if (
             board[Number(chooseTurnItem.id) + 40]?.name.includes("WHITE")
           ) {
-            tableData.board = makeBotBoard(board, chooseTurnItem, 40);
+            tableData.board = makeBotBoard(
+              board,
+              chooseTurnItem,
+              40,
+              tableData._id
+            );
             botMoveChange(tableData);
             return;
           }
         } else if (
           board[Number(chooseTurnItem.id) + 32]?.name.includes("WHITE")
         ) {
-          tableData.board = makeBotBoard(board, chooseTurnItem, 32);
+          tableData.board = makeBotBoard(
+            board,
+            chooseTurnItem,
+            32,
+            tableData._id
+          );
           botMoveChange(tableData);
           return;
         }
       } else if (
         board[Number(chooseTurnItem.id) + 24]?.name.includes("WHITE")
       ) {
-        tableData.board = makeBotBoard(board, chooseTurnItem, 24);
+        tableData.board = makeBotBoard(
+          board,
+          chooseTurnItem,
+          24,
+          tableData._id
+        );
         botMoveChange(tableData);
         return;
       }
     } else if (board[Number(chooseTurnItem.id) + 16]?.name.includes("WHITE")) {
-      tableData.board = makeBotBoard(board, chooseTurnItem, 16);
+      tableData.board = makeBotBoard(board, chooseTurnItem, 16, tableData._id);
       botMoveChange(tableData);
       return;
     }
   } else if (board[Number(chooseTurnItem.id) + 8]?.name.includes("WHITE")) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, 8);
+    tableData.board = makeBotBoard(board, chooseTurnItem, 8, tableData._id);
     botMoveChange(tableData);
     return;
   }
@@ -328,7 +418,12 @@ const botBlackQueenMove = async (
                   Number(chooseTurnItem.id) + 7 <= currentLineBetween[1] &&
                   board[Number(chooseTurnItem.id) + 7]?.name.includes("WHITE")
                 ) {
-                  tableData.board = makeBotBoard(board, chooseTurnItem, 7);
+                  tableData.board = makeBotBoard(
+                    board,
+                    chooseTurnItem,
+                    7,
+                    tableData._id
+                  );
                   botMoveChange(tableData);
                   return;
                 }
@@ -336,7 +431,12 @@ const botBlackQueenMove = async (
                 Number(chooseTurnItem.id) + 6 <= currentLineBetween[1] &&
                 board[Number(chooseTurnItem.id) + 6]?.name.includes("WHITE")
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, 6);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  6,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               }
@@ -344,7 +444,12 @@ const botBlackQueenMove = async (
               Number(chooseTurnItem.id) + 5 <= currentLineBetween[1] &&
               board[Number(chooseTurnItem.id) + 5]?.name.includes("WHITE")
             ) {
-              tableData.board = makeBotBoard(board, chooseTurnItem, 5);
+              tableData.board = makeBotBoard(
+                board,
+                chooseTurnItem,
+                5,
+                tableData._id
+              );
               botMoveChange(tableData);
               return;
             }
@@ -352,7 +457,12 @@ const botBlackQueenMove = async (
             Number(chooseTurnItem.id) + 4 <= currentLineBetween[1] &&
             board[Number(chooseTurnItem.id) + 4]?.name.includes("WHITE")
           ) {
-            tableData.board = makeBotBoard(board, chooseTurnItem, 4);
+            tableData.board = makeBotBoard(
+              board,
+              chooseTurnItem,
+              4,
+              tableData._id
+            );
             botMoveChange(tableData);
             return;
           }
@@ -360,7 +470,12 @@ const botBlackQueenMove = async (
           Number(chooseTurnItem.id) + 3 <= currentLineBetween[1] &&
           board[Number(chooseTurnItem.id) + 3]?.name.includes("WHITE")
         ) {
-          tableData.board = makeBotBoard(board, chooseTurnItem, 3);
+          tableData.board = makeBotBoard(
+            board,
+            chooseTurnItem,
+            3,
+            tableData._id
+          );
           botMoveChange(tableData);
           return;
         }
@@ -368,7 +483,7 @@ const botBlackQueenMove = async (
         Number(chooseTurnItem.id) + 2 <= currentLineBetween[1] &&
         board[Number(chooseTurnItem.id) + 2]?.name.includes("WHITE")
       ) {
-        tableData.board = makeBotBoard(board, chooseTurnItem, 2);
+        tableData.board = makeBotBoard(board, chooseTurnItem, 2, tableData._id);
         botMoveChange(tableData);
         return;
       }
@@ -376,7 +491,7 @@ const botBlackQueenMove = async (
       Number(chooseTurnItem.id) + 1 <= currentLineBetween[1] &&
       board[Number(chooseTurnItem.id) + 1]?.name.includes("WHITE")
     ) {
-      tableData.board = makeBotBoard(board, chooseTurnItem, 1);
+      tableData.board = makeBotBoard(board, chooseTurnItem, 1, tableData._id);
       botMoveChange(tableData);
       return;
     }
@@ -418,7 +533,12 @@ const botBlackQueenMove = async (
                   Number(chooseTurnItem.id) - 7 >= currentLineBetween[0] &&
                   board[Number(chooseTurnItem.id) - 7]?.name.includes("WHITE")
                 ) {
-                  tableData.board = makeBotBoard(board, chooseTurnItem, -7);
+                  tableData.board = makeBotBoard(
+                    board,
+                    chooseTurnItem,
+                    -7,
+                    tableData._id
+                  );
                   botMoveChange(tableData);
                   return;
                 }
@@ -426,7 +546,12 @@ const botBlackQueenMove = async (
                 Number(chooseTurnItem.id) - 6 >= currentLineBetween[0] &&
                 board[Number(chooseTurnItem.id) - 6]?.name.includes("WHITE")
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, -6);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  -6,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               }
@@ -434,7 +559,12 @@ const botBlackQueenMove = async (
               Number(chooseTurnItem.id) - 5 >= currentLineBetween[0] &&
               board[Number(chooseTurnItem.id) - 5]?.name.includes("WHITE")
             ) {
-              tableData.board = makeBotBoard(board, chooseTurnItem, -5);
+              tableData.board = makeBotBoard(
+                board,
+                chooseTurnItem,
+                -5,
+                tableData._id
+              );
               botMoveChange(tableData);
               return;
             }
@@ -442,7 +572,12 @@ const botBlackQueenMove = async (
             Number(chooseTurnItem.id) - 4 >= currentLineBetween[0] &&
             board[Number(chooseTurnItem.id) - 4]?.name.includes("WHITE")
           ) {
-            tableData.board = makeBotBoard(board, chooseTurnItem, -4);
+            tableData.board = makeBotBoard(
+              board,
+              chooseTurnItem,
+              -4,
+              tableData._id
+            );
             botMoveChange(tableData);
             return;
           }
@@ -450,7 +585,12 @@ const botBlackQueenMove = async (
           Number(chooseTurnItem.id) - 3 >= currentLineBetween[0] &&
           board[Number(chooseTurnItem.id) - 3]?.name.includes("WHITE")
         ) {
-          tableData.board = makeBotBoard(board, chooseTurnItem, -3);
+          tableData.board = makeBotBoard(
+            board,
+            chooseTurnItem,
+            -3,
+            tableData._id
+          );
           botMoveChange(tableData);
           return;
         }
@@ -458,7 +598,12 @@ const botBlackQueenMove = async (
         Number(chooseTurnItem.id) - 2 >= currentLineBetween[0] &&
         board[Number(chooseTurnItem.id) - 2]?.name.includes("WHITE")
       ) {
-        tableData.board = makeBotBoard(board, chooseTurnItem, -2);
+        tableData.board = makeBotBoard(
+          board,
+          chooseTurnItem,
+          -2,
+          tableData._id
+        );
         botMoveChange(tableData);
         return;
       }
@@ -466,7 +611,7 @@ const botBlackQueenMove = async (
       Number(chooseTurnItem.id) - 1 >= currentLineBetween[0] &&
       board[Number(chooseTurnItem.id) - 1]?.name.includes("WHITE")
     ) {
-      tableData.board = makeBotBoard(board, chooseTurnItem, -1);
+      tableData.board = makeBotBoard(board, chooseTurnItem, -1, tableData._id);
       botMoveChange(tableData);
       return;
     }
@@ -477,7 +622,7 @@ const botBlackQueenMove = async (
     Number(chooseTurnItem.id) - 7 >= 0 &&
     board[Number(chooseTurnItem.id) - 7]?.name.includes("WHITE")
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, -7);
+    tableData.board = makeBotBoard(board, chooseTurnItem, -7, tableData._id);
     botMoveChange(tableData);
     return;
   } else if (
@@ -489,7 +634,7 @@ const botBlackQueenMove = async (
       Number(chooseTurnItem.id) - 14 >= 0 &&
       board[Number(chooseTurnItem.id) - 14]?.name.includes("WHITE")
     ) {
-      tableData.board = makeBotBoard(board, chooseTurnItem, -14);
+      tableData.board = makeBotBoard(board, chooseTurnItem, -14, tableData._id);
       botMoveChange(tableData);
       return;
     } else if (
@@ -501,7 +646,12 @@ const botBlackQueenMove = async (
         Number(chooseTurnItem.id) - 21 >= 0 &&
         board[Number(chooseTurnItem.id) - 21]?.name.includes("WHITE")
       ) {
-        tableData.board = makeBotBoard(board, chooseTurnItem, -21);
+        tableData.board = makeBotBoard(
+          board,
+          chooseTurnItem,
+          -21,
+          tableData._id
+        );
         botMoveChange(tableData);
         return;
       } else if (
@@ -513,7 +663,12 @@ const botBlackQueenMove = async (
           Number(chooseTurnItem.id) - 28 >= 0 &&
           board[Number(chooseTurnItem.id) - 28]?.name.includes("WHITE")
         ) {
-          tableData.board = makeBotBoard(board, chooseTurnItem, -28);
+          tableData.board = makeBotBoard(
+            board,
+            chooseTurnItem,
+            -28,
+            tableData._id
+          );
           botMoveChange(tableData);
           return;
         } else if (
@@ -525,7 +680,12 @@ const botBlackQueenMove = async (
             Number(chooseTurnItem.id) - 35 >= 0 &&
             board[Number(chooseTurnItem.id) - 35]?.name.includes("WHITE")
           ) {
-            tableData.board = makeBotBoard(board, chooseTurnItem, -35);
+            tableData.board = makeBotBoard(
+              board,
+              chooseTurnItem,
+              -35,
+              tableData._id
+            );
             botMoveChange(tableData);
             return;
           } else if (
@@ -537,7 +697,12 @@ const botBlackQueenMove = async (
               Number(chooseTurnItem.id) - 42 >= 0 &&
               board[Number(chooseTurnItem.id) - 42]?.name.includes("WHITE")
             ) {
-              tableData.board = makeBotBoard(board, chooseTurnItem, -42);
+              tableData.board = makeBotBoard(
+                board,
+                chooseTurnItem,
+                -42,
+                tableData._id
+              );
               botMoveChange(tableData);
               return;
             } else if (
@@ -549,7 +714,12 @@ const botBlackQueenMove = async (
                 Number(chooseTurnItem.id) - 49 >= 0 &&
                 board[Number(chooseTurnItem.id) - 49]?.name.includes("WHITE")
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, -49);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  -49,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               } else if (
@@ -561,7 +731,12 @@ const botBlackQueenMove = async (
                   Number(chooseTurnItem.id) - 56 >= 0 &&
                   board[Number(chooseTurnItem.id) - 56]?.name.includes("WHITE")
                 ) {
-                  tableData.board = makeBotBoard(board, chooseTurnItem, -56);
+                  tableData.board = makeBotBoard(
+                    board,
+                    chooseTurnItem,
+                    -56,
+                    tableData._id
+                  );
                   botMoveChange(tableData);
                   return;
                 }
@@ -578,7 +753,7 @@ const botBlackQueenMove = async (
     Number(chooseTurnItem.id) - 9 >= 0 &&
     board[Number(chooseTurnItem.id) - 9]?.name.includes("WHITE")
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, -9);
+    tableData.board = makeBotBoard(board, chooseTurnItem, -9, tableData._id);
     botMoveChange(tableData);
     return;
   } else if (
@@ -590,7 +765,7 @@ const botBlackQueenMove = async (
       Number(chooseTurnItem.id) - 18 >= 0 &&
       board[Number(chooseTurnItem.id) - 18]?.name.includes("WHITE")
     ) {
-      tableData.board = makeBotBoard(board, chooseTurnItem, -18);
+      tableData.board = makeBotBoard(board, chooseTurnItem, -18, tableData._id);
       botMoveChange(tableData);
       return;
     } else if (
@@ -602,7 +777,12 @@ const botBlackQueenMove = async (
         Number(chooseTurnItem.id) - 27 >= 0 &&
         board[Number(chooseTurnItem.id) - 27]?.name.includes("WHITE")
       ) {
-        tableData.board = makeBotBoard(board, chooseTurnItem, -27);
+        tableData.board = makeBotBoard(
+          board,
+          chooseTurnItem,
+          -27,
+          tableData._id
+        );
         botMoveChange(tableData);
         return;
       } else if (
@@ -614,7 +794,12 @@ const botBlackQueenMove = async (
           Number(chooseTurnItem.id) - 36 >= 0 &&
           board[Number(chooseTurnItem.id) - 36]?.name.includes("WHITE")
         ) {
-          tableData.board = makeBotBoard(board, chooseTurnItem, -36);
+          tableData.board = makeBotBoard(
+            board,
+            chooseTurnItem,
+            -36,
+            tableData._id
+          );
           botMoveChange(tableData);
           return;
         } else if (
@@ -626,7 +811,12 @@ const botBlackQueenMove = async (
             Number(chooseTurnItem.id) - 45 >= 0 &&
             board[Number(chooseTurnItem.id) - 45]?.name.includes("WHITE")
           ) {
-            tableData.board = makeBotBoard(board, chooseTurnItem, -45);
+            tableData.board = makeBotBoard(
+              board,
+              chooseTurnItem,
+              -45,
+              tableData._id
+            );
             botMoveChange(tableData);
             return;
           } else if (
@@ -638,7 +828,12 @@ const botBlackQueenMove = async (
               Number(chooseTurnItem.id) - 54 >= 0 &&
               board[Number(chooseTurnItem.id) - 54]?.name.includes("WHITE")
             ) {
-              tableData.board = makeBotBoard(board, chooseTurnItem, -54);
+              tableData.board = makeBotBoard(
+                board,
+                chooseTurnItem,
+                -54,
+                tableData._id
+              );
               botMoveChange(tableData);
               return;
             } else if (
@@ -650,14 +845,24 @@ const botBlackQueenMove = async (
                 Number(chooseTurnItem.id) - 63 >= 0 &&
                 board[Number(chooseTurnItem.id) - 63]?.name.includes("WHITE")
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, -63);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  -63,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               } else if (
                 Number(chooseTurnItem.id) - 63 >= 0 &&
                 board[Number(chooseTurnItem.id) - 63] == null
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, -63);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  -63,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               }
@@ -697,51 +902,81 @@ const botBlackQueenMove = async (
                 Number(chooseTurnItem.id) - 56 >= 0 &&
                 board[Number(chooseTurnItem.id) - 56] == null
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, -56);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  -56,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               } else if (
                 board[Number(chooseTurnItem.id) - 56]?.name.includes("WHITE")
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, -56);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  -56,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               }
             } else if (
               board[Number(chooseTurnItem.id) - 48]?.name.includes("WHITE")
             ) {
-              tableData.board = makeBotBoard(board, chooseTurnItem, -48);
+              tableData.board = makeBotBoard(
+                board,
+                chooseTurnItem,
+                -48,
+                tableData._id
+              );
               botMoveChange(tableData);
               return;
             }
           } else if (
             board[Number(chooseTurnItem.id) - 40]?.name.includes("WHITE")
           ) {
-            tableData.board = makeBotBoard(board, chooseTurnItem, -40);
+            tableData.board = makeBotBoard(
+              board,
+              chooseTurnItem,
+              -40,
+              tableData._id
+            );
             botMoveChange(tableData);
             return;
           }
         } else if (
           board[Number(chooseTurnItem.id) - 32]?.name.includes("WHITE")
         ) {
-          tableData.board = makeBotBoard(board, chooseTurnItem, -32);
+          tableData.board = makeBotBoard(
+            board,
+            chooseTurnItem,
+            -32,
+            tableData._id
+          );
           botMoveChange(tableData);
           return;
         }
       } else if (
         board[Number(chooseTurnItem.id) - 24]?.name.includes("WHITE")
       ) {
-        tableData.board = makeBotBoard(board, chooseTurnItem, -24);
+        tableData.board = makeBotBoard(
+          board,
+          chooseTurnItem,
+          -24,
+          tableData._id
+        );
         botMoveChange(tableData);
         return;
       }
     } else if (board[Number(chooseTurnItem.id) - 16]?.name.includes("WHITE")) {
-      tableData.board = makeBotBoard(board, chooseTurnItem, -16);
+      tableData.board = makeBotBoard(board, chooseTurnItem, -16, tableData._id);
       botMoveChange(tableData);
       return;
     }
   } else if (board[Number(chooseTurnItem.id) - 8]?.name.includes("WHITE")) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, -8);
+    tableData.board = makeBotBoard(board, chooseTurnItem, -8, tableData._id);
     botMoveChange(tableData);
     return;
   }
@@ -786,7 +1021,12 @@ const botBlackQueenMove = async (
                   Number(chooseTurnItem.id) + 56 <= 63 &&
                   board[Number(chooseTurnItem.id) + 56] == null
                 ) {
-                  tableData.board = makeBotBoard(board, chooseTurnItem, 56);
+                  tableData.board = makeBotBoard(
+                    board,
+                    chooseTurnItem,
+                    56,
+                    tableData._id
+                  );
                   botMoveChange(tableData);
                   return;
                 }
@@ -794,7 +1034,12 @@ const botBlackQueenMove = async (
                 Number(chooseTurnItem.id) + 49 <= 63 &&
                 board[Number(chooseTurnItem.id) + 49] == null
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, 49);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  49,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               }
@@ -802,7 +1047,12 @@ const botBlackQueenMove = async (
               Number(chooseTurnItem.id) + 42 <= 63 &&
               board[Number(chooseTurnItem.id) + 42] == null
             ) {
-              tableData.board = makeBotBoard(board, chooseTurnItem, 42);
+              tableData.board = makeBotBoard(
+                board,
+                chooseTurnItem,
+                42,
+                tableData._id
+              );
               botMoveChange(tableData);
               return;
             }
@@ -810,7 +1060,12 @@ const botBlackQueenMove = async (
             Number(chooseTurnItem.id) + 35 <= 63 &&
             board[Number(chooseTurnItem.id) + 35] == null
           ) {
-            tableData.board = makeBotBoard(board, chooseTurnItem, 35);
+            tableData.board = makeBotBoard(
+              board,
+              chooseTurnItem,
+              35,
+              tableData._id
+            );
             botMoveChange(tableData);
             return;
           }
@@ -818,7 +1073,12 @@ const botBlackQueenMove = async (
           Number(chooseTurnItem.id) + 28 <= 63 &&
           board[Number(chooseTurnItem.id) + 28] == null
         ) {
-          tableData.board = makeBotBoard(board, chooseTurnItem, 28);
+          tableData.board = makeBotBoard(
+            board,
+            chooseTurnItem,
+            28,
+            tableData._id
+          );
           botMoveChange(tableData);
           return;
         }
@@ -826,7 +1086,12 @@ const botBlackQueenMove = async (
         Number(chooseTurnItem.id) + 21 <= 63 &&
         board[Number(chooseTurnItem.id) + 21] == null
       ) {
-        tableData.board = makeBotBoard(board, chooseTurnItem, 21);
+        tableData.board = makeBotBoard(
+          board,
+          chooseTurnItem,
+          21,
+          tableData._id
+        );
         botMoveChange(tableData);
         return;
       }
@@ -834,7 +1099,7 @@ const botBlackQueenMove = async (
       Number(chooseTurnItem.id) + 14 <= 63 &&
       board[Number(chooseTurnItem.id) + 14] == null
     ) {
-      tableData.board = makeBotBoard(board, chooseTurnItem, 14);
+      tableData.board = makeBotBoard(board, chooseTurnItem, 14, tableData._id);
       botMoveChange(tableData);
       return;
     }
@@ -842,7 +1107,7 @@ const botBlackQueenMove = async (
     Number(chooseTurnItem.id) + 7 <= 63 &&
     board[Number(chooseTurnItem.id) + 7] == null
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, 7);
+    tableData.board = makeBotBoard(board, chooseTurnItem, 7, tableData._id);
     botMoveChange(tableData);
     return;
   }
@@ -876,36 +1141,66 @@ const botBlackQueenMove = async (
                 Number(chooseTurnItem.id) + 56 <= 63 &&
                 board[Number(chooseTurnItem.id) + 56] == null
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, 56);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  56,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               } else {
-                tableData.board = makeBotBoard(board, chooseTurnItem, 48);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  48,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               }
             } else {
-              tableData.board = makeBotBoard(board, chooseTurnItem, 40);
+              tableData.board = makeBotBoard(
+                board,
+                chooseTurnItem,
+                40,
+                tableData._id
+              );
               botMoveChange(tableData);
               return;
             }
           } else {
-            tableData.board = makeBotBoard(board, chooseTurnItem, 32);
+            tableData.board = makeBotBoard(
+              board,
+              chooseTurnItem,
+              32,
+              tableData._id
+            );
             botMoveChange(tableData);
             return;
           }
         } else {
-          tableData.board = makeBotBoard(board, chooseTurnItem, 24);
+          tableData.board = makeBotBoard(
+            board,
+            chooseTurnItem,
+            24,
+            tableData._id
+          );
           botMoveChange(tableData);
           return;
         }
       } else {
-        tableData.board = makeBotBoard(board, chooseTurnItem, 16);
+        tableData.board = makeBotBoard(
+          board,
+          chooseTurnItem,
+          16,
+          tableData._id
+        );
         botMoveChange(tableData);
         return;
       }
     } else {
-      tableData.board = makeBotBoard(board, chooseTurnItem, 8);
+      tableData.board = makeBotBoard(board, chooseTurnItem, 8, tableData._id);
       botMoveChange(tableData);
       return;
     }
@@ -946,7 +1241,12 @@ const botBlackQueenMove = async (
                 Number(chooseTurnItem.id) + 63 <= 63 &&
                 board[Number(chooseTurnItem.id) + 63] == null
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, 63);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  63,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               }
@@ -954,7 +1254,12 @@ const botBlackQueenMove = async (
               Number(chooseTurnItem.id) + 54 <= 63 &&
               board[Number(chooseTurnItem.id) + 54] == null
             ) {
-              tableData.board = makeBotBoard(board, chooseTurnItem, 54);
+              tableData.board = makeBotBoard(
+                board,
+                chooseTurnItem,
+                54,
+                tableData._id
+              );
               botMoveChange(tableData);
               return;
             }
@@ -962,7 +1267,12 @@ const botBlackQueenMove = async (
             Number(chooseTurnItem.id) + 45 <= 63 &&
             board[Number(chooseTurnItem.id) + 45] == null
           ) {
-            tableData.board = makeBotBoard(board, chooseTurnItem, 45);
+            tableData.board = makeBotBoard(
+              board,
+              chooseTurnItem,
+              45,
+              tableData._id
+            );
             botMoveChange(tableData);
             return;
           }
@@ -970,7 +1280,12 @@ const botBlackQueenMove = async (
           Number(chooseTurnItem.id) + 36 <= 63 &&
           board[Number(chooseTurnItem.id) + 36] == null
         ) {
-          tableData.board = makeBotBoard(board, chooseTurnItem, 36);
+          tableData.board = makeBotBoard(
+            board,
+            chooseTurnItem,
+            36,
+            tableData._id
+          );
           botMoveChange(tableData);
           return;
         }
@@ -978,7 +1293,12 @@ const botBlackQueenMove = async (
         Number(chooseTurnItem.id) + 27 <= 63 &&
         board[Number(chooseTurnItem.id) + 27] == null
       ) {
-        tableData.board = makeBotBoard(board, chooseTurnItem, 27);
+        tableData.board = makeBotBoard(
+          board,
+          chooseTurnItem,
+          27,
+          tableData._id
+        );
         botMoveChange(tableData);
         return;
       }
@@ -986,7 +1306,7 @@ const botBlackQueenMove = async (
       Number(chooseTurnItem.id) + 18 <= 63 &&
       board[Number(chooseTurnItem.id) + 18] == null
     ) {
-      tableData.board = makeBotBoard(board, chooseTurnItem, 18);
+      tableData.board = makeBotBoard(board, chooseTurnItem, 18, tableData._id);
       botMoveChange(tableData);
       return;
     }
@@ -994,7 +1314,7 @@ const botBlackQueenMove = async (
     Number(chooseTurnItem.id) + 9 <= 63 &&
     board[Number(chooseTurnItem.id) + 9] == null
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, 9);
+    tableData.board = makeBotBoard(board, chooseTurnItem, 9, tableData._id);
     botMoveChange(tableData);
     return;
   }
@@ -1039,7 +1359,12 @@ const botBlackQueenMove = async (
                   Number(chooseTurnItem.id) - 56 >= 0 &&
                   board[Number(chooseTurnItem.id) - 56] == null
                 ) {
-                  tableData.board = makeBotBoard(board, chooseTurnItem, -56);
+                  tableData.board = makeBotBoard(
+                    board,
+                    chooseTurnItem,
+                    -56,
+                    tableData._id
+                  );
                   botMoveChange(tableData);
                   return;
                 }
@@ -1047,7 +1372,12 @@ const botBlackQueenMove = async (
                 Number(chooseTurnItem.id) - 49 >= 0 &&
                 board[Number(chooseTurnItem.id) - 49] == null
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, -49);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  -49,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               }
@@ -1055,7 +1385,12 @@ const botBlackQueenMove = async (
               Number(chooseTurnItem.id) - 42 >= 0 &&
               board[Number(chooseTurnItem.id) - 42] == null
             ) {
-              tableData.board = makeBotBoard(board, chooseTurnItem, -42);
+              tableData.board = makeBotBoard(
+                board,
+                chooseTurnItem,
+                -42,
+                tableData._id
+              );
               botMoveChange(tableData);
               return;
             }
@@ -1063,7 +1398,12 @@ const botBlackQueenMove = async (
             Number(chooseTurnItem.id) - 35 >= 0 &&
             board[Number(chooseTurnItem.id) - 35] == null
           ) {
-            tableData.board = makeBotBoard(board, chooseTurnItem, -35);
+            tableData.board = makeBotBoard(
+              board,
+              chooseTurnItem,
+              -35,
+              tableData._id
+            );
             botMoveChange(tableData);
             return;
           }
@@ -1071,7 +1411,12 @@ const botBlackQueenMove = async (
           Number(chooseTurnItem.id) - 28 >= 0 &&
           board[Number(chooseTurnItem.id) - 28] == null
         ) {
-          tableData.board = makeBotBoard(board, chooseTurnItem, -28);
+          tableData.board = makeBotBoard(
+            board,
+            chooseTurnItem,
+            -28,
+            tableData._id
+          );
           botMoveChange(tableData);
           return;
         }
@@ -1079,7 +1424,12 @@ const botBlackQueenMove = async (
         Number(chooseTurnItem.id) - 21 >= 0 &&
         board[Number(chooseTurnItem.id) - 21] == null
       ) {
-        tableData.board = makeBotBoard(board, chooseTurnItem, -21);
+        tableData.board = makeBotBoard(
+          board,
+          chooseTurnItem,
+          -21,
+          tableData._id
+        );
         botMoveChange(tableData);
         return;
       }
@@ -1087,7 +1437,7 @@ const botBlackQueenMove = async (
       Number(chooseTurnItem.id) - 14 >= 0 &&
       board[Number(chooseTurnItem.id) - 14] == null
     ) {
-      tableData.board = makeBotBoard(board, chooseTurnItem, -14);
+      tableData.board = makeBotBoard(board, chooseTurnItem, -14, tableData._id);
       botMoveChange(tableData);
       return;
     }
@@ -1095,7 +1445,7 @@ const botBlackQueenMove = async (
     Number(chooseTurnItem.id) - 7 >= 0 &&
     board[Number(chooseTurnItem.id) - 7] == null
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, -7);
+    tableData.board = makeBotBoard(board, chooseTurnItem, -7, tableData._id);
     botMoveChange(tableData);
     return;
   }
@@ -1129,36 +1479,66 @@ const botBlackQueenMove = async (
                 Number(chooseTurnItem.id) - 56 >= 0 &&
                 board[Number(chooseTurnItem.id) - 56] == null
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, -56);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  -56,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               } else {
-                tableData.board = makeBotBoard(board, chooseTurnItem, -48);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  -48,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               }
             } else {
-              tableData.board = makeBotBoard(board, chooseTurnItem, -40);
+              tableData.board = makeBotBoard(
+                board,
+                chooseTurnItem,
+                -40,
+                tableData._id
+              );
               botMoveChange(tableData);
               return;
             }
           } else {
-            tableData.board = makeBotBoard(board, chooseTurnItem, -32);
+            tableData.board = makeBotBoard(
+              board,
+              chooseTurnItem,
+              -32,
+              tableData._id
+            );
             botMoveChange(tableData);
             return;
           }
         } else {
-          tableData.board = makeBotBoard(board, chooseTurnItem, -24);
+          tableData.board = makeBotBoard(
+            board,
+            chooseTurnItem,
+            -24,
+            tableData._id
+          );
           botMoveChange(tableData);
           return;
         }
       } else {
-        tableData.board = makeBotBoard(board, chooseTurnItem, -16);
+        tableData.board = makeBotBoard(
+          board,
+          chooseTurnItem,
+          -16,
+          tableData._id
+        );
         botMoveChange(tableData);
         return;
       }
     } else {
-      tableData.board = makeBotBoard(board, chooseTurnItem, -8);
+      tableData.board = makeBotBoard(board, chooseTurnItem, -8, tableData._id);
       botMoveChange(tableData);
       return;
     }
@@ -1199,7 +1579,12 @@ const botBlackQueenMove = async (
                 Number(chooseTurnItem.id) - 63 >= 0 &&
                 board[Number(chooseTurnItem.id) - 63] == null
               ) {
-                tableData.board = makeBotBoard(board, chooseTurnItem, -63);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  -63,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               }
@@ -1207,7 +1592,12 @@ const botBlackQueenMove = async (
               Number(chooseTurnItem.id) - 54 >= 0 &&
               board[Number(chooseTurnItem.id) - 54] == null
             ) {
-              tableData.board = makeBotBoard(board, chooseTurnItem, -54);
+              tableData.board = makeBotBoard(
+                board,
+                chooseTurnItem,
+                -54,
+                tableData._id
+              );
               botMoveChange(tableData);
               return;
             }
@@ -1215,7 +1605,12 @@ const botBlackQueenMove = async (
             Number(chooseTurnItem.id) - 45 >= 0 &&
             board[Number(chooseTurnItem.id) - 45] == null
           ) {
-            tableData.board = makeBotBoard(board, chooseTurnItem, -45);
+            tableData.board = makeBotBoard(
+              board,
+              chooseTurnItem,
+              -45,
+              tableData._id
+            );
             botMoveChange(tableData);
             return;
           }
@@ -1223,7 +1618,12 @@ const botBlackQueenMove = async (
           Number(chooseTurnItem.id) - 36 >= 0 &&
           board[Number(chooseTurnItem.id) - 36] == null
         ) {
-          tableData.board = makeBotBoard(board, chooseTurnItem, -36);
+          tableData.board = makeBotBoard(
+            board,
+            chooseTurnItem,
+            -36,
+            tableData._id
+          );
           botMoveChange(tableData);
           return;
         }
@@ -1231,7 +1631,12 @@ const botBlackQueenMove = async (
         Number(chooseTurnItem.id) - 27 >= 0 &&
         board[Number(chooseTurnItem.id) - 27] == null
       ) {
-        tableData.board = makeBotBoard(board, chooseTurnItem, -27);
+        tableData.board = makeBotBoard(
+          board,
+          chooseTurnItem,
+          -27,
+          tableData._id
+        );
         botMoveChange(tableData);
         return;
       }
@@ -1239,7 +1644,7 @@ const botBlackQueenMove = async (
       Number(chooseTurnItem.id) - 18 >= 0 &&
       board[Number(chooseTurnItem.id) - 18] == null
     ) {
-      tableData.board = makeBotBoard(board, chooseTurnItem, -18);
+      tableData.board = makeBotBoard(board, chooseTurnItem, -18, tableData._id);
       botMoveChange(tableData);
       return;
     }
@@ -1247,7 +1652,7 @@ const botBlackQueenMove = async (
     Number(chooseTurnItem.id) - 9 >= 0 &&
     board[Number(chooseTurnItem.id) - 9] == null
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, -9);
+    tableData.board = makeBotBoard(board, chooseTurnItem, -9, tableData._id);
     botMoveChange(tableData);
     return;
   }
@@ -1289,36 +1694,66 @@ const botBlackQueenMove = async (
                   Number(chooseTurnItem.id) + 7 <= currentLineBetween[1] &&
                   board[Number(chooseTurnItem.id) + 7] == null
                 ) {
-                  tableData.board = makeBotBoard(board, chooseTurnItem, 7);
+                  tableData.board = makeBotBoard(
+                    board,
+                    chooseTurnItem,
+                    7,
+                    tableData._id
+                  );
                   botMoveChange(tableData);
                   return;
                 } else {
-                  tableData.board = makeBotBoard(board, chooseTurnItem, 6);
+                  tableData.board = makeBotBoard(
+                    board,
+                    chooseTurnItem,
+                    6,
+                    tableData._id
+                  );
                   botMoveChange(tableData);
                   return;
                 }
               } else {
-                tableData.board = makeBotBoard(board, chooseTurnItem, 5);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  5,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               }
             } else {
-              tableData.board = makeBotBoard(board, chooseTurnItem, 4);
+              tableData.board = makeBotBoard(
+                board,
+                chooseTurnItem,
+                4,
+                tableData._id
+              );
               botMoveChange(tableData);
               return;
             }
           } else {
-            tableData.board = makeBotBoard(board, chooseTurnItem, 3);
+            tableData.board = makeBotBoard(
+              board,
+              chooseTurnItem,
+              3,
+              tableData._id
+            );
             botMoveChange(tableData);
             return;
           }
         } else {
-          tableData.board = makeBotBoard(board, chooseTurnItem, 2);
+          tableData.board = makeBotBoard(
+            board,
+            chooseTurnItem,
+            2,
+            tableData._id
+          );
           botMoveChange(tableData);
           return;
         }
       } else {
-        tableData.board = makeBotBoard(board, chooseTurnItem, 1);
+        tableData.board = makeBotBoard(board, chooseTurnItem, 1, tableData._id);
         botMoveChange(tableData);
         return;
       }
@@ -1359,36 +1794,71 @@ const botBlackQueenMove = async (
                   Number(chooseTurnItem.id) - 7 >= currentLineBetween[0] &&
                   board[Number(chooseTurnItem.id) - 7] == null
                 ) {
-                  tableData.board = makeBotBoard(board, chooseTurnItem, -7);
+                  tableData.board = makeBotBoard(
+                    board,
+                    chooseTurnItem,
+                    -7,
+                    tableData._id
+                  );
                   botMoveChange(tableData);
                   return;
                 } else {
-                  tableData.board = makeBotBoard(board, chooseTurnItem, -6);
+                  tableData.board = makeBotBoard(
+                    board,
+                    chooseTurnItem,
+                    -6,
+                    tableData._id
+                  );
                   botMoveChange(tableData);
                   return;
                 }
               } else {
-                tableData.board = makeBotBoard(board, chooseTurnItem, -5);
+                tableData.board = makeBotBoard(
+                  board,
+                  chooseTurnItem,
+                  -5,
+                  tableData._id
+                );
                 botMoveChange(tableData);
                 return;
               }
             } else {
-              tableData.board = makeBotBoard(board, chooseTurnItem, -4);
+              tableData.board = makeBotBoard(
+                board,
+                chooseTurnItem,
+                -4,
+                tableData._id
+              );
               botMoveChange(tableData);
               return;
             }
           } else {
-            tableData.board = makeBotBoard(board, chooseTurnItem, -3);
+            tableData.board = makeBotBoard(
+              board,
+              chooseTurnItem,
+              -3,
+              tableData._id
+            );
             botMoveChange(tableData);
             return;
           }
         } else {
-          tableData.board = makeBotBoard(board, chooseTurnItem, -2);
+          tableData.board = makeBotBoard(
+            board,
+            chooseTurnItem,
+            -2,
+            tableData._id
+          );
           botMoveChange(tableData);
           return;
         }
       } else {
-        tableData.board = makeBotBoard(board, chooseTurnItem, -1);
+        tableData.board = makeBotBoard(
+          board,
+          chooseTurnItem,
+          -1,
+          tableData._id
+        );
         botMoveChange(tableData);
         return;
       }

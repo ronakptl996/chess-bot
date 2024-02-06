@@ -24,7 +24,7 @@ const botBlackKingMove = async (
       Number(chooseTurnItem.id) + 1 <= currentLineBetween[1] &&
       board[Number(chooseTurnItem.id) + 1]?.name.includes("WHITE")
     ) {
-      tableData.board = makeBotBoard(board, chooseTurnItem, 1);
+      tableData.board = makeBotBoard(board, chooseTurnItem, 1, tableData._id);
       botMoveChange(tableData);
       return;
     }
@@ -35,7 +35,7 @@ const botBlackKingMove = async (
       Number(chooseTurnItem.id) - 1 >= currentLineBetween[0] &&
       board[Number(chooseTurnItem.id) - 1]?.name.includes("WHITE")
     ) {
-      tableData.board = makeBotBoard(board, chooseTurnItem, -1);
+      tableData.board = makeBotBoard(board, chooseTurnItem, -1, tableData._id);
       botMoveChange(tableData);
       return;
     }
@@ -46,7 +46,7 @@ const botBlackKingMove = async (
     Number(chooseTurnItem.id) + 7 <= 63 &&
     board[Number(chooseTurnItem.id) + 7]?.name.includes("WHITE")
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, 7);
+    tableData.board = makeBotBoard(board, chooseTurnItem, 7, tableData._id);
     botMoveChange(tableData);
     return;
   }
@@ -56,7 +56,7 @@ const botBlackKingMove = async (
     Number(chooseTurnItem.id) - 7 >= 0 &&
     board[Number(chooseTurnItem.id) - 7]?.name.includes("WHITE")
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, -7);
+    tableData.board = makeBotBoard(board, chooseTurnItem, -7, tableData._id);
     botMoveChange(tableData);
     return;
   }
@@ -66,7 +66,7 @@ const botBlackKingMove = async (
     Number(chooseTurnItem.id) + 8 <= 63 &&
     board[Number(chooseTurnItem.id) + 8]?.name.includes("WHITE")
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, 8);
+    tableData.board = makeBotBoard(board, chooseTurnItem, 8, tableData._id);
     botMoveChange(tableData);
     return;
   }
@@ -76,7 +76,7 @@ const botBlackKingMove = async (
     Number(chooseTurnItem.id) - 8 >= 0 &&
     board[Number(chooseTurnItem.id) - 8]?.name.includes("WHITE")
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, -8);
+    tableData.board = makeBotBoard(board, chooseTurnItem, -8, tableData._id);
     botMoveChange(tableData);
     return;
   }
@@ -86,7 +86,7 @@ const botBlackKingMove = async (
     Number(chooseTurnItem.id) + 9 <= 63 &&
     board[Number(chooseTurnItem.id) + 9]?.name.includes("WHITE")
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, 9);
+    tableData.board = makeBotBoard(board, chooseTurnItem, 9, tableData._id);
     botMoveChange(tableData);
     return;
   }
@@ -96,7 +96,7 @@ const botBlackKingMove = async (
     Number(chooseTurnItem.id) - 9 >= 63 &&
     board[Number(chooseTurnItem.id) - 9]?.name.includes("WHITE")
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, -9);
+    tableData.board = makeBotBoard(board, chooseTurnItem, -9, tableData._id);
     botMoveChange(tableData);
     return;
   }
@@ -109,7 +109,7 @@ const botBlackKingMove = async (
       Number(chooseTurnItem.id) + 1 <= currentLineBetween[1] &&
       board[Number(chooseTurnItem.id) + 1] == null
     ) {
-      tableData.board = makeBotBoard(board, chooseTurnItem, 1);
+      tableData.board = makeBotBoard(board, chooseTurnItem, 1, tableData._id);
       botMoveChange(tableData);
       return;
     }
@@ -120,7 +120,7 @@ const botBlackKingMove = async (
       Number(chooseTurnItem.id) - 1 >= currentLineBetween[0] &&
       board[Number(chooseTurnItem.id) - 1] == null
     ) {
-      tableData.board = makeBotBoard(board, chooseTurnItem, -1);
+      tableData.board = makeBotBoard(board, chooseTurnItem, -1, tableData._id);
       botMoveChange(tableData);
       return;
     }
@@ -131,7 +131,7 @@ const botBlackKingMove = async (
     Number(chooseTurnItem.id) + 7 <= 63 &&
     board[Number(chooseTurnItem.id) + 7] == null
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, 7);
+    tableData.board = makeBotBoard(board, chooseTurnItem, 7, tableData._id);
     botMoveChange(tableData);
     return;
   }
@@ -141,7 +141,7 @@ const botBlackKingMove = async (
     Number(chooseTurnItem.id) + 8 <= 63 &&
     board[Number(chooseTurnItem.id) + 8] == null
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, 8);
+    tableData.board = makeBotBoard(board, chooseTurnItem, 8, tableData._id);
     botMoveChange(tableData);
     return;
   }
@@ -151,7 +151,7 @@ const botBlackKingMove = async (
     Number(chooseTurnItem.id) + 9 <= 63 &&
     board[Number(chooseTurnItem.id) + 9] == null
   ) {
-    tableData.board = makeBotBoard(board, chooseTurnItem, 9);
+    tableData.board = makeBotBoard(board, chooseTurnItem, 9, tableData._id);
     botMoveChange(tableData);
     return;
   }

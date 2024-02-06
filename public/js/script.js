@@ -13988,6 +13988,18 @@ function botUpdatePieces(data) {
   document.getElementById("turnMessage").innerText = `${data.turnMessage}`;
 }
 
+function botWin(data) {
+  document.getElementById("turnTimer").style.display = "none";
+  alert(data.message);
+
+  setTimeout(() => {
+    sessionStorage.removeItem("userId");
+    sessionStorage.removeItem("tableId");
+    sessionStorage.removeItem("id");
+    location.reload();
+  }, 2000);
+}
+
 function eventLockInFun() {
   leaveBtn.disabled = true;
 }
@@ -14036,6 +14048,9 @@ function eventHandler(socket) {
         break;
       case "BOT_UPDATE_PIECES":
         botUpdatePieces(data.data);
+        break;
+      case "BOT_WIN":
+        botWin(data.data);
         break;
     }
   });

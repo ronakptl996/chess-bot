@@ -1,4 +1,8 @@
+import { IBoardObject } from "../interface";
 import logger from "../logger";
+import Events from "../eventEmitter";
+import { EVENT_NAME } from "../constants";
+import { disconnect } from "../playing";
 
 const remainTimeCalculation = async (Job: any) => {
   try {
@@ -51,7 +55,22 @@ const currentLine = [
   [56, 63],
 ];
 
-const makeBotBoard = (board: any, chooseTurnItem: any, move: number) => {
+const makeBotBoard = (
+  board: (IBoardObject | null)[],
+  chooseTurnItem: any,
+  move: number,
+  tableId: string
+) => {
+  if (board[Number(chooseTurnItem.id) + move]?.name.includes("WHITE_KING")) {
+    const data = {
+      eventName: EVENT_NAME.BOT_WIN,
+      data: {
+        message: "You Lose the match!",
+      },
+    };
+    Events.sendToRoom(tableId, data);
+    disconnect(tableId);
+  }
   board[Number(chooseTurnItem.id)] = null;
   board[Number(chooseTurnItem.id) + move] = null;
   board[Number(chooseTurnItem.id) + move] = {

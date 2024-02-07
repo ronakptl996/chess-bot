@@ -284,16 +284,14 @@ const isBotMoveValid = (
 
   if (chooseTurnItem.name.includes("BLACK_PAWN")) {
     if (board[Number(chooseTurnItem.id)]?.isFirstMove) {
-      if (board[Number(chooseTurnItem.id) + 8]?.name.includes("BLACK"))
-        return false;
+      if (board[Number(chooseTurnItem.id) + 8] != null) return false;
       else if (
         board[Number(chooseTurnItem.id) + 8] == null &&
-        board[Number(chooseTurnItem.id) + 16]?.name.includes("BLACK")
+        board[Number(chooseTurnItem.id) + 16] != null
       )
         return false;
     }
-    if (board[Number(chooseTurnItem.id) + 8]?.name.includes("BLACK"))
-      return false;
+    if (board[Number(chooseTurnItem.id) + 8] != null) return false;
   }
 
   return true;

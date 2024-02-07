@@ -11,7 +11,7 @@ const botBlackKingMove = async (
 
   let currentLineBetween;
   currentLineBetween = currentLine.find(
-    (arr) => Number(chooseTurnItem.id) < arr[1]
+    (arr) => Number(chooseTurnItem.id) <= arr[1]
   );
 
   const board = tableData.board;
@@ -43,6 +43,8 @@ const botBlackKingMove = async (
 
   // FOR KILL +7
   if (
+    currentLineBetween &&
+    Number(chooseTurnItem.id) + 7 > currentLineBetween[1] &&
     Number(chooseTurnItem.id) + 7 <= 63 &&
     board[Number(chooseTurnItem.id) + 7]?.name.includes("WHITE")
   ) {
@@ -53,6 +55,8 @@ const botBlackKingMove = async (
 
   // FOR KILL -7
   if (
+    currentLineBetween &&
+    Number(chooseTurnItem.id) - 7 < currentLineBetween[0] &&
     Number(chooseTurnItem.id) - 7 >= 0 &&
     board[Number(chooseTurnItem.id) - 7]?.name.includes("WHITE")
   ) {

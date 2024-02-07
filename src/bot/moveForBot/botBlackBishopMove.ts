@@ -598,6 +598,9 @@ const botBlackBishopMove = async (
       Number(chooseTurnItem.id) > 14 &&
       Number(chooseTurnItem.id) < 56
     ) {
+      logger.error(
+        "====================Number(chooseTurnItem.id) % 2 != 0 &&Number(chooseTurnItem.id) > 14 &&Number(chooseTurnItem.id) < 56==========================="
+      );
       if (
         Number(chooseTurnItem.id) + 7 <= 63 &&
         board[Number(chooseTurnItem.id) + 7]?.name.includes("WHITE")
@@ -1450,6 +1453,13 @@ const botBlackBishopMove = async (
       botMoveChange(tableData);
       return;
     }
+  } else if (
+    Number(chooseTurnItem.id) + 7 <= 63 &&
+    board[Number(chooseTurnItem.id) + 7] == null
+  ) {
+    tableData.board = makeBotBoard(board, chooseTurnItem, 7, tableData._id);
+    botMoveChange(tableData);
+    return;
   }
 
   // FOR 9 EMPTY MOVE
@@ -1556,6 +1566,13 @@ const botBlackBishopMove = async (
       botMoveChange(tableData);
       return;
     }
+  } else if (
+    Number(chooseTurnItem.id) + 9 <= 63 &&
+    board[Number(chooseTurnItem.id) + 9] == null
+  ) {
+    tableData.board = makeBotBoard(board, chooseTurnItem, 9, tableData._id);
+    botMoveChange(tableData);
+    return;
   }
 
   // FOR -7 EMPTY MOVE
@@ -1680,6 +1697,13 @@ const botBlackBishopMove = async (
       botMoveChange(tableData);
       return;
     }
+  } else if (
+    Number(chooseTurnItem.id) - 7 >= 0 &&
+    board[Number(chooseTurnItem.id) - 7] == null
+  ) {
+    tableData.board = makeBotBoard(board, chooseTurnItem, -7, tableData._id);
+    botMoveChange(tableData);
+    return;
   }
 
   // FOR -9 EMPTY MOVE
@@ -1786,6 +1810,13 @@ const botBlackBishopMove = async (
       botMoveChange(tableData);
       return;
     }
+  } else if (
+    Number(chooseTurnItem.id) - 9 >= 0 &&
+    board[Number(chooseTurnItem.id) - 9] == null
+  ) {
+    tableData.board = makeBotBoard(board, chooseTurnItem, -9, tableData._id);
+    botMoveChange(tableData);
+    return;
   }
 };
 

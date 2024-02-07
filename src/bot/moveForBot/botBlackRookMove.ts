@@ -209,7 +209,7 @@ const botBlackRookMove = async (
         }
 
         // Going To Right
-        if (
+        else if (
           Number(chooseTurnItem.id) + 1 <= 63 &&
           board[Number(chooseTurnItem.id) + 1] == null
         ) {

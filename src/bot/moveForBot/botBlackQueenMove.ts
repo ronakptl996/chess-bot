@@ -13,7 +13,7 @@ const botBlackQueenMove = async (
 
   let currentLineBetween;
   currentLineBetween = currentLine.find(
-    (arr) => Number(chooseTurnItem.id) < arr[1]
+    (arr) => Number(chooseTurnItem.id) <= arr[1]
   );
 
   const board = tableData.board;

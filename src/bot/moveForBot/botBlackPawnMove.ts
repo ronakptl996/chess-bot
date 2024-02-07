@@ -1,5 +1,5 @@
 import { IBoardObject, IChess } from "../../interface";
-import { makeBotBoard } from "../../utils";
+import { currentLine, makeBotBoard } from "../../utils";
 import botMoveChange from "../botMoveChange";
 
 const botBlackPawnMove = async (
@@ -7,6 +7,11 @@ const botBlackPawnMove = async (
   tableData: IChess
 ) => {
   const board = tableData.board;
+
+  let currentLineBetween;
+  currentLineBetween = currentLine.find(
+    (arr) => Number(chooseTurnItem.id) <= arr[1]
+  );
 
   if (chooseTurnItem.isFirstMove) {
     let firstTurnMovePawn = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
@@ -16,6 +21,7 @@ const botBlackPawnMove = async (
         board[Number(chooseTurnItem.id) + 7] &&
         board[Number(chooseTurnItem.id) + 7]?.name.includes("WHITE")
       ) {
+        chooseTurnItem.isFirstMove = false;
         tableData.board = makeBotBoard(board, chooseTurnItem, 7, tableData._id);
         botMoveChange(tableData);
         return;
@@ -23,6 +29,7 @@ const botBlackPawnMove = async (
         board[Number(chooseTurnItem.id) + 9] &&
         board[Number(chooseTurnItem.id) + 9]?.name.includes("WHITE")
       ) {
+        chooseTurnItem.isFirstMove = false;
         tableData.board = makeBotBoard(board, chooseTurnItem, 9, tableData._id);
         botMoveChange(tableData);
       } else if (board[Number(chooseTurnItem.id) + 8] === null) {
@@ -36,6 +43,7 @@ const botBlackPawnMove = async (
         board[Number(chooseTurnItem.id) + 7] &&
         board[Number(chooseTurnItem.id) + 7]?.name.includes("WHITE")
       ) {
+        chooseTurnItem.isFirstMove = false;
         tableData.board = makeBotBoard(board, chooseTurnItem, 7, tableData._id);
         botMoveChange(tableData);
         return;
@@ -43,6 +51,7 @@ const botBlackPawnMove = async (
         board[Number(chooseTurnItem.id) + 9] &&
         board[Number(chooseTurnItem.id) + 9]?.name.includes("WHITE")
       ) {
+        chooseTurnItem.isFirstMove = false;
         tableData.board = makeBotBoard(board, chooseTurnItem, 9, tableData._id);
         botMoveChange(tableData);
       } else if (board[Number(chooseTurnItem.id) + 16] === null) {
@@ -69,6 +78,8 @@ const botBlackPawnMove = async (
     }
   } else {
     if (
+      currentLineBetween &&
+      Number(chooseTurnItem.id) + 7 > currentLineBetween[1] &&
       board[Number(chooseTurnItem.id) + 7] &&
       board[Number(chooseTurnItem.id) + 7]?.name.includes("WHITE")
     ) {

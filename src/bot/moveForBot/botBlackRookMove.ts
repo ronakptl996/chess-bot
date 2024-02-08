@@ -1,5 +1,5 @@
 import { IBoardObject, IChess } from "../../interface";
-import { cornerNumber, makeBotBoard } from "../../utils";
+import { cornerNumber, currentLine, makeBotBoard } from "../../utils";
 import logger from "../../logger";
 import botMoveChange from "../botMoveChange";
 
@@ -13,6 +13,11 @@ const botBlackRookMove = async (
   //   console.log(chooseTurnItem);
   //   console.log(board);
   const board = tableData.board;
+
+  let currentLineBetween;
+  currentLineBetween = currentLine.find(
+    (arr) => Number(chooseTurnItem.id) <= arr[1]
+  );
 
   // FOR CORNER NUMBER ID
   if (cornerNumber.includes(Number(chooseTurnItem.id))) {
@@ -211,29 +216,43 @@ const botBlackRookMove = async (
         // Going To Right
         else if (
           Number(chooseTurnItem.id) + 1 <= 63 &&
+          currentLineBetween &&
+          Number(chooseTurnItem.id) + 1 <= currentLineBetween[1] &&
           board[Number(chooseTurnItem.id) + 1] == null
         ) {
           if (
+            currentLineBetween &&
+            Number(chooseTurnItem.id) + 2 <= currentLineBetween[1] &&
             Number(chooseTurnItem.id) + 2 <= 63 &&
             board[Number(chooseTurnItem.id) + 2] == null
           ) {
             if (
+              currentLineBetween &&
+              Number(chooseTurnItem.id) + 3 <= currentLineBetween[1] &&
               Number(chooseTurnItem.id) + 3 <= 63 &&
               board[Number(chooseTurnItem.id) + 3] == null
             ) {
               if (
+                currentLineBetween &&
+                Number(chooseTurnItem.id) + 4 <= currentLineBetween[1] &&
                 Number(chooseTurnItem.id) + 4 <= 63 &&
                 board[Number(chooseTurnItem.id) + 4] == null
               ) {
                 if (
+                  currentLineBetween &&
+                  Number(chooseTurnItem.id) + 5 <= currentLineBetween[1] &&
                   Number(chooseTurnItem.id) + 5 <= 63 &&
                   board[Number(chooseTurnItem.id) + 5] == null
                 ) {
                   if (
+                    currentLineBetween &&
+                    Number(chooseTurnItem.id) + 6 <= currentLineBetween[1] &&
                     Number(chooseTurnItem.id) + 6 <= 63 &&
                     board[Number(chooseTurnItem.id) + 6] == null
                   ) {
                     if (
+                      currentLineBetween &&
+                      Number(chooseTurnItem.id) + 7 <= currentLineBetween[1] &&
                       Number(chooseTurnItem.id) + 7 <= 63 &&
                       board[Number(chooseTurnItem.id) + 7] == null
                     ) {
@@ -245,6 +264,8 @@ const botBlackRookMove = async (
                       );
                       botMoveChange(tableData);
                     } else if (
+                      currentLineBetween &&
+                      Number(chooseTurnItem.id) + 7 <= currentLineBetween[1] &&
                       Number(chooseTurnItem.id) + 7 <= 63 &&
                       board[Number(chooseTurnItem.id) + 7]?.name.includes(
                         "WHITE"
@@ -267,6 +288,8 @@ const botBlackRookMove = async (
                       botMoveChange(tableData);
                     }
                   } else if (
+                    currentLineBetween &&
+                    Number(chooseTurnItem.id) + 6 <= currentLineBetween[1] &&
                     Number(chooseTurnItem.id) + 6 <= 63 &&
                     board[Number(chooseTurnItem.id) + 6]?.name.includes("WHITE")
                   ) {
@@ -287,6 +310,8 @@ const botBlackRookMove = async (
                     botMoveChange(tableData);
                   }
                 } else if (
+                  currentLineBetween &&
+                  Number(chooseTurnItem.id) + 5 <= currentLineBetween[1] &&
                   Number(chooseTurnItem.id) + 5 <= 63 &&
                   board[Number(chooseTurnItem.id) + 5]?.name.includes("WHITE")
                 ) {
@@ -306,6 +331,8 @@ const botBlackRookMove = async (
                   );
                 }
               } else if (
+                currentLineBetween &&
+                Number(chooseTurnItem.id) + 4 <= currentLineBetween[1] &&
                 Number(chooseTurnItem.id) + 4 <= 63 &&
                 board[Number(chooseTurnItem.id) + 4]?.name.includes("WHITE")
               ) {
@@ -326,6 +353,8 @@ const botBlackRookMove = async (
                 botMoveChange(tableData);
               }
             } else if (
+              currentLineBetween &&
+              Number(chooseTurnItem.id) + 3 <= currentLineBetween[1] &&
               Number(chooseTurnItem.id) + 3 <= 63 &&
               board[Number(chooseTurnItem.id) + 3]?.name.includes("WHITE")
             ) {
@@ -346,6 +375,8 @@ const botBlackRookMove = async (
               botMoveChange(tableData);
             }
           } else if (
+            currentLineBetween &&
+            Number(chooseTurnItem.id) + 2 <= currentLineBetween[1] &&
             Number(chooseTurnItem.id) + 2 <= 63 &&
             board[Number(chooseTurnItem.id) + 2]?.name.includes("WHITE")
           ) {
@@ -367,6 +398,8 @@ const botBlackRookMove = async (
           }
         } else if (
           Number(chooseTurnItem.id) + 1 <= 63 &&
+          currentLineBetween &&
+          Number(chooseTurnItem.id) + 1 <= currentLineBetween[1] &&
           board[Number(chooseTurnItem.id) + 1]?.name.includes("WHITE")
         ) {
           tableData.board = makeBotBoard(
@@ -570,30 +603,44 @@ const botBlackRookMove = async (
 
         // Going To Left
         if (
+          currentLineBetween &&
+          Number(chooseTurnItem.id) - 1 >= currentLineBetween[0] &&
           board[Number(chooseTurnItem.id) - 1] == null &&
           Number(chooseTurnItem.id) - 1 >= 0
         ) {
           if (
+            currentLineBetween &&
+            Number(chooseTurnItem.id) - 2 >= currentLineBetween[0] &&
             board[Number(chooseTurnItem.id) - 2] == null &&
             Number(chooseTurnItem.id) - 2 >= 0
           ) {
             if (
+              currentLineBetween &&
+              Number(chooseTurnItem.id) - 3 >= currentLineBetween[0] &&
               board[Number(chooseTurnItem.id) - 3] == null &&
               Number(chooseTurnItem.id) - 3 >= 0
             ) {
               if (
+                currentLineBetween &&
+                Number(chooseTurnItem.id) - 4 >= currentLineBetween[0] &&
                 board[Number(chooseTurnItem.id) - 4] == null &&
                 Number(chooseTurnItem.id) - 4 >= 0
               ) {
                 if (
+                  currentLineBetween &&
+                  Number(chooseTurnItem.id) - 5 >= currentLineBetween[0] &&
                   board[Number(chooseTurnItem.id) - 5] == null &&
                   Number(chooseTurnItem.id) - 5 >= 0
                 ) {
                   if (
+                    currentLineBetween &&
+                    Number(chooseTurnItem.id) - 6 >= currentLineBetween[0] &&
                     board[Number(chooseTurnItem.id) - 6] == null &&
                     Number(chooseTurnItem.id) - 6 >= 0
                   ) {
                     if (
+                      currentLineBetween &&
+                      Number(chooseTurnItem.id) - 7 >= currentLineBetween[0] &&
                       board[Number(chooseTurnItem.id) - 7] == null &&
                       Number(chooseTurnItem.id) - 7 >= 0
                     ) {
@@ -605,6 +652,8 @@ const botBlackRookMove = async (
                       );
                       botMoveChange(tableData);
                     } else if (
+                      currentLineBetween &&
+                      Number(chooseTurnItem.id) - 7 >= currentLineBetween[0] &&
                       board[Number(chooseTurnItem.id) - 7]?.name.includes(
                         "WHITE"
                       )
@@ -626,6 +675,8 @@ const botBlackRookMove = async (
                       botMoveChange(tableData);
                     }
                   } else if (
+                    currentLineBetween &&
+                    Number(chooseTurnItem.id) - 6 >= currentLineBetween[0] &&
                     board[Number(chooseTurnItem.id) - 6]?.name.includes("WHITE")
                   ) {
                     tableData.board = makeBotBoard(
@@ -645,6 +696,8 @@ const botBlackRookMove = async (
                     botMoveChange(tableData);
                   }
                 } else if (
+                  currentLineBetween &&
+                  Number(chooseTurnItem.id) - 5 >= currentLineBetween[0] &&
                   board[Number(chooseTurnItem.id) - 5]?.name.includes("WHITE")
                 ) {
                   tableData.board = makeBotBoard(
@@ -664,6 +717,8 @@ const botBlackRookMove = async (
                   botMoveChange(tableData);
                 }
               } else if (
+                currentLineBetween &&
+                Number(chooseTurnItem.id) - 4 >= currentLineBetween[0] &&
                 board[Number(chooseTurnItem.id) - 4]?.name.includes("WHITE")
               ) {
                 tableData.board = makeBotBoard(
@@ -683,6 +738,8 @@ const botBlackRookMove = async (
                 botMoveChange(tableData);
               }
             } else if (
+              currentLineBetween &&
+              Number(chooseTurnItem.id) - 3 >= currentLineBetween[0] &&
               board[Number(chooseTurnItem.id) - 3]?.name.includes("WHITE")
             ) {
               tableData.board = makeBotBoard(
@@ -702,6 +759,8 @@ const botBlackRookMove = async (
               botMoveChange(tableData);
             }
           } else if (
+            currentLineBetween &&
+            Number(chooseTurnItem.id) - 2 >= currentLineBetween[0] &&
             board[Number(chooseTurnItem.id) - 2]?.name.includes("WHITE")
           ) {
             tableData.board = makeBotBoard(
@@ -721,6 +780,8 @@ const botBlackRookMove = async (
             botMoveChange(tableData);
           }
         } else if (
+          currentLineBetween &&
+          Number(chooseTurnItem.id) - 1 >= currentLineBetween[0] &&
           board[Number(chooseTurnItem.id) - 1]?.name.includes("WHITE")
         ) {
           tableData.board = makeBotBoard(
@@ -924,30 +985,44 @@ const botBlackRookMove = async (
 
         // Going To Left
         if (
+          currentLineBetween &&
+          Number(chooseTurnItem.id) - 1 >= currentLineBetween[0] &&
           board[Number(chooseTurnItem.id) - 1] == null &&
           Number(chooseTurnItem.id) - 1 >= 0
         ) {
           if (
+            currentLineBetween &&
+            Number(chooseTurnItem.id) - 2 >= currentLineBetween[0] &&
             board[Number(chooseTurnItem.id) - 2] == null &&
             Number(chooseTurnItem.id) - 2 >= 0
           ) {
             if (
+              currentLineBetween &&
+              Number(chooseTurnItem.id) - 3 >= currentLineBetween[0] &&
               board[Number(chooseTurnItem.id) - 3] == null &&
               Number(chooseTurnItem.id) - 3 >= 0
             ) {
               if (
+                currentLineBetween &&
+                Number(chooseTurnItem.id) - 4 >= currentLineBetween[0] &&
                 board[Number(chooseTurnItem.id) - 4] == null &&
                 Number(chooseTurnItem.id) - 4 >= 0
               ) {
                 if (
+                  currentLineBetween &&
+                  Number(chooseTurnItem.id) - 5 >= currentLineBetween[0] &&
                   board[Number(chooseTurnItem.id) - 5] == null &&
                   Number(chooseTurnItem.id) - 5 >= 0
                 ) {
                   if (
+                    currentLineBetween &&
+                    Number(chooseTurnItem.id) - 6 >= currentLineBetween[0] &&
                     board[Number(chooseTurnItem.id) - 6] == null &&
                     Number(chooseTurnItem.id) - 6 >= 0
                   ) {
                     if (
+                      currentLineBetween &&
+                      Number(chooseTurnItem.id) - 7 >= currentLineBetween[0] &&
                       board[Number(chooseTurnItem.id) - 7] == null &&
                       Number(chooseTurnItem.id) - 7 >= 0
                     ) {
@@ -960,6 +1035,8 @@ const botBlackRookMove = async (
                       botMoveChange(tableData);
                       return;
                     } else if (
+                      currentLineBetween &&
+                      Number(chooseTurnItem.id) - 7 >= currentLineBetween[0] &&
                       board[Number(chooseTurnItem.id) - 7]?.name.includes(
                         "WHITE"
                       )
@@ -983,6 +1060,8 @@ const botBlackRookMove = async (
                       return;
                     }
                   } else if (
+                    currentLineBetween &&
+                    Number(chooseTurnItem.id) - 6 >= currentLineBetween[0] &&
                     board[Number(chooseTurnItem.id) - 6]?.name.includes("WHITE")
                   ) {
                     tableData.board = makeBotBoard(
@@ -1004,6 +1083,8 @@ const botBlackRookMove = async (
                     return;
                   }
                 } else if (
+                  currentLineBetween &&
+                  Number(chooseTurnItem.id) - 5 >= currentLineBetween[0] &&
                   board[Number(chooseTurnItem.id) - 5]?.name.includes("WHITE")
                 ) {
                   tableData.board = makeBotBoard(
@@ -1025,6 +1106,8 @@ const botBlackRookMove = async (
                   return;
                 }
               } else if (
+                currentLineBetween &&
+                Number(chooseTurnItem.id) - 4 >= currentLineBetween[0] &&
                 board[Number(chooseTurnItem.id) - 4]?.name.includes("WHITE")
               ) {
                 tableData.board = makeBotBoard(
@@ -1046,6 +1129,8 @@ const botBlackRookMove = async (
                 return;
               }
             } else if (
+              currentLineBetween &&
+              Number(chooseTurnItem.id) - 3 >= currentLineBetween[0] &&
               board[Number(chooseTurnItem.id) - 3]?.name.includes("WHITE")
             ) {
               tableData.board = makeBotBoard(
@@ -1067,6 +1152,8 @@ const botBlackRookMove = async (
               return;
             }
           } else if (
+            currentLineBetween &&
+            Number(chooseTurnItem.id) - 2 >= currentLineBetween[0] &&
             board[Number(chooseTurnItem.id) - 2]?.name.includes("WHITE")
           ) {
             tableData.board = makeBotBoard(
@@ -1088,6 +1175,8 @@ const botBlackRookMove = async (
             return;
           }
         } else if (
+          currentLineBetween &&
+          Number(chooseTurnItem.id) - 1 >= currentLineBetween[0] &&
           board[Number(chooseTurnItem.id) - 1]?.name.includes("WHITE")
         ) {
           tableData.board = makeBotBoard(
@@ -1102,30 +1191,44 @@ const botBlackRookMove = async (
 
         // Going To Right
         if (
+          currentLineBetween &&
+          Number(chooseTurnItem.id) + 1 <= currentLineBetween[1] &&
           Number(chooseTurnItem.id) + 1 <= 63 &&
           board[Number(chooseTurnItem.id) + 1] == null
         ) {
           if (
+            currentLineBetween &&
+            Number(chooseTurnItem.id) + 2 <= currentLineBetween[1] &&
             Number(chooseTurnItem.id) + 2 <= 63 &&
             board[Number(chooseTurnItem.id) + 2] == null
           ) {
             if (
+              currentLineBetween &&
+              Number(chooseTurnItem.id) + 3 <= currentLineBetween[1] &&
               Number(chooseTurnItem.id) + 3 <= 63 &&
               board[Number(chooseTurnItem.id) + 3] == null
             ) {
               if (
+                currentLineBetween &&
+                Number(chooseTurnItem.id) + 4 <= currentLineBetween[1] &&
                 Number(chooseTurnItem.id) + 4 <= 63 &&
                 board[Number(chooseTurnItem.id) + 4] == null
               ) {
                 if (
+                  currentLineBetween &&
+                  Number(chooseTurnItem.id) + 5 <= currentLineBetween[1] &&
                   Number(chooseTurnItem.id) + 5 <= 63 &&
                   board[Number(chooseTurnItem.id) + 5] == null
                 ) {
                   if (
+                    currentLineBetween &&
+                    Number(chooseTurnItem.id) + 6 <= currentLineBetween[1] &&
                     Number(chooseTurnItem.id) + 6 <= 63 &&
                     board[Number(chooseTurnItem.id) + 6] == null
                   ) {
                     if (
+                      currentLineBetween &&
+                      Number(chooseTurnItem.id) + 7 <= currentLineBetween[1] &&
                       Number(chooseTurnItem.id) + 7 <= 63 &&
                       board[Number(chooseTurnItem.id) + 7] == null
                     ) {
@@ -1138,6 +1241,8 @@ const botBlackRookMove = async (
                       botMoveChange(tableData);
                       return;
                     } else if (
+                      currentLineBetween &&
+                      Number(chooseTurnItem.id) + 7 <= currentLineBetween[1] &&
                       board[Number(chooseTurnItem.id) + 7]?.name.includes(
                         "WHITE"
                       )
@@ -1161,6 +1266,8 @@ const botBlackRookMove = async (
                       return;
                     }
                   } else if (
+                    currentLineBetween &&
+                    Number(chooseTurnItem.id) + 6 <= currentLineBetween[1] &&
                     board[Number(chooseTurnItem.id) + 6]?.name.includes("WHITE")
                   ) {
                     tableData.board = makeBotBoard(
@@ -1182,6 +1289,8 @@ const botBlackRookMove = async (
                     return;
                   }
                 } else if (
+                  currentLineBetween &&
+                  Number(chooseTurnItem.id) + 5 <= currentLineBetween[1] &&
                   board[Number(chooseTurnItem.id) + 5]?.name.includes("WHITE")
                 ) {
                   tableData.board = makeBotBoard(
@@ -1203,6 +1312,8 @@ const botBlackRookMove = async (
                   return;
                 }
               } else if (
+                currentLineBetween &&
+                Number(chooseTurnItem.id) + 4 <= currentLineBetween[1] &&
                 board[Number(chooseTurnItem.id) + 4]?.name.includes("WHITE")
               ) {
                 tableData.board = makeBotBoard(
@@ -1224,6 +1335,8 @@ const botBlackRookMove = async (
                 return;
               }
             } else if (
+              currentLineBetween &&
+              Number(chooseTurnItem.id) + 3 <= currentLineBetween[1] &&
               board[Number(chooseTurnItem.id) + 3]?.name.includes("WHITE")
             ) {
               tableData.board = makeBotBoard(
@@ -1245,6 +1358,8 @@ const botBlackRookMove = async (
               return;
             }
           } else if (
+            currentLineBetween &&
+            Number(chooseTurnItem.id) + 2 <= currentLineBetween[1] &&
             board[Number(chooseTurnItem.id) + 2]?.name.includes("WHITE")
           ) {
             tableData.board = makeBotBoard(
@@ -1266,6 +1381,8 @@ const botBlackRookMove = async (
             return;
           }
         } else if (
+          currentLineBetween &&
+          Number(chooseTurnItem.id) + 1 <= currentLineBetween[1] &&
           board[Number(chooseTurnItem.id) + 1]?.name.includes("WHITE")
         ) {
           tableData.board = makeBotBoard(
@@ -1455,30 +1572,44 @@ const botBlackRookMove = async (
 
       // Going To Right
       if (
+        currentLineBetween &&
+        Number(chooseTurnItem.id) + 1 <= currentLineBetween[1] &&
         Number(chooseTurnItem.id) + 1 <= 63 &&
         board[Number(chooseTurnItem.id) + 1] == null
       ) {
         if (
+          currentLineBetween &&
+          Number(chooseTurnItem.id) + 2 <= currentLineBetween[1] &&
           Number(chooseTurnItem.id) + 2 <= 63 &&
           board[Number(chooseTurnItem.id) + 2] == null
         ) {
           if (
+            currentLineBetween &&
+            Number(chooseTurnItem.id) + 3 <= currentLineBetween[1] &&
             Number(chooseTurnItem.id) + 3 <= 63 &&
             board[Number(chooseTurnItem.id) + 3] == null
           ) {
             if (
+              currentLineBetween &&
+              Number(chooseTurnItem.id) + 4 <= currentLineBetween[1] &&
               Number(chooseTurnItem.id) + 4 <= 63 &&
               board[Number(chooseTurnItem.id) + 4] == null
             ) {
               if (
+                currentLineBetween &&
+                Number(chooseTurnItem.id) + 5 <= currentLineBetween[1] &&
                 Number(chooseTurnItem.id) + 5 <= 63 &&
                 board[Number(chooseTurnItem.id) + 5] == null
               ) {
                 if (
+                  currentLineBetween &&
+                  Number(chooseTurnItem.id) + 6 <= currentLineBetween[1] &&
                   Number(chooseTurnItem.id) + 6 <= 63 &&
                   board[Number(chooseTurnItem.id) + 6] == null
                 ) {
                   if (
+                    currentLineBetween &&
+                    Number(chooseTurnItem.id) + 7 <= currentLineBetween[1] &&
                     Number(chooseTurnItem.id) + 7 <= 63 &&
                     board[Number(chooseTurnItem.id) + 7] == null
                   ) {
@@ -1491,6 +1622,8 @@ const botBlackRookMove = async (
                     botMoveChange(tableData);
                     return;
                   } else if (
+                    currentLineBetween &&
+                    Number(chooseTurnItem.id) + 7 <= currentLineBetween[1] &&
                     board[Number(chooseTurnItem.id) + 7]?.name.includes("WHITE")
                   ) {
                     tableData.board = makeBotBoard(
@@ -1512,6 +1645,8 @@ const botBlackRookMove = async (
                     return;
                   }
                 } else if (
+                  currentLineBetween &&
+                  Number(chooseTurnItem.id) + 6 <= currentLineBetween[1] &&
                   board[Number(chooseTurnItem.id) + 6]?.name.includes("WHITE")
                 ) {
                   tableData.board = makeBotBoard(
@@ -1533,6 +1668,8 @@ const botBlackRookMove = async (
                   return;
                 }
               } else if (
+                currentLineBetween &&
+                Number(chooseTurnItem.id) + 5 <= currentLineBetween[1] &&
                 board[Number(chooseTurnItem.id) + 5]?.name.includes("WHITE")
               ) {
                 tableData.board = makeBotBoard(
@@ -1554,6 +1691,8 @@ const botBlackRookMove = async (
                 return;
               }
             } else if (
+              currentLineBetween &&
+              Number(chooseTurnItem.id) + 4 <= currentLineBetween[1] &&
               board[Number(chooseTurnItem.id) + 4]?.name.includes("WHITE")
             ) {
               tableData.board = makeBotBoard(
@@ -1575,6 +1714,8 @@ const botBlackRookMove = async (
               return;
             }
           } else if (
+            currentLineBetween &&
+            Number(chooseTurnItem.id) + 3 <= currentLineBetween[1] &&
             board[Number(chooseTurnItem.id) + 3]?.name.includes("WHITE")
           ) {
             tableData.board = makeBotBoard(
@@ -1596,6 +1737,8 @@ const botBlackRookMove = async (
             return;
           }
         } else if (
+          currentLineBetween &&
+          Number(chooseTurnItem.id) + 2 <= currentLineBetween[1] &&
           board[Number(chooseTurnItem.id) + 2]?.name.includes("WHITE")
         ) {
           tableData.board = makeBotBoard(
@@ -1616,7 +1759,11 @@ const botBlackRookMove = async (
           botMoveChange(tableData);
           return;
         }
-      } else if (board[Number(chooseTurnItem.id) + 1]?.name.includes("WHITE")) {
+      } else if (
+        currentLineBetween &&
+        Number(chooseTurnItem.id) + 1 <= currentLineBetween[1] &&
+        board[Number(chooseTurnItem.id) + 1]?.name.includes("WHITE")
+      ) {
         tableData.board = makeBotBoard(board, chooseTurnItem, 1, tableData._id);
         botMoveChange(tableData);
         return;
@@ -1974,30 +2121,44 @@ const botBlackRookMove = async (
 
       // Going To Left
       if (
+        currentLineBetween &&
+        Number(chooseTurnItem.id) - 1 >= currentLineBetween[0] &&
         board[Number(chooseTurnItem.id) - 1] == null &&
         Number(chooseTurnItem.id) - 1 >= 0
       ) {
         if (
+          currentLineBetween &&
+          Number(chooseTurnItem.id) - 2 >= currentLineBetween[0] &&
           board[Number(chooseTurnItem.id) - 2] == null &&
           Number(chooseTurnItem.id) - 2 >= 0
         ) {
           if (
+            currentLineBetween &&
+            Number(chooseTurnItem.id) - 3 >= currentLineBetween[0] &&
             board[Number(chooseTurnItem.id) - 3] == null &&
             Number(chooseTurnItem.id) - 3 >= 0
           ) {
             if (
+              currentLineBetween &&
+              Number(chooseTurnItem.id) - 4 >= currentLineBetween[0] &&
               board[Number(chooseTurnItem.id) - 4] == null &&
               Number(chooseTurnItem.id) - 4 >= 0
             ) {
               if (
+                currentLineBetween &&
+                Number(chooseTurnItem.id) - 5 >= currentLineBetween[0] &&
                 board[Number(chooseTurnItem.id) - 5] == null &&
                 Number(chooseTurnItem.id) - 5 >= 0
               ) {
                 if (
+                  currentLineBetween &&
+                  Number(chooseTurnItem.id) - 6 >= currentLineBetween[0] &&
                   board[Number(chooseTurnItem.id) - 6] == null &&
                   Number(chooseTurnItem.id) - 6 >= 0
                 ) {
                   if (
+                    currentLineBetween &&
+                    Number(chooseTurnItem.id) - 7 >= currentLineBetween[0] &&
                     board[Number(chooseTurnItem.id) - 7] == null &&
                     Number(chooseTurnItem.id) - 7 >= 0
                   ) {
@@ -2010,6 +2171,8 @@ const botBlackRookMove = async (
                     botMoveChange(tableData);
                     return;
                   } else if (
+                    currentLineBetween &&
+                    Number(chooseTurnItem.id) - 7 >= currentLineBetween[0] &&
                     board[Number(chooseTurnItem.id) - 7]?.name.includes("WHITE")
                   ) {
                     tableData.board = makeBotBoard(
@@ -2031,6 +2194,8 @@ const botBlackRookMove = async (
                     return;
                   }
                 } else if (
+                  currentLineBetween &&
+                  Number(chooseTurnItem.id) - 6 >= currentLineBetween[0] &&
                   board[Number(chooseTurnItem.id) - 6]?.name.includes("WHITE")
                 ) {
                   tableData.board = makeBotBoard(
@@ -2052,6 +2217,8 @@ const botBlackRookMove = async (
                   return;
                 }
               } else if (
+                currentLineBetween &&
+                Number(chooseTurnItem.id) - 5 >= currentLineBetween[0] &&
                 board[Number(chooseTurnItem.id) - 5]?.name.includes("WHITE")
               ) {
                 tableData.board = makeBotBoard(
@@ -2073,6 +2240,8 @@ const botBlackRookMove = async (
                 return;
               }
             } else if (
+              currentLineBetween &&
+              Number(chooseTurnItem.id) - 4 >= currentLineBetween[0] &&
               board[Number(chooseTurnItem.id) - 4]?.name.includes("WHITE")
             ) {
               tableData.board = makeBotBoard(
@@ -2094,6 +2263,8 @@ const botBlackRookMove = async (
               return;
             }
           } else if (
+            currentLineBetween &&
+            Number(chooseTurnItem.id) - 3 >= currentLineBetween[0] &&
             board[Number(chooseTurnItem.id) - 3]?.name.includes("WHITE")
           ) {
             tableData.board = makeBotBoard(
@@ -2115,6 +2286,8 @@ const botBlackRookMove = async (
             return;
           }
         } else if (
+          currentLineBetween &&
+          Number(chooseTurnItem.id) - 2 >= currentLineBetween[0] &&
           board[Number(chooseTurnItem.id) - 2]?.name.includes("WHITE")
         ) {
           tableData.board = makeBotBoard(
@@ -2135,7 +2308,11 @@ const botBlackRookMove = async (
           botMoveChange(tableData);
           return;
         }
-      } else if (board[Number(chooseTurnItem.id) - 1]?.name.includes("WHITE")) {
+      } else if (
+        currentLineBetween &&
+        Number(chooseTurnItem.id) - 1 >= currentLineBetween[0] &&
+        board[Number(chooseTurnItem.id) - 1]?.name.includes("WHITE")
+      ) {
         tableData.board = makeBotBoard(
           board,
           chooseTurnItem,
@@ -2489,30 +2666,44 @@ const botBlackRookMove = async (
 
     // Going To Right
     else if (
+      currentLineBetween &&
+      Number(chooseTurnItem.id) + 1 <= currentLineBetween[1] &&
       Number(chooseTurnItem.id) + 1 <= 63 &&
       board[Number(chooseTurnItem.id) + 1] == null
     ) {
       if (
+        currentLineBetween &&
+        Number(chooseTurnItem.id) + 2 <= currentLineBetween[1] &&
         Number(chooseTurnItem.id) + 2 <= 63 &&
         board[Number(chooseTurnItem.id) + 2] == null
       ) {
         if (
+          currentLineBetween &&
+          Number(chooseTurnItem.id) + 3 <= currentLineBetween[1] &&
           Number(chooseTurnItem.id) + 3 <= 63 &&
           board[Number(chooseTurnItem.id) + 3] == null
         ) {
           if (
+            currentLineBetween &&
+            Number(chooseTurnItem.id) + 4 <= currentLineBetween[1] &&
             Number(chooseTurnItem.id) + 4 <= 63 &&
             board[Number(chooseTurnItem.id) + 4] == null
           ) {
             if (
+              currentLineBetween &&
+              Number(chooseTurnItem.id) + 5 <= currentLineBetween[1] &&
               Number(chooseTurnItem.id) + 5 <= 63 &&
               board[Number(chooseTurnItem.id) + 5] == null
             ) {
               if (
+                currentLineBetween &&
+                Number(chooseTurnItem.id) + 6 <= currentLineBetween[1] &&
                 Number(chooseTurnItem.id) + 6 <= 63 &&
                 board[Number(chooseTurnItem.id) + 6] == null
               ) {
                 if (
+                  currentLineBetween &&
+                  Number(chooseTurnItem.id) + 7 <= currentLineBetween[1] &&
                   Number(chooseTurnItem.id) + 7 <= 63 &&
                   board[Number(chooseTurnItem.id) + 7] == null
                 ) {
@@ -2525,6 +2716,8 @@ const botBlackRookMove = async (
                   botMoveChange(tableData);
                   return;
                 } else if (
+                  currentLineBetween &&
+                  Number(chooseTurnItem.id) + 7 <= currentLineBetween[1] &&
                   board[Number(chooseTurnItem.id) + 7]?.name.includes("WHITE")
                 ) {
                   tableData.board = makeBotBoard(
@@ -2546,6 +2739,8 @@ const botBlackRookMove = async (
                   return;
                 }
               } else if (
+                currentLineBetween &&
+                Number(chooseTurnItem.id) + 6 <= currentLineBetween[1] &&
                 board[Number(chooseTurnItem.id) + 6]?.name.includes("WHITE")
               ) {
                 tableData.board = makeBotBoard(
@@ -2567,6 +2762,8 @@ const botBlackRookMove = async (
                 return;
               }
             } else if (
+              currentLineBetween &&
+              Number(chooseTurnItem.id) + 5 <= currentLineBetween[1] &&
               board[Number(chooseTurnItem.id) + 5]?.name.includes("WHITE")
             ) {
               tableData.board = makeBotBoard(
@@ -2588,6 +2785,8 @@ const botBlackRookMove = async (
               return;
             }
           } else if (
+            currentLineBetween &&
+            Number(chooseTurnItem.id) + 4 <= currentLineBetween[1] &&
             board[Number(chooseTurnItem.id) + 4]?.name.includes("WHITE")
           ) {
             tableData.board = makeBotBoard(
@@ -2609,6 +2808,8 @@ const botBlackRookMove = async (
             return;
           }
         } else if (
+          currentLineBetween &&
+          Number(chooseTurnItem.id) + 3 <= currentLineBetween[1] &&
           board[Number(chooseTurnItem.id) + 3]?.name.includes("WHITE")
         ) {
           tableData.board = makeBotBoard(
@@ -2629,7 +2830,11 @@ const botBlackRookMove = async (
           botMoveChange(tableData);
           return;
         }
-      } else if (board[Number(chooseTurnItem.id) + 2]?.name.includes("WHITE")) {
+      } else if (
+        currentLineBetween &&
+        Number(chooseTurnItem.id) + 2 <= currentLineBetween[1] &&
+        board[Number(chooseTurnItem.id) + 2]?.name.includes("WHITE")
+      ) {
         tableData.board = makeBotBoard(board, chooseTurnItem, 2, tableData._id);
         botMoveChange(tableData);
         return;
@@ -2638,7 +2843,11 @@ const botBlackRookMove = async (
         botMoveChange(tableData);
         return;
       }
-    } else if (board[Number(chooseTurnItem.id) + 1]?.name.includes("WHITE")) {
+    } else if (
+      currentLineBetween &&
+      Number(chooseTurnItem.id) + 1 <= currentLineBetween[1] &&
+      board[Number(chooseTurnItem.id) + 1]?.name.includes("WHITE")
+    ) {
       tableData.board = makeBotBoard(board, chooseTurnItem, 1, tableData._id);
       botMoveChange(tableData);
       return;
@@ -2815,30 +3024,44 @@ const botBlackRookMove = async (
 
     // GOING TO LEFT
     else if (
+      currentLineBetween &&
+      Number(chooseTurnItem.id) - 1 >= currentLineBetween[0] &&
       board[Number(chooseTurnItem.id) - 1] == null &&
       Number(chooseTurnItem.id) - 1 >= 0
     ) {
       if (
+        currentLineBetween &&
+        Number(chooseTurnItem.id) - 2 >= currentLineBetween[0] &&
         board[Number(chooseTurnItem.id) - 2] == null &&
         Number(chooseTurnItem.id) - 2 >= 0
       ) {
         if (
+          currentLineBetween &&
+          Number(chooseTurnItem.id) - 3 >= currentLineBetween[0] &&
           board[Number(chooseTurnItem.id) - 3] == null &&
           Number(chooseTurnItem.id) - 3 >= 0
         ) {
           if (
+            currentLineBetween &&
+            Number(chooseTurnItem.id) - 4 >= currentLineBetween[0] &&
             board[Number(chooseTurnItem.id) - 4] == null &&
             Number(chooseTurnItem.id) - 4 >= 0
           ) {
             if (
+              currentLineBetween &&
+              Number(chooseTurnItem.id) - 5 >= currentLineBetween[0] &&
               board[Number(chooseTurnItem.id) - 5] == null &&
               Number(chooseTurnItem.id) - 5 >= 0
             ) {
               if (
+                currentLineBetween &&
+                Number(chooseTurnItem.id) - 6 >= currentLineBetween[0] &&
                 board[Number(chooseTurnItem.id) - 6] == null &&
                 Number(chooseTurnItem.id) - 6 >= 0
               ) {
                 if (
+                  currentLineBetween &&
+                  Number(chooseTurnItem.id) - 7 >= currentLineBetween[0] &&
                   board[Number(chooseTurnItem.id) - 7] == null &&
                   Number(chooseTurnItem.id) - 7 >= 0
                 ) {
@@ -2851,6 +3074,8 @@ const botBlackRookMove = async (
                   botMoveChange(tableData);
                   return;
                 } else if (
+                  currentLineBetween &&
+                  Number(chooseTurnItem.id) - 7 >= currentLineBetween[0] &&
                   board[Number(chooseTurnItem.id) - 7]?.name.includes("WHITE")
                 ) {
                   tableData.board = makeBotBoard(
@@ -2872,6 +3097,8 @@ const botBlackRookMove = async (
                   return;
                 }
               } else if (
+                currentLineBetween &&
+                Number(chooseTurnItem.id) - 6 >= currentLineBetween[0] &&
                 board[Number(chooseTurnItem.id) - 6]?.name.includes("WHITE")
               ) {
                 tableData.board = makeBotBoard(
@@ -2893,6 +3120,8 @@ const botBlackRookMove = async (
                 return;
               }
             } else if (
+              currentLineBetween &&
+              Number(chooseTurnItem.id) - 5 >= currentLineBetween[0] &&
               board[Number(chooseTurnItem.id) - 5]?.name.includes("WHITE")
             ) {
               tableData.board = makeBotBoard(
@@ -2914,6 +3143,8 @@ const botBlackRookMove = async (
               return;
             }
           } else if (
+            currentLineBetween &&
+            Number(chooseTurnItem.id) - 4 >= currentLineBetween[0] &&
             board[Number(chooseTurnItem.id) - 4]?.name.includes("WHITE")
           ) {
             tableData.board = makeBotBoard(
@@ -2935,6 +3166,8 @@ const botBlackRookMove = async (
             return;
           }
         } else if (
+          currentLineBetween &&
+          Number(chooseTurnItem.id) - 3 >= currentLineBetween[0] &&
           board[Number(chooseTurnItem.id) - 3]?.name.includes("WHITE")
         ) {
           tableData.board = makeBotBoard(
@@ -2955,7 +3188,11 @@ const botBlackRookMove = async (
           botMoveChange(tableData);
           return;
         }
-      } else if (board[Number(chooseTurnItem.id) - 2]?.name.includes("WHITE")) {
+      } else if (
+        currentLineBetween &&
+        Number(chooseTurnItem.id) - 2 >= currentLineBetween[0] &&
+        board[Number(chooseTurnItem.id) - 2]?.name.includes("WHITE")
+      ) {
         tableData.board = makeBotBoard(
           board,
           chooseTurnItem,
@@ -2974,7 +3211,11 @@ const botBlackRookMove = async (
         botMoveChange(tableData);
         return;
       }
-    } else if (board[Number(chooseTurnItem.id) - 1]?.name.includes("WHITE")) {
+    } else if (
+      currentLineBetween &&
+      Number(chooseTurnItem.id) - 1 >= currentLineBetween[0] &&
+      board[Number(chooseTurnItem.id) - 1]?.name.includes("WHITE")
+    ) {
       tableData.board = makeBotBoard(board, chooseTurnItem, -1, tableData._id);
       botMoveChange(tableData);
       return;

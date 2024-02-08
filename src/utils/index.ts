@@ -76,7 +76,9 @@ const makeBotBoard = (
   board[Number(chooseTurnItem.id) + move] = {
     id: Number(chooseTurnItem.id) + move,
     name: chooseTurnItem.name,
-    isFirstMove: chooseTurnItem.isFirstMove,
+    isFirstMove: chooseTurnItem.isFirstMove
+      ? chooseTurnItem.isFirstMove
+      : false,
   };
 
   return board;

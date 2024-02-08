@@ -598,9 +598,6 @@ const botBlackBishopMove = async (
       Number(chooseTurnItem.id) > 14 &&
       Number(chooseTurnItem.id) < 56
     ) {
-      logger.error(
-        "====================Number(chooseTurnItem.id) % 2 != 0 &&Number(chooseTurnItem.id) > 14 &&Number(chooseTurnItem.id) < 56==========================="
-      );
       if (
         Number(chooseTurnItem.id) + 7 <= 63 &&
         board[Number(chooseTurnItem.id) + 7]?.name.includes("WHITE")

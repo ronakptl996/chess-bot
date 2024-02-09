@@ -2665,7 +2665,7 @@ const botBlackRookMove = async (
     }
 
     // Going To Right
-    else if (
+    if (
       currentLineBetween &&
       Number(chooseTurnItem.id) + 1 <= currentLineBetween[1] &&
       Number(chooseTurnItem.id) + 1 <= 63 &&
@@ -2854,7 +2854,7 @@ const botBlackRookMove = async (
     }
 
     // TO DOWN
-    else if (
+    if (
       Number(chooseTurnItem.id) - 8 >= 0 &&
       board[Number(chooseTurnItem.id) - 8] == null
     ) {
@@ -3023,7 +3023,7 @@ const botBlackRookMove = async (
     }
 
     // GOING TO LEFT
-    else if (
+    if (
       currentLineBetween &&
       Number(chooseTurnItem.id) - 1 >= currentLineBetween[0] &&
       board[Number(chooseTurnItem.id) - 1] == null &&

@@ -31,7 +31,7 @@ const botBlackKnightMove = async (
   }
 
   // FOR KILL WHITE 6 MOVE
-  else if (
+  if (
     currentLineBetween &&
     Number(chooseTurnItem.id) + 6 <= 63 &&
     Number(chooseTurnItem.id) + 6 > currentLineBetween[1] &&
@@ -43,7 +43,7 @@ const botBlackKnightMove = async (
   }
 
   // FOR KILL WHITE 10 MOVE
-  else if (
+  if (
     currentLineBetween &&
     Number(chooseTurnItem.id) + 10 <= 63 &&
     Number(chooseTurnItem.id) + 10 <= currentLineBetween[1] + 8 &&
@@ -55,7 +55,7 @@ const botBlackKnightMove = async (
   }
 
   // FOR KILL WHITE 17 MOVE
-  else if (
+  if (
     currentLineBetween &&
     Number(chooseTurnItem.id) + 17 <= 63 &&
     Number(chooseTurnItem.id) + 17 <= currentLineBetween[1] + 16 &&
@@ -67,7 +67,7 @@ const botBlackKnightMove = async (
   }
 
   // FOR KILL WHITE -15 MOVE
-  else if (
+  if (
     currentLineBetween &&
     Number(chooseTurnItem.id) - 15 >= 0 &&
     Number(chooseTurnItem.id) - 15 < currentLineBetween[0] - 8 &&
@@ -79,7 +79,7 @@ const botBlackKnightMove = async (
   }
 
   // FOR KILL WHITE -6 MOVE
-  else if (
+  if (
     currentLineBetween &&
     Number(chooseTurnItem.id) - 6 >= 0 &&
     Number(chooseTurnItem.id) - 6 < currentLineBetween[0] &&
@@ -91,7 +91,7 @@ const botBlackKnightMove = async (
   }
 
   // FOR KILL WHITE -10 MOVE
-  else if (
+  if (
     currentLineBetween &&
     Number(chooseTurnItem.id) - 10 >= 0 &&
     Number(chooseTurnItem.id) - 10 >= currentLineBetween[0] - 8 &&
@@ -103,7 +103,7 @@ const botBlackKnightMove = async (
   }
 
   // FOR KILL WHITE -17 MOVE
-  else if (
+  if (
     currentLineBetween &&
     Number(chooseTurnItem.id) - 17 >= 0 &&
     Number(chooseTurnItem.id) - 17 >= currentLineBetween[0] - 16 &&
@@ -115,7 +115,7 @@ const botBlackKnightMove = async (
   }
 
   // FOR 15 MOVE
-  else if (
+  if (
     currentLineBetween &&
     Number(chooseTurnItem.id) + 15 <= 63 &&
     Number(chooseTurnItem.id) + 15 > currentLineBetween[1] + 8 &&
@@ -127,7 +127,7 @@ const botBlackKnightMove = async (
   }
 
   // FOR 6 MOVE
-  else if (
+  if (
     currentLineBetween &&
     Number(chooseTurnItem.id) + 6 <= 63 &&
     Number(chooseTurnItem.id) + 6 > currentLineBetween[1] &&
@@ -139,7 +139,7 @@ const botBlackKnightMove = async (
   }
 
   // FOR KILL WHITE 10 MOVE
-  else if (
+  if (
     currentLineBetween &&
     Number(chooseTurnItem.id) + 10 <= 63 &&
     Number(chooseTurnItem.id) + 10 <= currentLineBetween[1] + 8 &&
@@ -151,7 +151,7 @@ const botBlackKnightMove = async (
   }
 
   // FOR KILL WHITE 17 MOVE
-  else if (
+  if (
     currentLineBetween &&
     Number(chooseTurnItem.id) + 17 <= 63 &&
     Number(chooseTurnItem.id) + 17 <= currentLineBetween[1] + 16 &&
@@ -163,7 +163,7 @@ const botBlackKnightMove = async (
   }
 
   // FOR -15 MOVE
-  else if (
+  if (
     currentLineBetween &&
     Number(chooseTurnItem.id) - 15 >= 0 &&
     Number(chooseTurnItem.id) - 15 < currentLineBetween[0] - 8 &&
@@ -175,7 +175,7 @@ const botBlackKnightMove = async (
   }
 
   // FOR -6 MOVE
-  else if (
+  if (
     currentLineBetween &&
     Number(chooseTurnItem.id) - 6 >= 0 &&
     Number(chooseTurnItem.id) - 6 < currentLineBetween[0] &&
@@ -187,7 +187,7 @@ const botBlackKnightMove = async (
   }
 
   // FOR -10 MOVE
-  else if (
+  if (
     currentLineBetween &&
     Number(chooseTurnItem.id) - 10 >= 0 &&
     Number(chooseTurnItem.id) - 10 >= currentLineBetween[0] - 8 &&
@@ -199,7 +199,7 @@ const botBlackKnightMove = async (
   }
 
   // FOR -17 MOVE
-  else if (
+  if (
     currentLineBetween &&
     Number(chooseTurnItem.id) - 17 >= 0 &&
     Number(chooseTurnItem.id) - 17 >= currentLineBetween[0] - 16 &&

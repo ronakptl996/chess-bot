@@ -123,7 +123,7 @@ const possibleRookKillMove = async (
   }
 
   // FOR +8 KILL WHITE
-  else if (
+  if (
     Number(chooseTurnItem.id) + 8 <= 63 &&
     board[Number(chooseTurnItem.id) + 8]?.name.includes("WHITE")
   ) {
@@ -212,10 +212,9 @@ const possibleRookKillMove = async (
   }
 
   // FOR -1 KILL WHITE
-  else if (
+  if (
     currentLineBetween &&
     Number(chooseTurnItem.id) - 1 >= currentLineBetween[0] &&
-    board[Number(chooseTurnItem.id) - 1] &&
     board[Number(chooseTurnItem.id) - 1]?.name.includes("WHITE")
   ) {
     return {
@@ -230,7 +229,6 @@ const possibleRookKillMove = async (
     if (
       currentLineBetween &&
       Number(chooseTurnItem.id) - 2 >= currentLineBetween[0] &&
-      board[Number(chooseTurnItem.id) - 2] &&
       board[Number(chooseTurnItem.id) - 2]?.name.includes("WHITE")
     ) {
       return {
@@ -245,7 +243,6 @@ const possibleRookKillMove = async (
       if (
         currentLineBetween &&
         Number(chooseTurnItem.id) - 3 >= currentLineBetween[0] &&
-        board[Number(chooseTurnItem.id) - 3] &&
         board[Number(chooseTurnItem.id) - 3]?.name.includes("WHITE")
       ) {
         return {
@@ -260,7 +257,6 @@ const possibleRookKillMove = async (
         if (
           currentLineBetween &&
           Number(chooseTurnItem.id) - 4 >= currentLineBetween[0] &&
-          board[Number(chooseTurnItem.id) - 4] &&
           board[Number(chooseTurnItem.id) - 4]?.name.includes("WHITE")
         ) {
           return {
@@ -275,7 +271,6 @@ const possibleRookKillMove = async (
           if (
             currentLineBetween &&
             Number(chooseTurnItem.id) - 5 >= currentLineBetween[0] &&
-            board[Number(chooseTurnItem.id) - 5] &&
             board[Number(chooseTurnItem.id) - 5]?.name.includes("WHITE")
           ) {
             return {
@@ -290,7 +285,6 @@ const possibleRookKillMove = async (
             if (
               currentLineBetween &&
               Number(chooseTurnItem.id) - 6 >= currentLineBetween[0] &&
-              board[Number(chooseTurnItem.id) - 6] &&
               board[Number(chooseTurnItem.id) - 6]?.name.includes("WHITE")
             ) {
               return {
@@ -305,7 +299,6 @@ const possibleRookKillMove = async (
               if (
                 currentLineBetween &&
                 Number(chooseTurnItem.id) - 7 >= currentLineBetween[0] &&
-                board[Number(chooseTurnItem.id) - 7] &&
                 board[Number(chooseTurnItem.id) - 7]?.name.includes("WHITE")
               ) {
                 return {
@@ -321,7 +314,7 @@ const possibleRookKillMove = async (
   }
 
   // FOR KILL -8 WHITE
-  else if (
+  if (
     Number(chooseTurnItem.id) - 8 >= 0 &&
     board[Number(chooseTurnItem.id) - 8]?.name.includes("WHITE")
   ) {

@@ -1,6 +1,7 @@
 import { IChess } from "../interface";
 import logger from "../logger";
 import {
+  possibleBishopkillMove,
   possibleKnightKillMove,
   possiblePawnKillMove,
   possibleRookKillMove,
@@ -8,24 +9,6 @@ import {
 
 const botPossibleKillMove = async (tableData: IChess) => {
   const board = tableData.board;
-  //   board.forEach(async (blackPiece) => {
-  //     if (blackPiece?.name.includes("BLACK")) {
-  //       if (blackPiece.name.includes("BLACK_PAWN")) {
-  //         const chooseTurnItem = await possiblePawnKillMove(
-  //           blackPiece,
-  //           tableData
-  //         );
-  //         if (chooseTurnItem) {
-  //           logger.error(
-  //             "?????????????????????=========== possiblePawnKillMove ================??????????"
-  //           );
-  //           console.log(chooseTurnItem);
-
-  //           return chooseTurnItem;
-  //         }
-  //       }
-  //     }
-  //   });
 
   for (const blackPiece of board) {
     if (blackPiece?.name.includes("BLACK")) {
@@ -59,10 +42,17 @@ const botPossibleKillMove = async (tableData: IChess) => {
           console.log(chooseTurnItem);
           return chooseTurnItem;
         }
+      } else if (blackPiece.name.includes("BLACK_BISHOP")) {
+        const chooseTurnItem = await possibleBishopkillMove(
+          blackPiece,
+          tableData
+        );
+        if (chooseTurnItem) {
+          logger.error("=========== possibleBishopkillMove ================");
+          console.log(chooseTurnItem);
+          return chooseTurnItem;
+        }
       }
-      // else if(blackPiece.name.includes("BLACK_BISHOP")){
-
-      // }
     }
   }
 };

@@ -4,6 +4,7 @@ import {
   possibleBishopkillMove,
   possibleKnightKillMove,
   possiblePawnKillMove,
+  possibleQueenKillMove,
   possibleRookKillMove,
 } from "./botKillMove";
 
@@ -49,6 +50,16 @@ const botPossibleKillMove = async (tableData: IChess) => {
         );
         if (chooseTurnItem) {
           logger.error("=========== possibleBishopkillMove ================");
+          console.log(chooseTurnItem);
+          return chooseTurnItem;
+        }
+      } else if (blackPiece.name.includes("BLACK_QUREEN")) {
+        const chooseTurnItem = await possibleQueenKillMove(
+          blackPiece,
+          tableData
+        );
+        if (chooseTurnItem) {
+          logger.error("=========== possibleQueenKillMove ================");
           console.log(chooseTurnItem);
           return chooseTurnItem;
         }

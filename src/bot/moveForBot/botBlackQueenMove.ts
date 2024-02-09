@@ -20,6 +20,8 @@ const botBlackQueenMove = async (
 
   // FOR KILL WHITE TO +7 MOVE
   if (
+    currentLineBetween &&
+    Number(chooseTurnItem.id) + 7 > currentLineBetween[1] &&
     Number(chooseTurnItem.id) + 7 <= 63 &&
     board[Number(chooseTurnItem.id) + 7]?.name.includes("WHITE")
   ) {
@@ -27,6 +29,8 @@ const botBlackQueenMove = async (
     botMoveChange(tableData);
     return;
   } else if (
+    currentLineBetween &&
+    Number(chooseTurnItem.id) + 7 > currentLineBetween[1] &&
     Number(chooseTurnItem.id) + 7 <= 63 &&
     board[Number(chooseTurnItem.id) + 7] == null &&
     !cornerNumber.includes(Number(chooseTurnItem.id) + 7)
@@ -254,18 +258,6 @@ const botBlackQueenMove = async (
                 );
                 botMoveChange(tableData);
                 return;
-              } else if (
-                Number(chooseTurnItem.id) + 63 <= 63 &&
-                board[Number(chooseTurnItem.id) + 63] == null
-              ) {
-                tableData.board = makeBotBoard(
-                  board,
-                  chooseTurnItem,
-                  63,
-                  tableData._id
-                );
-                botMoveChange(tableData);
-                return;
               }
             }
           }
@@ -300,18 +292,6 @@ const botBlackQueenMove = async (
               board[Number(chooseTurnItem.id) + 48] == null
             ) {
               if (
-                Number(chooseTurnItem.id) + 56 <= 63 &&
-                board[Number(chooseTurnItem.id) + 56] == null
-              ) {
-                tableData.board = makeBotBoard(
-                  board,
-                  chooseTurnItem,
-                  56,
-                  tableData._id
-                );
-                botMoveChange(tableData);
-                return;
-              } else if (
                 board[Number(chooseTurnItem.id) + 56]?.name.includes("WHITE")
               ) {
                 tableData.board = makeBotBoard(
@@ -619,6 +599,8 @@ const botBlackQueenMove = async (
 
   // FOR KILL WHITE TO -7 MOVE
   if (
+    currentLineBetween &&
+    Number(chooseTurnItem.id) - 7 < currentLineBetween[0] &&
     Number(chooseTurnItem.id) - 7 >= 0 &&
     board[Number(chooseTurnItem.id) - 7]?.name.includes("WHITE")
   ) {
@@ -626,6 +608,8 @@ const botBlackQueenMove = async (
     botMoveChange(tableData);
     return;
   } else if (
+    currentLineBetween &&
+    Number(chooseTurnItem.id) - 7 < currentLineBetween[0] &&
     Number(chooseTurnItem.id) - 7 >= 0 &&
     board[Number(chooseTurnItem.id) - 7] == null &&
     !cornerNumber.includes(Number(chooseTurnItem.id) - 7)
@@ -853,18 +837,6 @@ const botBlackQueenMove = async (
                 );
                 botMoveChange(tableData);
                 return;
-              } else if (
-                Number(chooseTurnItem.id) - 63 >= 0 &&
-                board[Number(chooseTurnItem.id) - 63] == null
-              ) {
-                tableData.board = makeBotBoard(
-                  board,
-                  chooseTurnItem,
-                  -63,
-                  tableData._id
-                );
-                botMoveChange(tableData);
-                return;
               }
             }
           }
@@ -899,18 +871,6 @@ const botBlackQueenMove = async (
               board[Number(chooseTurnItem.id) - 48] == null
             ) {
               if (
-                Number(chooseTurnItem.id) - 56 >= 0 &&
-                board[Number(chooseTurnItem.id) - 56] == null
-              ) {
-                tableData.board = makeBotBoard(
-                  board,
-                  chooseTurnItem,
-                  -56,
-                  tableData._id
-                );
-                botMoveChange(tableData);
-                return;
-              } else if (
                 board[Number(chooseTurnItem.id) - 56]?.name.includes("WHITE")
               ) {
                 tableData.board = makeBotBoard(
@@ -983,6 +943,8 @@ const botBlackQueenMove = async (
 
   // FOR +7 TO MOVE
   if (
+    currentLineBetween &&
+    Number(chooseTurnItem.id) + 7 > currentLineBetween[1] &&
     Number(chooseTurnItem.id) + 7 <= 63 &&
     board[Number(chooseTurnItem.id) + 7] == null &&
     !cornerNumber.includes(Number(chooseTurnItem.id) + 7)
@@ -1104,6 +1066,8 @@ const botBlackQueenMove = async (
       return;
     }
   } else if (
+    currentLineBetween &&
+    Number(chooseTurnItem.id) + 7 > currentLineBetween[1] &&
     Number(chooseTurnItem.id) + 7 <= 63 &&
     board[Number(chooseTurnItem.id) + 7] == null
   ) {
@@ -1321,6 +1285,8 @@ const botBlackQueenMove = async (
 
   // FOR -7 TO MOVE
   if (
+    currentLineBetween &&
+    Number(chooseTurnItem.id) - 7 < currentLineBetween[0] &&
     Number(chooseTurnItem.id) - 7 >= 0 &&
     board[Number(chooseTurnItem.id) - 7] == null &&
     !cornerNumber.includes(Number(chooseTurnItem.id) - 7)
@@ -1442,6 +1408,8 @@ const botBlackQueenMove = async (
       return;
     }
   } else if (
+    currentLineBetween &&
+    Number(chooseTurnItem.id) - 7 < currentLineBetween[0] &&
     Number(chooseTurnItem.id) - 7 >= 0 &&
     board[Number(chooseTurnItem.id) - 7] == null
   ) {

@@ -2,6 +2,7 @@ import { IChess } from "../interface";
 import logger from "../logger";
 import {
   possibleBishopkillMove,
+  possibleKingKillMove,
   possibleKnightKillMove,
   possiblePawnKillMove,
   possibleQueenKillMove,
@@ -55,6 +56,16 @@ const botPossibleKillMove = async (tableData: IChess) => {
         }
       } else if (blackPiece.name.includes("BLACK_QUREEN")) {
         const chooseTurnItem = await possibleQueenKillMove(
+          blackPiece,
+          tableData
+        );
+        if (chooseTurnItem) {
+          logger.error("=========== possibleQueenKillMove ================");
+          console.log(chooseTurnItem);
+          return chooseTurnItem;
+        }
+      } else if (blackPiece.name.includes("BLACK_KING")) {
+        const chooseTurnItem = await possibleKingKillMove(
           blackPiece,
           tableData
         );

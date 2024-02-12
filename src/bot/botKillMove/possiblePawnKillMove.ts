@@ -24,6 +24,8 @@ const possiblePawnKillMove = async (
       chooseTurnItemId: chooseTurnItem,
     };
   } else if (
+    currentLineBetween &&
+    Number(chooseTurnItem.id) + 9 <= currentLineBetween[1] + 8 &&
     board[Number(chooseTurnItem.id) + 9] &&
     board[Number(chooseTurnItem.id) + 9]?.name.includes("WHITE")
   ) {

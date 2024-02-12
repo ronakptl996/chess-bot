@@ -137,6 +137,7 @@ const possibleBishopkillMove = async (
       chooseTurnItemId: chooseTurnItem,
     };
   } else if (
+    Number(chooseTurnItem.id) + 9 <= 63 &&
     board[Number(chooseTurnItem.id) + 9] == null &&
     !cornerNumber.includes(Number(chooseTurnItem.id) + 9)
   ) {

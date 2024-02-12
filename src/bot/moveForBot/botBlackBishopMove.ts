@@ -183,6 +183,8 @@ const botBlackBishopMove = async (
   // FOR KILL WHITE TO +9 MOVE
   if (
     Number(chooseTurnItem.id) + 9 <= 63 &&
+    currentLineBetween &&
+    Number(chooseTurnItem.id) + 9 <= currentLineBetween[1] + 8 &&
     board[Number(chooseTurnItem.id) + 9]?.name.includes("WHITE")
   ) {
     tableData.board = makeBotBoard(board, chooseTurnItem, 9, tableData._id);
@@ -190,6 +192,8 @@ const botBlackBishopMove = async (
     return;
   } else if (
     board[Number(chooseTurnItem.id) + 9] == null &&
+    currentLineBetween &&
+    Number(chooseTurnItem.id) + 9 <= currentLineBetween[1] + 8 &&
     !cornerNumber.includes(Number(chooseTurnItem.id) + 9)
   ) {
     if (
@@ -760,6 +764,8 @@ const botBlackBishopMove = async (
   // FOR 9 EMPTY MOVE
   if (
     Number(chooseTurnItem.id) + 9 <= 63 &&
+    currentLineBetween &&
+    Number(chooseTurnItem.id) + 9 <= currentLineBetween[1] + 8 &&
     board[Number(chooseTurnItem.id) + 9] == null &&
     !cornerNumber.includes(Number(chooseTurnItem.id) + 9)
   ) {

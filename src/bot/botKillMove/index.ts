@@ -1,4 +1,5 @@
 import possibleBishopkillMove from "./possibleBishopKillMove";
+import possibleKingKillMove from "./possibleKingKillMove";
 import possibleKnightKillMove from "./possibleKnightKillMove";
 import possiblePawnKillMove from "./possiblePawnKillMove";
 import possibleQueenKillMove from "./possibleQueenKillMove";
@@ -10,4 +11,5 @@ export {
   possibleRookKillMove,
   possibleKnightKillMove,
   possibleBishopkillMove,
+  possibleKingKillMove,
 };

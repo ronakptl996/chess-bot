@@ -15,15 +15,47 @@ import {
   botBlackKingMove,
   botBlackPawnMove,
 } from "./moveForBot";
+import kingCheckmate from "./kingCheckmate";
+import botCheckMateMoveForKing from "./botCheckMateMoveForKing";
 
 const botPossibleMove = async (tableData: IChess) => {
   try {
     const board = tableData.board;
+
+    const checkForKing = await kingCheckmate(board);
+    if (checkForKing) {
+      logger.error("=================== checkForKing =======================");
+      console.log(checkForKing);
+
+      if (checkForKing.kill) {
+        tableData.board = makeBotBoard(
+          board,
+          checkForKing.chooseTurnItemId,
+          checkForKing.move,
+          tableData._id
+        );
+        botMoveChange(tableData);
+        return;
+      } else {
+        const move = botCheckMateMoveForKing(tableData, checkForKing);
+        logger.info(
+          "=========================== CHECK MATE MOVE ==============================="
+        );
+        console.log(move);
+        if (move) {
+          tableData.board = makeBotBoard(
+            board,
+            checkForKing.chooseTurnItemId,
+            move.move,
+            tableData._id
+          );
+          botMoveChange(tableData);
+          return;
+        }
+      }
+    }
+
     const killPiece = await botPossibleKillMove(tableData);
-    console.log(
-      " >>  -----   chooseTurnItemNumber--------- <<<<<<<<",
-      killPiece
-    );
 
     if (killPiece != undefined) {
       logger.error("==============botPossibleKillMove===========");
@@ -38,6 +70,7 @@ const botPossibleMove = async (tableData: IChess) => {
         tableData._id
       );
       botMoveChange(tableData);
+      return;
     } else {
       let randomBotTurn: Number;
       let chooseTurnItem: any;

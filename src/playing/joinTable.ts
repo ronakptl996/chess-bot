@@ -179,6 +179,7 @@ const joinTable = async (data: JoinData, socket: any) => {
 
           gameTableFormat.status = TABLE_STATE.WAITING_FOR_PLAYER;
           socket.tableId = gameTableFormat._id;
+          socket.userId = userDefault._id;
           await Set(
             `${REDIS_KEY.TABLES}:${gameTableFormat._id}`,
             gameTableFormat

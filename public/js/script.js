@@ -13381,10 +13381,6 @@ function movePieces(data) {
       };
       sendToSocket(socket, winnerData);
     }
-    // alert(`White player is winner!!`);
-    // setTimeout(() => {
-    //   location.reload();
-    // }, 2000);
   } else if (gameData.killPieceId === "WHITE_KING") {
     if (pieceColor == "black") {
       let winnerData = {

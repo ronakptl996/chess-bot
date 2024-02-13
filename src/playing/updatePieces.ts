@@ -11,6 +11,7 @@ const updatePieces = async (data: IUpdateBoard, socket: any) => {
   // let lock = await global.lock.acquire([socket.tableId], 12000);
 
   try {
+    console.log("updatePieces DATA TABLE DATA >>", data);
     data = await updateValidate(data);
     if (data) {
       if (socket.tableId) {

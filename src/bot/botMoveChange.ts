@@ -2,9 +2,18 @@ import { EVENT_NAME, REDIS_KEY } from "../constants";
 import { IChess } from "../interface";
 import { Set } from "../redisOperation";
 import Events from "../eventEmitter";
+import { turnTimer, turnTimerDelay } from "../bull/queue/turnDelayTimer";
 
 const botMoveChange = async (tableData: IChess) => {
   console.log("botMoveChange ::", tableData);
+
+  const currentTurn = String(tableData.currentTurn);
+  const job = await turnTimer.getJob(currentTurn);
+  console.log("BOT JOB >>>", job);
+
+  if (job) {
+    await job.remove();
+  }
 
   await Set(`${REDIS_KEY.TABLES}:${tableData._id}`, tableData);
 
@@ -44,6 +53,13 @@ const botMoveChange = async (tableData: IChess) => {
   };
 
   Events.sendToRoom(tableData._id, updatedData);
+
+  await turnTimerDelay({
+    data: {
+      nextTurn: tableData.currentTurn,
+    },
+    tableId: tableData._id,
+  });
 };
 
 export default botMoveChange;

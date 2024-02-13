@@ -10,7 +10,7 @@ let turnTimer = new Queue(BULL_KEY.TURN_DELAY_QUEUE, {
 
 const turnTimerDelay = async (data: any) => {
   console.log("USER TIMER DELAY");
-  console.log("data JOBID >>", data.data.nextTurn);
+  console.log("data JOBID >>", data.data);
 
   try {
     let options = {
@@ -28,7 +28,7 @@ const turnTimerDelay = async (data: any) => {
 
 turnTimer.process(async (job: any) => {
   console.log("JOB DATA >>>>");
-  // console.log(job);
+  console.log(job);
   await turnDelayProcess(job);
 });
 

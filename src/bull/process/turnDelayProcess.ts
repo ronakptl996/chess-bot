@@ -5,6 +5,7 @@ import { Get, Set } from "../../redisOperation";
 import { disconnect } from "../../playing";
 import { turnTimerDelay } from "../queue/turnDelayTimer";
 import logger from "../../logger";
+import { botTurnTimerQueue } from "../queue/botTurnTimer";
 
 const turnDelayProcess = async (job: any) => {
   let userTurnData = await Get(
@@ -14,6 +15,9 @@ const turnDelayProcess = async (job: any) => {
   let tableData = await Get(`${REDIS_KEY.TABLES}:${job.data.tableId}`);
   let currentTurn;
   let playerName;
+
+  logger.info("=============turnDelayProcess TABLEDATA");
+  console.log(tableData);
 
   if (userTurnData.missTurn < 3) {
     userTurnData.missTurn++;
@@ -33,14 +37,21 @@ const turnDelayProcess = async (job: any) => {
 
     tableData.currentTurn = currentTurn;
     await Set(`${REDIS_KEY.TABLES}:${job.data.tableId}`, tableData);
+    console.log("UPDATED TABLE DATA >>", tableData);
+
+    if (playerName == "Bot") {
+      logger.info("====================BOT TIMER START");
+      // await botTurn(tableData._id);
+      await botTurnTimerQueue({ tableId: tableData._id });
+    }
 
     let sendData = {
       emptyBox: job.data.data.emptyBox,
-      pieceId: null,
-      selectChessItem: { indexofChesscheck: null },
-      number: null,
-      killPieceId: null,
-      className: null,
+      pieceId: undefined,
+      selectChessItem: { indexofChesscheck: undefined },
+      number: undefined,
+      killPieceId: undefined,
+      className: undefined,
       pieceColor: tableData.pieceColor,
       nextTurn: tableData.currentTurn,
       turnMessage: `${playerName} Turn`,
@@ -54,10 +65,12 @@ const turnDelayProcess = async (job: any) => {
 
     Event.sendToRoom(tableData._id, updateData);
 
-    // await turnTimerDelay({
-    //   data: sendData,
-    //   tableId: tableData._id,
-    // });
+    await turnTimerDelay({
+      data: {
+        nextTurn: sendData.nextTurn,
+      },
+      tableId: tableData._id,
+    });
   } else {
     let winnerId;
     tableData.playerInfo.filter((user: IUser) => {

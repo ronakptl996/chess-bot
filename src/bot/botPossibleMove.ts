@@ -22,7 +22,12 @@ const botPossibleMove = async (tableData: IChess) => {
   try {
     const board = tableData.board;
 
+    logger.info("BOT POSSIBLE MOVE TABLE DATA >>");
+    console.log(tableData);
+
     const checkForKing = await kingCheckmate(board);
+    console.log("checkForKing >>", checkForKing);
+
     if (checkForKing) {
       logger.error("=================== checkForKing =======================");
       console.log(checkForKing);
@@ -86,17 +91,17 @@ const botPossibleMove = async (tableData: IChess) => {
 
       console.log("======????????", chooseTurnItem);
 
-      if (chooseTurnItem.name.includes("BLACK_PAWN")) {
+      if (chooseTurnItem?.name.includes("BLACK_PAWN")) {
         await botBlackPawnMove(chooseTurnItem, tableData);
-      } else if (chooseTurnItem.name.includes("BLACK_ROOK")) {
+      } else if (chooseTurnItem?.name.includes("BLACK_ROOK")) {
         await botBlackRookMove(chooseTurnItem, tableData);
-      } else if (chooseTurnItem.name.includes("BLACK_KNIGHT")) {
+      } else if (chooseTurnItem?.name.includes("BLACK_KNIGHT")) {
         await botBlackKnightMove(chooseTurnItem, tableData);
-      } else if (chooseTurnItem.name.includes("BLACK_BISHOP")) {
+      } else if (chooseTurnItem?.name.includes("BLACK_BISHOP")) {
         await botBlackBishopMove(chooseTurnItem, tableData);
-      } else if (chooseTurnItem.name.includes("BLACK_QUREEN")) {
+      } else if (chooseTurnItem?.name.includes("BLACK_QUREEN")) {
         await botBlackQueenMove(chooseTurnItem, tableData);
-      } else if (chooseTurnItem.name.includes("BLACK_KING")) {
+      } else if (chooseTurnItem?.name.includes("BLACK_KING")) {
         await botBlackKingMove(chooseTurnItem, tableData);
       }
     }

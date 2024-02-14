@@ -23,6 +23,21 @@ let movePiecesInterval;
 let turnDownTimer = 10;
 let counterVal;
 
+const currentLine = [
+  [0, 7],
+  [8, 15],
+  [16, 23],
+  [24, 31],
+  [32, 39],
+  [40, 47],
+  [48, 55],
+  [56, 63],
+];
+
+const currentSide = [
+  0, 7, 8, 15, 16, 23, 24, 31, 32, 39, 40, 47, 48, 55, 56, 63,
+];
+
 // sendToSocket
 const sendToSocket = (socket, data) => {
   console.log("client chess data ::", data.eventName);
@@ -2701,6 +2716,7 @@ function isBlackRook() {
 
   if (
     BROne === "WHITE_PIECE" &&
+    selectChessItem.indexofChesscheck - 1 >= currentLineBetween[0] &&
     chessBoard[selectChessItem.indexofChesscheck - 1] &&
     emptyBox[selectChessItem.indexofChesscheck - 1]
   ) {
@@ -2723,6 +2739,7 @@ function isBlackRook() {
       .item(0).className;
   if (
     BRTwo === "WHITE_PIECE" &&
+    selectChessItem.indexofChesscheck - 2 >= currentLineBetween[0] &&
     chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 2] &&
     emptyBox[selectChessItem.indexofChesscheck - 2]
@@ -2746,6 +2763,7 @@ function isBlackRook() {
       .item(0).className;
   if (
     BRThree === "WHITE_PIECE" &&
+    selectChessItem.indexofChesscheck - 3 >= currentLineBetween[0] &&
     chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 3] &&
@@ -2770,6 +2788,7 @@ function isBlackRook() {
       .item(0).className;
   if (
     BRFour === "WHITE_PIECE" &&
+    selectChessItem.indexofChesscheck - 4 >= currentLineBetween[0] &&
     chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
@@ -2795,6 +2814,7 @@ function isBlackRook() {
       .item(0).className;
   if (
     BRFive === "WHITE_PIECE" &&
+    selectChessItem.indexofChesscheck - 5 >= currentLineBetween[0] &&
     chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
@@ -2821,6 +2841,7 @@ function isBlackRook() {
       .item(0).className;
   if (
     BRSix === "WHITE_PIECE" &&
+    selectChessItem.indexofChesscheck - 6 >= currentLineBetween[0] &&
     chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
@@ -2848,6 +2869,7 @@ function isBlackRook() {
       .item(0).className;
   if (
     BRSeven === "WHITE_PIECE" &&
+    selectChessItem.indexofChesscheck - 7 >= currentLineBetween[0] &&
     chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
@@ -3164,2140 +3186,6 @@ function isBlackKing() {
   }
 }
 
-// function isBlackQueen() {
-//   document.getElementById(selectChessItem.indexofChesscheck).style.background =
-//     "#BBCB2B";
-//   if (pieceColor != "black") {
-//     return;
-//   }
-//   if (chessBoard[selectChessItem.indexofChesscheck + 7] === null) {
-//     let stopSuggetion = false;
-//     let findIndexOne = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 7
-//     );
-//     if (
-//       findIndexOne != -1 &&
-//       cornerNumber[findIndexOne] <= selectChessItem.indexofChesscheck + 7 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 7]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 7].setAttribute(
-//         "onClick",
-//         "makeMove(7)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 7].style.background =
-//         "#27AE60";
-//     } else if (
-//       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 7]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 7].setAttribute(
-//         "onClick",
-//         "makeMove(7)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 7].style.background =
-//         "#27AE60";
-//     }
-//     let findIndexTwo = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 14
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       findIndexTwo != -1 &&
-//       cornerNumber[findIndexTwo] <= selectChessItem.indexofChesscheck + 14 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 14]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 14].setAttribute(
-//         "onClick",
-//         "makeMove(14)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 14].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 14]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 14].setAttribute(
-//         "onClick",
-//         "makeMove(14)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 14].style.background =
-//         "#27AE60";
-//     }
-//     let findIndexThree = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 21
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       findIndexThree != -1 &&
-//       cornerNumber[findIndexThree] <= selectChessItem.indexofChesscheck + 21 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 21]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 21].setAttribute(
-//         "onClick",
-//         "makeMove(21)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 21].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 21]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 21].setAttribute(
-//         "onClick",
-//         "makeMove(21)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 21].style.background =
-//         "#27AE60";
-//     }
-//     let findIndexFour = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 28
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       findIndexFour != -1 &&
-//       cornerNumber[findIndexFour] <= selectChessItem.indexofChesscheck + 28 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 28]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 28].setAttribute(
-//         "onClick",
-//         "makeMove(28)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 28].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 28]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 28].setAttribute(
-//         "onClick",
-//         "makeMove(28)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 28].style.background =
-//         "#27AE60";
-//     }
-//     let findIndexFive = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 35
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       findIndexFive != -1 &&
-//       cornerNumber[findIndexFive] <= selectChessItem.indexofChesscheck + 35 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 35]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 35].setAttribute(
-//         "onClick",
-//         "makeMove(35)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 35].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 35]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 35].setAttribute(
-//         "onClick",
-//         "makeMove(35)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 35].style.background =
-//         "#27AE60";
-//     }
-//     let findIndexSix = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 42
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       findIndexSix != -1 &&
-//       cornerNumber[findIndexSix] <= selectChessItem.indexofChesscheck + 42 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 42] &&
-//       emptyBox[selectChessItem.indexofChesscheck + 42]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 42].setAttribute(
-//         "onClick",
-//         "makeMove(42)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 42].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 42] &&
-//       emptyBox[selectChessItem.indexofChesscheck + 42]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 42].setAttribute(
-//         "onClick",
-//         "makeMove(42)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 42].style.background =
-//         "#27AE60";
-//     }
-//     let findIndexSeven = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 49
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       findIndexSix != -1 &&
-//       cornerNumber[findIndexSeven] <= selectChessItem.indexofChesscheck + 49 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 42] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 49] &&
-//       emptyBox[selectChessItem.indexofChesscheck + 49]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 49].setAttribute(
-//         "onClick",
-//         "makeMove(49)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 49].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 42] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 49] &&
-//       emptyBox[selectChessItem.indexofChesscheck + 49]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 49].setAttribute(
-//         "onClick",
-//         "makeMove(49)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 49].style.background =
-//         "#27AE60";
-//     }
-//   }
-//   if (chessBoard[selectChessItem.indexofChesscheck + 9] === null) {
-//     let stopSuggetion = false;
-//     let findIndexOne = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 9
-//     );
-//     if (
-//       findIndexOne != -1 &&
-//       cornerNumber[findIndexOne] <= selectChessItem.indexofChesscheck + 9 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 9]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 9].setAttribute(
-//         "onClick",
-//         "makeMove(9)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 9].style.background =
-//         "#27AE60";
-//     } else if (
-//       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 9]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 9].setAttribute(
-//         "onClick",
-//         "makeMove(9)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 9].style.background =
-//         "#27AE60";
-//     }
-//     let findIndexTwo = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 18
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       findIndexTwo != -1 &&
-//       cornerNumber[findIndexTwo] <= selectChessItem.indexofChesscheck + 18 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 18]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 18].setAttribute(
-//         "onClick",
-//         "makeMove(18)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 18].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 18]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 18].setAttribute(
-//         "onClick",
-//         "makeMove(18)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 18].style.background =
-//         "#27AE60";
-//     }
-//     let findIndexThree = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 27
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       findIndexThree != -1 &&
-//       cornerNumber[findIndexThree] <= selectChessItem.indexofChesscheck + 27 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 27]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 27].setAttribute(
-//         "onClick",
-//         "makeMove(27)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 27].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 27]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 27].setAttribute(
-//         "onClick",
-//         "makeMove(27)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 27].style.background =
-//         "#27AE60";
-//     }
-//     let findIndexFour = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 36
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       findIndexFour != -1 &&
-//       cornerNumber[findIndexFour] <= selectChessItem.indexofChesscheck + 36 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 36]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 36].setAttribute(
-//         "onClick",
-//         "makeMove(36)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 36].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 36]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 36].setAttribute(
-//         "onClick",
-//         "makeMove(36)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 36].style.background =
-//         "#27AE60";
-//     }
-//     let findIndexFive = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 45
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       findIndexFive != -1 &&
-//       cornerNumber[findIndexFive] <= selectChessItem.indexofChesscheck + 45 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 45]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 45].setAttribute(
-//         "onClick",
-//         "makeMove(45)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 45].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 45]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 45].setAttribute(
-//         "onClick",
-//         "makeMove(45)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 45].style.background =
-//         "#27AE60";
-//     }
-//     let findIndexSix = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 54
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       findIndexSix != -1 &&
-//       cornerNumber[findIndexSix] <= selectChessItem.indexofChesscheck + 45 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 54] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 54]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 54].setAttribute(
-//         "onClick",
-//         "makeMove(54)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 54].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 54] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 54]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 54].setAttribute(
-//         "onClick",
-//         "makeMove(54)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 54].style.background =
-//         "#27AE60";
-//     }
-//     let findIndexSeven = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 63
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       findIndexSeven != -1 &&
-//       cornerNumber[findIndexSeven] <= selectChessItem.indexofChesscheck + 63 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 54] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 63] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 63]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 63].setAttribute(
-//         "onClick",
-//         "makeMove(63)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 63].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 54] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 63] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 63]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 63].setAttribute(
-//         "onClick",
-//         "makeMove(63)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 63].style.background =
-//         "#27AE60";
-//     }
-//   }
-//   if (chessBoard[selectChessItem.indexofChesscheck - 7] === null) {
-//     let stopSuggetion = false;
-//     if (
-//       chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 7]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck - 7].setAttribute(
-//         "onClick",
-//         "makeMove(-7)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 7].style.background =
-//         "#27AE60";
-//       let findIndexOne = cornerNumber.findIndex(
-//         (item) => item == selectChessItem.indexofChesscheck - 14
-//       );
-//       if (
-//         findIndexOne != -1 &&
-//         cornerNumber[findIndexOne] <= selectChessItem.indexofChesscheck - 14 &&
-//         stopSuggetion == false &&
-//         chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
-//         emptyBox[selectChessItem.indexofChesscheck - 14]
-//       ) {
-//         stopSuggetion = true;
-//         emptyBox[selectChessItem.indexofChesscheck - 14].setAttribute(
-//           "onClick",
-//           "makeMove(-14)"
-//         );
-//         emptyBox[selectChessItem.indexofChesscheck - 14].style.background =
-//           "#27AE60";
-//       } else if (
-//         stopSuggetion == false &&
-//         chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
-//         emptyBox[selectChessItem.indexofChesscheck - 14]
-//       ) {
-//         emptyBox[selectChessItem.indexofChesscheck - 14].setAttribute(
-//           "onClick",
-//           "makeMove(-14)"
-//         );
-//         emptyBox[selectChessItem.indexofChesscheck - 14].style.background =
-//           "#27AE60";
-//         let findIndextwo = cornerNumber.findIndex(
-//           (item) => item == selectChessItem.indexofChesscheck - 21
-//         );
-//         if (
-//           findIndextwo != -1 &&
-//           cornerNumber[findIndextwo] <=
-//             selectChessItem.indexofChesscheck - 21 &&
-//           stopSuggetion == false &&
-//           chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
-//           emptyBox[selectChessItem.indexofChesscheck - 21]
-//         ) {
-//           stopSuggetion = true;
-//           emptyBox[selectChessItem.indexofChesscheck - 21].setAttribute(
-//             "onClick",
-//             "makeMove(-21)"
-//           );
-//           emptyBox[selectChessItem.indexofChesscheck - 21].style.background =
-//             "#27AE60";
-//         } else if (
-//           stopSuggetion == false &&
-//           chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
-//           emptyBox[selectChessItem.indexofChesscheck - 21]
-//         ) {
-//           emptyBox[selectChessItem.indexofChesscheck - 21].setAttribute(
-//             "onClick",
-//             "makeMove(-21)"
-//           );
-//           emptyBox[selectChessItem.indexofChesscheck - 21].style.background =
-//             "#27AE60";
-//           let findIndexThree = cornerNumber.findIndex(
-//             (item) => item == selectChessItem.indexofChesscheck - 28
-//           );
-//           if (
-//             findIndexThree != -1 &&
-//             cornerNumber[findIndexThree] <=
-//               selectChessItem.indexofChesscheck - 28 &&
-//             stopSuggetion == false &&
-//             chessBoard[selectChessItem.indexofChesscheck - 28] === null &&
-//             emptyBox[selectChessItem.indexofChesscheck - 28]
-//           ) {
-//             stopSuggetion = true;
-//             emptyBox[selectChessItem.indexofChesscheck - 28].setAttribute(
-//               "onClick",
-//               "makeMove(-28)"
-//             );
-//             emptyBox[selectChessItem.indexofChesscheck - 28].style.background =
-//               "#27AE60";
-//           } else if (
-//             stopSuggetion == false &&
-//             chessBoard[selectChessItem.indexofChesscheck - 28] === null &&
-//             emptyBox[selectChessItem.indexofChesscheck - 28]
-//           ) {
-//             emptyBox[selectChessItem.indexofChesscheck - 28].setAttribute(
-//               "onClick",
-//               "makeMove(-28)"
-//             );
-//             emptyBox[selectChessItem.indexofChesscheck - 28].style.background =
-//               "#27AE60";
-//             let findIndexFour = cornerNumber.findIndex(
-//               (item) => item == selectChessItem.indexofChesscheck - 35
-//             );
-//             if (
-//               findIndexFour != -1 &&
-//               cornerNumber[findIndexFour] <=
-//                 selectChessItem.indexofChesscheck - 35 &&
-//               stopSuggetion == false &&
-//               chessBoard[selectChessItem.indexofChesscheck - 35] === null &&
-//               emptyBox[selectChessItem.indexofChesscheck - 35]
-//             ) {
-//               stopSuggetion = true;
-//               emptyBox[selectChessItem.indexofChesscheck - 35].setAttribute(
-//                 "onClick",
-//                 "makeMove(-35)"
-//               );
-//               emptyBox[
-//                 selectChessItem.indexofChesscheck - 35
-//               ].style.background = "#27AE60";
-//             } else if (
-//               stopSuggetion == false &&
-//               chessBoard[selectChessItem.indexofChesscheck - 35] === null &&
-//               emptyBox[selectChessItem.indexofChesscheck - 35]
-//             ) {
-//               emptyBox[selectChessItem.indexofChesscheck - 35].setAttribute(
-//                 "onClick",
-//                 "makeMove(-35)"
-//               );
-//               emptyBox[
-//                 selectChessItem.indexofChesscheck - 35
-//               ].style.background = "#27AE60";
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-//   if (chessBoard[selectChessItem.indexofChesscheck - 9] === null) {
-//     let stopSuggetion = false;
-//     let findIndexOne = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck - 9
-//     );
-//     if (
-//       findIndexOne != -1 &&
-//       cornerNumber[findIndexOne] <= selectChessItem.indexofChesscheck - 9 &&
-//       chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 9]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck - 9].setAttribute(
-//         "onClick",
-//         "makeMove(-9)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 9].style.background =
-//         "#27AE60";
-//     } else if (
-//       chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 9]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck - 9].setAttribute(
-//         "onClick",
-//         "makeMove(-9)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 9].style.background =
-//         "#27AE60";
-//       let findIndexTwo = cornerNumber.findIndex(
-//         (item) => item == selectChessItem.indexofChesscheck - 18
-//       );
-//       if (
-//         stopSuggetion == false &&
-//         findIndexTwo != -1 &&
-//         cornerNumber[findIndexTwo] <= selectChessItem.indexofChesscheck - 18 &&
-//         chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
-//         emptyBox[selectChessItem.indexofChesscheck - 18]
-//       ) {
-//         stopSuggetion = true;
-//         emptyBox[selectChessItem.indexofChesscheck - 18].setAttribute(
-//           "onClick",
-//           "makeMove(-18)"
-//         );
-//         emptyBox[selectChessItem.indexofChesscheck - 18].style.background =
-//           "#27AE60";
-//       } else if (
-//         stopSuggetion == false &&
-//         chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
-//         emptyBox[selectChessItem.indexofChesscheck - 18]
-//       ) {
-//         emptyBox[selectChessItem.indexofChesscheck - 18].setAttribute(
-//           "onClick",
-//           "makeMove(-18)"
-//         );
-//         emptyBox[selectChessItem.indexofChesscheck - 18].style.background =
-//           "#27AE60";
-//         let findIndexThree = cornerNumber.findIndex(
-//           (item) => item == selectChessItem.indexofChesscheck - 27
-//         );
-//         if (
-//           findIndexThree != -1 &&
-//           cornerNumber[findIndexThree] <=
-//             selectChessItem.indexofChesscheck - 27 &&
-//           stopSuggetion == false &&
-//           chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
-//           emptyBox[selectChessItem.indexofChesscheck - 27]
-//         ) {
-//           stopSuggetion = true;
-//           emptyBox[selectChessItem.indexofChesscheck - 27].setAttribute(
-//             "onClick",
-//             "makeMove(-27)"
-//           );
-//           emptyBox[selectChessItem.indexofChesscheck - 27].style.background =
-//             "#27AE60";
-//         } else if (
-//           stopSuggetion == false &&
-//           chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
-//           emptyBox[selectChessItem.indexofChesscheck - 27]
-//         ) {
-//           emptyBox[selectChessItem.indexofChesscheck - 27].setAttribute(
-//             "onClick",
-//             "makeMove(-27)"
-//           );
-//           emptyBox[selectChessItem.indexofChesscheck - 27].style.background =
-//             "#27AE60";
-//           let findIndexFour = cornerNumber.findIndex(
-//             (item) => item == selectChessItem.indexofChesscheck - 36
-//           );
-//           if (
-//             findIndexFour != -1 &&
-//             cornerNumber[findIndexFour] <=
-//               selectChessItem.indexofChesscheck - 36 &&
-//             stopSuggetion == false &&
-//             chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
-//             emptyBox[selectChessItem.indexofChesscheck - 36]
-//           ) {
-//             stopSuggetion = true;
-//             emptyBox[selectChessItem.indexofChesscheck - 36].setAttribute(
-//               "onClick",
-//               "makeMove(-36)"
-//             );
-//             emptyBox[selectChessItem.indexofChesscheck - 36].style.background =
-//               "#27AE60";
-//           } else if (
-//             stopSuggetion == false &&
-//             chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
-//             emptyBox[selectChessItem.indexofChesscheck - 36]
-//           ) {
-//             emptyBox[selectChessItem.indexofChesscheck - 36].setAttribute(
-//               "onClick",
-//               "makeMove(-36)"
-//             );
-//             emptyBox[selectChessItem.indexofChesscheck - 36].style.background =
-//               "#27AE60";
-//             let findIndexFive = cornerNumber.findIndex(
-//               (item) => item == selectChessItem.indexofChesscheck - 45
-//             );
-
-//             if (
-//               findIndexFive != -1 &&
-//               cornerNumber[findIndexFive] <=
-//                 selectChessItem.indexofChesscheck - 45 &&
-//               chessBoard[selectChessItem.indexofChesscheck - 45] === null &&
-//               emptyBox[selectChessItem.indexofChesscheck - 45]
-//             ) {
-//               emptyBox[selectChessItem.indexofChesscheck - 45].setAttribute(
-//                 "onClick",
-//                 "makeMove(-45)"
-//               );
-//               emptyBox[
-//                 selectChessItem.indexofChesscheck - 45
-//               ].style.background = "#27AE60";
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-
-//   if (chessBoard[selectChessItem.indexofChesscheck + 8] === null) {
-//     if (
-//       chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 8]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 8].setAttribute(
-//         "onClick",
-//         "makeMove(8)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 8].style.background =
-//         "#27AE60";
-//       if (
-//         chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
-//         emptyBox[selectChessItem.indexofChesscheck + 16]
-//       ) {
-//         emptyBox[selectChessItem.indexofChesscheck + 16].setAttribute(
-//           "onClick",
-//           "makeMove(16)"
-//         );
-//         emptyBox[selectChessItem.indexofChesscheck + 16].style.background =
-//           "#27AE60";
-//         if (
-//           chessBoard[selectChessItem.indexofChesscheck + 24] === null &&
-//           emptyBox[selectChessItem.indexofChesscheck + 24]
-//         ) {
-//           emptyBox[selectChessItem.indexofChesscheck + 24].setAttribute(
-//             "onClick",
-//             "makeMove(24)"
-//           );
-//           emptyBox[selectChessItem.indexofChesscheck + 24].style.background =
-//             "#27AE60";
-//           if (
-//             chessBoard[selectChessItem.indexofChesscheck + 32] === null &&
-//             emptyBox[selectChessItem.indexofChesscheck + 32]
-//           ) {
-//             emptyBox[selectChessItem.indexofChesscheck + 32].setAttribute(
-//               "onClick",
-//               "makeMove(32)"
-//             );
-//             emptyBox[selectChessItem.indexofChesscheck + 32].style.background =
-//               "#27AE60";
-//             if (
-//               chessBoard[selectChessItem.indexofChesscheck + 40] === null &&
-//               emptyBox[selectChessItem.indexofChesscheck + 40]
-//             ) {
-//               emptyBox[selectChessItem.indexofChesscheck + 40].setAttribute(
-//                 "onClick",
-//                 "makeMove(40)"
-//               );
-//               emptyBox[
-//                 selectChessItem.indexofChesscheck + 40
-//               ].style.background = "#27AE60";
-//               if (
-//                 chessBoard[selectChessItem.indexofChesscheck + 48] === null &&
-//                 emptyBox[selectChessItem.indexofChesscheck + 48]
-//               ) {
-//                 emptyBox[selectChessItem.indexofChesscheck + 48].setAttribute(
-//                   "onClick",
-//                   "makeMove(48)"
-//                 );
-//                 emptyBox[
-//                   selectChessItem.indexofChesscheck + 48
-//                 ].style.background = "#27AE60";
-//                 if (
-//                   chessBoard[selectChessItem.indexofChesscheck + 56] === null &&
-//                   emptyBox[selectChessItem.indexofChesscheck + 56]
-//                 ) {
-//                   emptyBox[selectChessItem.indexofChesscheck + 56].setAttribute(
-//                     "onClick",
-//                     "makeMove(56)"
-//                   );
-//                   emptyBox[
-//                     selectChessItem.indexofChesscheck + 56
-//                   ].style.background = "#27AE60";
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-
-//   if (chessBoard[selectChessItem.indexofChesscheck - 8] === null) {
-//     if (
-//       chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 8]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck - 8].setAttribute(
-//         "onClick",
-//         "makeMove(-8)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 8].style.background =
-//         "#27AE60";
-//       if (
-//         chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
-//         emptyBox[selectChessItem.indexofChesscheck - 16]
-//       ) {
-//         emptyBox[selectChessItem.indexofChesscheck - 16].setAttribute(
-//           "onClick",
-//           "makeMove(-16)"
-//         );
-//         emptyBox[selectChessItem.indexofChesscheck - 16].style.background =
-//           "#27AE60";
-//         if (
-//           chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
-//           emptyBox[selectChessItem.indexofChesscheck - 24]
-//         ) {
-//           emptyBox[selectChessItem.indexofChesscheck - 24].setAttribute(
-//             "onClick",
-//             "makeMove(-24)"
-//           );
-//           emptyBox[selectChessItem.indexofChesscheck - 24].style.background =
-//             "#27AE60";
-//           if (
-//             chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
-//             emptyBox[selectChessItem.indexofChesscheck - 32]
-//           ) {
-//             emptyBox[selectChessItem.indexofChesscheck - 32].setAttribute(
-//               "onClick",
-//               "makeMove(-32)"
-//             );
-//             emptyBox[selectChessItem.indexofChesscheck - 32].style.background =
-//               "#27AE60";
-//             if (
-//               chessBoard[selectChessItem.indexofChesscheck - 40] === null &&
-//               emptyBox[selectChessItem.indexofChesscheck - 40]
-//             ) {
-//               emptyBox[selectChessItem.indexofChesscheck - 40].setAttribute(
-//                 "onClick",
-//                 "makeMove(-40)"
-//               );
-//               emptyBox[
-//                 selectChessItem.indexofChesscheck - 40
-//               ].style.background = "#27AE60";
-//               if (
-//                 chessBoard[selectChessItem.indexofChesscheck - 48] === null &&
-//                 emptyBox[selectChessItem.indexofChesscheck - 48]
-//               ) {
-//                 emptyBox[selectChessItem.indexofChesscheck - 48].setAttribute(
-//                   "onClick",
-//                   "makeMove(-48)"
-//                 );
-//                 emptyBox[
-//                   selectChessItem.indexofChesscheck - 48
-//                 ].style.background = "#27AE60";
-//                 if (
-//                   chessBoard[selectChessItem.indexofChesscheck - 56] === null &&
-//                   emptyBox[selectChessItem.indexofChesscheck - 56]
-//                 ) {
-//                   emptyBox[selectChessItem.indexofChesscheck - 56].setAttribute(
-//                     "onClick",
-//                     "makeMove(-56)"
-//                   );
-//                   emptyBox[
-//                     selectChessItem.indexofChesscheck - 56
-//                   ].style.background = "#27AE60";
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-
-//   if (chessBoard[selectChessItem.indexofChesscheck + 1] === null) {
-//     let stopSuggetion = false;
-//     let rookIndexOne = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 1
-//     );
-//     if (
-//       rookIndexOne != -1 &&
-//       cornerNumber[rookIndexOne] <= selectChessItem.indexofChesscheck + 1 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 1]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 1].setAttribute(
-//         "onClick",
-//         "makeMove(1)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 1].style.background =
-//         "#27AE60";
-//     } else if (
-//       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 1]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 1].setAttribute(
-//         "onClick",
-//         "makeMove(1)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 1].style.background =
-//         "#27AE60";
-//     }
-//     let rookIndexTwo = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 2
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       rookIndexTwo != -1 &&
-//       cornerNumber[rookIndexTwo] <= selectChessItem.indexofChesscheck + 2 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 2]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 2].setAttribute(
-//         "onClick",
-//         "makeMove(2)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 2].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 2]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 2].setAttribute(
-//         "onClick",
-//         "makeMove(2)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 2].style.background =
-//         "#27AE60";
-//     }
-//     let rookIndexThree = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 3
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       rookIndexThree != -1 &&
-//       cornerNumber[rookIndexThree] <= selectChessItem.indexofChesscheck + 3 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 3]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 3].setAttribute(
-//         "onClick",
-//         "makeMove(3)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 3].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 3]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 3].setAttribute(
-//         "onClick",
-//         "makeMove(3)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 3].style.background =
-//         "#27AE60";
-//     }
-//     let rookIndexFour = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 4
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       rookIndexFour != -1 &&
-//       cornerNumber[rookIndexFour] <= selectChessItem.indexofChesscheck + 4 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 4]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 4].setAttribute(
-//         "onClick",
-//         "makeMove(4)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 4].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 4]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 4].setAttribute(
-//         "onClick",
-//         "makeMove(4)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 4].style.background =
-//         "#27AE60";
-//     }
-//     let rookIndexFive = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 5
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       rookIndexFive != -1 &&
-//       cornerNumber[rookIndexFive] <= selectChessItem.indexofChesscheck + 5 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 5]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 5].setAttribute(
-//         "onClick",
-//         "makeMove(5)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 5].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 5]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 5].setAttribute(
-//         "onClick",
-//         "makeMove(5)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 5].style.background =
-//         "#27AE60";
-//     }
-//     let rookIndexFSix = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 6
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       rookIndexFSix != -1 &&
-//       cornerNumber[rookIndexFSix] <= selectChessItem.indexofChesscheck + 6 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 6]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 6].setAttribute(
-//         "onClick",
-//         "makeMove(6)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 6].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 6]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 6].setAttribute(
-//         "onClick",
-//         "makeMove(6)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 6].style.background =
-//         "#27AE60";
-//     }
-//     let rookIndexFSeven = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck + 7
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       rookIndexFSeven != -1 &&
-//       cornerNumber[rookIndexFSeven] <= selectChessItem.indexofChesscheck + 7 &&
-//       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 7]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck + 7].setAttribute(
-//         "onClick",
-//         "makeMove(7)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 7].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck + 7]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck + 7].setAttribute(
-//         "onClick",
-//         "makeMove(7)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck + 7].style.background =
-//         "#27AE60";
-//     }
-//   }
-
-//   if (chessBoard[selectChessItem.indexofChesscheck - 1] === null) {
-//     let stopSuggetion = false;
-//     let rookIndexOne = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck - 1
-//     );
-//     if (
-//       rookIndexOne != -1 &&
-//       cornerNumber[rookIndexOne] <= selectChessItem.indexofChesscheck + 1 &&
-//       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 1]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck - 1].setAttribute(
-//         "onClick",
-//         "makeMove(-1)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 1].style.background =
-//         "#27AE60";
-//     } else if (
-//       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 1]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck - 1].setAttribute(
-//         "onClick",
-//         "makeMove(-1)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 1].style.background =
-//         "#27AE60";
-//     }
-//     let rookIndexTwo = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck - 2
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       rookIndexTwo != -1 &&
-//       cornerNumber[rookIndexTwo] <= selectChessItem.indexofChesscheck - 2 &&
-//       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 2]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck - 2].setAttribute(
-//         "onClick",
-//         "makeMove(-2)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 2].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 2]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck - 2].setAttribute(
-//         "onClick",
-//         "makeMove(-2)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 2].style.background =
-//         "#27AE60";
-//     }
-//     let rookIndexThree = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck - 3
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       rookIndexThree != -1 &&
-//       cornerNumber[rookIndexThree] <= selectChessItem.indexofChesscheck - 3 &&
-//       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 3]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck - 3].setAttribute(
-//         "onClick",
-//         "makeMove(-3)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 3].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 3]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck - 3].setAttribute(
-//         "onClick",
-//         "makeMove(-3)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 3].style.background =
-//         "#27AE60";
-//     }
-//     let rookIndexFour = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck - 4
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       rookIndexFour != -1 &&
-//       cornerNumber[rookIndexFour] <= selectChessItem.indexofChesscheck - 4 &&
-//       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 4]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck - 4].setAttribute(
-//         "onClick",
-//         "makeMove(-4)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 4].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 4]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck - 4].setAttribute(
-//         "onClick",
-//         "makeMove(-4)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 4].style.background =
-//         "#27AE60";
-//     }
-//     let rookIndexFive = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck - 5
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       rookIndexFive != -1 &&
-//       cornerNumber[rookIndexFive] <= selectChessItem.indexofChesscheck - 5 &&
-//       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 5]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck - 5].setAttribute(
-//         "onClick",
-//         "makeMove(-5)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 5].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 5]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck - 5].setAttribute(
-//         "onClick",
-//         "makeMove(-5)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 5].style.background =
-//         "#27AE60";
-//     }
-//     let rookIndexFSix = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck - 6
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       rookIndexFSix != -1 &&
-//       cornerNumber[rookIndexFSix] <= selectChessItem.indexofChesscheck - 6 &&
-//       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 6]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck - 6].setAttribute(
-//         "onClick",
-//         "makeMove(-6)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 6].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 6]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck - 6].setAttribute(
-//         "onClick",
-//         "makeMove(-6)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 6].style.background =
-//         "#27AE60";
-//     }
-//     let rookIndexFSeven = cornerNumber.findIndex(
-//       (item) => item == selectChessItem.indexofChesscheck - 7
-//     );
-//     if (
-//       stopSuggetion == false &&
-//       rookIndexFSeven != -1 &&
-//       cornerNumber[rookIndexFSeven] <= selectChessItem.indexofChesscheck - 7 &&
-//       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 7]
-//     ) {
-//       stopSuggetion = true;
-//       emptyBox[selectChessItem.indexofChesscheck - 7].setAttribute(
-//         "onClick",
-//         "makeMove(-7)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 7].style.background =
-//         "#27AE60";
-//     } else if (
-//       stopSuggetion == false &&
-//       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
-//       chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
-//       emptyBox[selectChessItem.indexofChesscheck - 7]
-//     ) {
-//       emptyBox[selectChessItem.indexofChesscheck - 7].setAttribute(
-//         "onClick",
-//         "makeMove(-7)"
-//       );
-//       emptyBox[selectChessItem.indexofChesscheck - 7].style.background =
-//         "#27AE60";
-//     }
-//   }
-//   let BQClassEight =
-//     document.getElementById(selectChessItem.indexofChesscheck + 8) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 8)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 8)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-
-//   if (
-//     BQClassEight === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 8] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 8]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 8].setAttribute(
-//       "onClick",
-//       "makeMove(8)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 8].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClassSixteen =
-//     document.getElementById(selectChessItem.indexofChesscheck + 16) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 16)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 16)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClassSixteen === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 16] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 16]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 16].setAttribute(
-//       "onClick",
-//       "makeMove(16)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 16].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClasssixteen =
-//     document.getElementById(selectChessItem.indexofChesscheck + 24) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 24)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 24)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClasssixteen === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 24] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 24]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 24].setAttribute(
-//       "onClick",
-//       "makeMove(24)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 24].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClassTF =
-//     document.getElementById(selectChessItem.indexofChesscheck + 32) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 32)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 32)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClassTF === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 24] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 32] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 32]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 32].setAttribute(
-//       "onClick",
-//       "makeMove(32)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 32].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClassFourty =
-//     document.getElementById(selectChessItem.indexofChesscheck + 40) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 40)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 40)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClassFourty === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 24] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 32] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 40] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 40]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 40].setAttribute(
-//       "onClick",
-//       "makeMove(40)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 40].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClassFE =
-//     document.getElementById(selectChessItem.indexofChesscheck + 48) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 48)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 48)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClassFE === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 24] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 32] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 40] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 48] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 48]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 48].setAttribute(
-//       "onClick",
-//       "makeMove(48)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 48].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClassFS =
-//     document.getElementById(selectChessItem.indexofChesscheck + 56) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 56)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 56)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClassFS === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 24] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 32] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 40] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 48] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 56] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 56]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 56].setAttribute(
-//       "onClick",
-//       "makeMove(56)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 56].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClassOne =
-//     document.getElementById(selectChessItem.indexofChesscheck + 1) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 1)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 1)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClassOne === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 1] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 1]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 1].setAttribute(
-//       "onClick",
-//       "makeMove(1)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 1].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClassTwo =
-//     document.getElementById(selectChessItem.indexofChesscheck + 2) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 2)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 2)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClassTwo === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 2] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 2]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 2].setAttribute(
-//       "onClick",
-//       "makeMove(2)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 2].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClassThree =
-//     document.getElementById(selectChessItem.indexofChesscheck + 3) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 3)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 3)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClassThree === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 3] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 3]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 3].setAttribute(
-//       "onClick",
-//       "makeMove(3)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 3].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClassFour =
-//     document.getElementById(selectChessItem.indexofChesscheck + 4) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 4)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 4)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClassFour === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 4] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 4]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 4].setAttribute(
-//       "onClick",
-//       "makeMove(4)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 4].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClassFive =
-//     document.getElementById(selectChessItem.indexofChesscheck + 5) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 5)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 5)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClassFive === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 5] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 5]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 5].setAttribute(
-//       "onClick",
-//       "makeMove(5)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 5].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClassSix =
-//     document.getElementById(selectChessItem.indexofChesscheck + 6) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 6)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 6)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClassSix === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 6] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 6]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 6].setAttribute(
-//       "onClick",
-//       "makeMove(6)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 6].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClassSeven =
-//     document.getElementById(selectChessItem.indexofChesscheck + 7) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 7)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 7)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClassSeven === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 7] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 7]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 7].setAttribute(
-//       "onClick",
-//       "makeMove(7)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 7].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClassPSeven =
-//     document.getElementById(selectChessItem.indexofChesscheck + 7) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 7)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 7)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClassPSeven === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 7] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 7]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 7].setAttribute(
-//       "onClick",
-//       "makeMove(7)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 7].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClassFourteen =
-//     document.getElementById(selectChessItem.indexofChesscheck + 14) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 14)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 14)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClassFourteen === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 14] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 14]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 14].setAttribute(
-//       "onClick",
-//       "makeMove(14)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 14].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClasstOne =
-//     document.getElementById(selectChessItem.indexofChesscheck + 21) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 21)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 21)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClasstOne === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 21] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 21]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 21].setAttribute(
-//       "onClick",
-//       "makeMove(21)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 21].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClassTE =
-//     document.getElementById(selectChessItem.indexofChesscheck + 28) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 28)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 28)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClassTE === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 28] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 28]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 28].setAttribute(
-//       "onClick",
-//       "makeMove(28)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 28].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClasstTF =
-//     document.getElementById(selectChessItem.indexofChesscheck + 35) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 35)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 35)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClasstTF === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 35] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 35]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 35].setAttribute(
-//       "onClick",
-//       "makeMove(35)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 35].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClasstTT =
-//     document.getElementById(selectChessItem.indexofChesscheck + 42) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 42)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 42)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClasstTT === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 42] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 42]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 42].setAttribute(
-//       "onClick",
-//       "makeMove(42)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 42].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClasstTN =
-//     document.getElementById(selectChessItem.indexofChesscheck + 49) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 49)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 49)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClasstTN === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 42] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 49] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 49]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 49].setAttribute(
-//       "onClick",
-//       "makeMove(49)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 49].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClassnine =
-//     document.getElementById(selectChessItem.indexofChesscheck + 9) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 9)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 9)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-
-//   if (
-//     BQClassnine === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 9] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 9]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 9].setAttribute(
-//       "onClick",
-//       "makeMove(9)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 9].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClasseighteen =
-//     document.getElementById(selectChessItem.indexofChesscheck + 18) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 18)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 18)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClasseighteen === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 18] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 18]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 18].setAttribute(
-//       "onClick",
-//       "makeMove(18)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 18].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClasstTS =
-//     document.getElementById(selectChessItem.indexofChesscheck + 27) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 27)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 27)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClasstTS === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 27] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 27]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 27].setAttribute(
-//       "onClick",
-//       "makeMove(27)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 27].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClasstTSix =
-//     document.getElementById(selectChessItem.indexofChesscheck + 36) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 36)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 36)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClasstTSix === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 36] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 36]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 36].setAttribute(
-//       "onClick",
-//       "makeMove(36)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 36].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClasstFF =
-//     document.getElementById(selectChessItem.indexofChesscheck + 45) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 45)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 45)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClasstFF === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 45] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 45]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 45].setAttribute(
-//       "onClick",
-//       "makeMove(45)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 45].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClasstFFour =
-//     document.getElementById(selectChessItem.indexofChesscheck + 54) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 54)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 54)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClasstFFour === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 54] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 54]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 54].setAttribute(
-//       "onClick",
-//       "makeMove(54)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 54].style.background =
-//       "#CA2F1F";
-//   }
-//   let BQClasstST =
-//     document.getElementById(selectChessItem.indexofChesscheck + 63) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 63)
-//       .getElementsByTagName("img")
-//       .item(0) &&
-//     document
-//       .getElementById(selectChessItem.indexofChesscheck + 63)
-//       .getElementsByTagName("img")
-//       .item(0).className;
-//   if (
-//     BQClasstST === "WHITE_PIECE" &&
-//     chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 54] === null &&
-//     chessBoard[selectChessItem.indexofChesscheck + 63] &&
-//     emptyBox[selectChessItem.indexofChesscheck + 63]
-//   ) {
-//     emptyBox[selectChessItem.indexofChesscheck + 63].setAttribute(
-//       "onClick",
-//       "makeMove(63)"
-//     );
-//     emptyBox[selectChessItem.indexofChesscheck + 63].style.background =
-//       "#CA2F1F";
-//   }
-// }
 function isBlackQueen() {
   document.getElementById(selectChessItem.indexofChesscheck).style.background =
     "#BBCB2B";
@@ -7823,6 +5711,7 @@ function iswhitePawn() {
   }
 
   let whitePawnOne =
+    document.getElementById(selectChessItem.indexofChesscheck - 7) &&
     document
       .getElementById(selectChessItem.indexofChesscheck - 7)
       .getElementsByTagName("img")
@@ -7845,6 +5734,7 @@ function iswhitePawn() {
       "#CA2F1F";
   }
   let whitePawnTwo =
+    document.getElementById(selectChessItem.indexofChesscheck - 9) &&
     document
       .getElementById(selectChessItem.indexofChesscheck - 9)
       .getElementsByTagName("img")
@@ -8432,17 +6322,30 @@ function isWhiteKnight() {
 function isWhiteBishop() {
   document.getElementById(selectChessItem.indexofChesscheck).style.background =
     "#BBCB2B";
+
   if (pieceColor != "white") {
     return;
   }
-  if (chessBoard[selectChessItem.indexofChesscheck + 7] === null) {
+
+  let currentLineBetween;
+  currentLineBetween = currentLine.find(
+    (arr) => selectChessItem.indexofChesscheck <= arr[1]
+  );
+
+  console.log("currentLineBetween >>", currentLineBetween);
+
+  if (
+    selectChessItem.indexofChesscheck + 7 > currentLineBetween[1] &&
+    chessBoard[selectChessItem.indexofChesscheck + 7] === null
+  ) {
     let stopSuggetion = false;
     let findIndexOne = cornerNumber.findIndex(
       (item) => item == selectChessItem.indexofChesscheck + 7
     );
+
     if (
       findIndexOne != -1 &&
-      cornerNumber[findIndexOne] <= selectChessItem.indexofChesscheck + 7 &&
+      selectChessItem.indexofChesscheck + 7 > currentLineBetween[1] &&
       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 7]
     ) {
@@ -8454,6 +6357,7 @@ function isWhiteBishop() {
       emptyBox[selectChessItem.indexofChesscheck + 7].style.background =
         "#27AE60";
     } else if (
+      selectChessItem.indexofChesscheck + 7 > currentLineBetween[1] &&
       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 7]
     ) {
@@ -8471,6 +6375,7 @@ function isWhiteBishop() {
       stopSuggetion == false &&
       findIndexTwo != -1 &&
       cornerNumber[findIndexTwo] <= selectChessItem.indexofChesscheck + 14 &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 14]
     ) {
@@ -8484,6 +6389,7 @@ function isWhiteBishop() {
     } else if (
       // findIndexOne !=-1 && cornerNumber[findIndexOne]<=selectChessItem.indexofChesscheck+14 &&
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 14]
     ) {
@@ -8500,6 +6406,8 @@ function isWhiteBishop() {
     if (
       stopSuggetion == false &&
       findIndexThree != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
       cornerNumber[findIndexThree] <= selectChessItem.indexofChesscheck + 21 &&
       chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 21]
@@ -8513,6 +6421,8 @@ function isWhiteBishop() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
       // findIndexOne != -1 && cornerNumber[findIndexOne] <= selectChessItem.indexofChesscheck + 14 &&
       chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 21]
@@ -8530,6 +6440,9 @@ function isWhiteBishop() {
     if (
       stopSuggetion == false &&
       findIndexFour != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
       cornerNumber[findIndexFour] <= selectChessItem.indexofChesscheck + 28 &&
       chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 28]
@@ -8543,6 +6456,9 @@ function isWhiteBishop() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 28]
     ) {
@@ -8559,6 +6475,10 @@ function isWhiteBishop() {
     if (
       stopSuggetion == false &&
       findIndexFive != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
       cornerNumber[findIndexFive] <= selectChessItem.indexofChesscheck + 35 &&
       chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 35]
@@ -8572,6 +6492,10 @@ function isWhiteBishop() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 35]
     ) {
@@ -8582,14 +6506,101 @@ function isWhiteBishop() {
       emptyBox[selectChessItem.indexofChesscheck + 35].style.background =
         "#27AE60";
     }
+    let findIndexSix = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck + 42
+    );
+    if (
+      stopSuggetion == false &&
+      findIndexSix != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
+      cornerNumber[findIndexSix] <= selectChessItem.indexofChesscheck + 42 &&
+      chessBoard[selectChessItem.indexofChesscheck + 42] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 42]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck + 42].setAttribute(
+        "onClick",
+        "makeMove(42)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 42].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 42] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 42]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 42].setAttribute(
+        "onClick",
+        "makeMove(42)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 42].style.background =
+        "#27AE60";
+    }
+
+    let findIndexSeven = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck + 49
+    );
+    if (
+      stopSuggetion == false &&
+      findIndexSeven != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 42] === null &&
+      cornerNumber[findIndexSeven] <= selectChessItem.indexofChesscheck + 49 &&
+      chessBoard[selectChessItem.indexofChesscheck + 49] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 49]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck + 49].setAttribute(
+        "onClick",
+        "makeMove(49)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 49].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 42] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 49] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 49]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 49].setAttribute(
+        "onClick",
+        "makeMove(49)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 49].style.background =
+        "#27AE60";
+    }
   }
-  if (chessBoard[selectChessItem.indexofChesscheck + 9] === null) {
+  if (
+    chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+    currentLineBetween &&
+    selectChessItem.indexofChesscheck + 9 <= currentLineBetween[1] + 8
+  ) {
     let stopSuggetion = false;
     let findIndexOne = cornerNumber.findIndex(
       (item) => item == selectChessItem.indexofChesscheck + 9
     );
     if (
       findIndexOne != -1 &&
+      currentLineBetween &&
+      selectChessItem.indexofChesscheck + 9 <= currentLineBetween[1] + 8 &&
       cornerNumber[findIndexOne] <= selectChessItem.indexofChesscheck + 9 &&
       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 9]
@@ -8602,6 +6613,8 @@ function isWhiteBishop() {
       emptyBox[selectChessItem.indexofChesscheck + 9].style.background =
         "#27AE60";
     } else if (
+      currentLineBetween &&
+      selectChessItem.indexofChesscheck + 9 <= currentLineBetween[1] + 8 &&
       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 9]
     ) {
@@ -8619,6 +6632,7 @@ function isWhiteBishop() {
       stopSuggetion == false &&
       findIndexTwo != -1 &&
       cornerNumber[findIndexTwo] <= selectChessItem.indexofChesscheck + 18 &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 18]
     ) {
@@ -8631,6 +6645,7 @@ function isWhiteBishop() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 18]
     ) {
@@ -8647,6 +6662,8 @@ function isWhiteBishop() {
     if (
       stopSuggetion == false &&
       findIndexThree != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
       cornerNumber[findIndexThree] <= selectChessItem.indexofChesscheck + 27 &&
       chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 27]
@@ -8660,6 +6677,8 @@ function isWhiteBishop() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 27]
     ) {
@@ -8676,6 +6695,9 @@ function isWhiteBishop() {
     if (
       stopSuggetion == false &&
       findIndexFour != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
       cornerNumber[findIndexFour] <= selectChessItem.indexofChesscheck + 36 &&
       chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 36]
@@ -8689,6 +6711,9 @@ function isWhiteBishop() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 36]
     ) {
@@ -8705,6 +6730,10 @@ function isWhiteBishop() {
     if (
       stopSuggetion == false &&
       findIndexFive != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
       cornerNumber[findIndexFive] <= selectChessItem.indexofChesscheck + 45 &&
       chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 45]
@@ -8718,6 +6747,10 @@ function isWhiteBishop() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 45]
     ) {
@@ -8728,10 +6761,117 @@ function isWhiteBishop() {
       emptyBox[selectChessItem.indexofChesscheck + 45].style.background =
         "#27AE60";
     }
-  }
-  if (chessBoard[selectChessItem.indexofChesscheck - 7] === null) {
-    let stopSuggetion = false;
+
+    let findIndexSix = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck + 54
+    );
+
     if (
+      stopSuggetion == false &&
+      findIndexSix != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 54] === null &&
+      cornerNumber[findIndexSix] <= selectChessItem.indexofChesscheck + 54 &&
+      emptyBox[selectChessItem.indexofChesscheck + 54]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck + 54].setAttribute(
+        "onClick",
+        "makeMove(54)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 54].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 54] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 54]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 54].setAttribute(
+        "onClick",
+        "makeMove(54)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 54].style.background =
+        "#27AE60";
+    }
+
+    let findIndexSeven = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck + 63
+    );
+
+    if (
+      stopSuggetion == false &&
+      findIndexSeven != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 54] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 63] === null &&
+      cornerNumber[findIndexSeven] <= selectChessItem.indexofChesscheck + 63 &&
+      emptyBox[selectChessItem.indexofChesscheck + 63]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck + 63].setAttribute(
+        "onClick",
+        "makeMove(63)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 63].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 54] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 63] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 63]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 63].setAttribute(
+        "onClick",
+        "makeMove(63)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 63].style.background =
+        "#27AE60";
+    }
+  }
+
+  if (
+    selectChessItem.indexofChesscheck - 7 < currentLineBetween[0] &&
+    chessBoard[selectChessItem.indexofChesscheck - 7] === null
+  ) {
+    let stopSuggetion = false;
+    let findIndexMSeven = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck - 7
+    );
+
+    if (
+      findIndexMSeven != -1 &&
+      cornerNumber[findIndexMSeven] <= selectChessItem.indexofChesscheck - 7 &&
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 7]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 7].setAttribute(
+        "onClick",
+        "makeMove(-14)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 7].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
       chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 7]
     ) {
@@ -8742,6 +6882,7 @@ function isWhiteBishop() {
       emptyBox[selectChessItem.indexofChesscheck - 7].style.background =
         "#27AE60";
     }
+
     let findIndexOne = cornerNumber.findIndex(
       (item) => item == selectChessItem.indexofChesscheck - 14
     );
@@ -8749,6 +6890,7 @@ function isWhiteBishop() {
       findIndexOne != -1 &&
       cornerNumber[findIndexOne] <= selectChessItem.indexofChesscheck - 14 &&
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 14]
     ) {
@@ -8761,6 +6903,7 @@ function isWhiteBishop() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 14]
     ) {
@@ -8777,6 +6920,8 @@ function isWhiteBishop() {
     );
     if (
       findIndextwo != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
       cornerNumber[findIndextwo] <= selectChessItem.indexofChesscheck - 21 &&
       stopSuggetion == false &&
       chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
@@ -8791,6 +6936,8 @@ function isWhiteBishop() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 21]
     ) {
@@ -8806,6 +6953,9 @@ function isWhiteBishop() {
     );
     if (
       findIndexThree != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
       cornerNumber[findIndexThree] <= selectChessItem.indexofChesscheck - 28 &&
       stopSuggetion == false &&
       chessBoard[selectChessItem.indexofChesscheck - 28] === null &&
@@ -8820,6 +6970,9 @@ function isWhiteBishop() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 28] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 28]
     ) {
@@ -8835,6 +6988,10 @@ function isWhiteBishop() {
     );
     if (
       findIndexFour != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 28] === null &&
       cornerNumber[findIndexFour] <= selectChessItem.indexofChesscheck - 35 &&
       stopSuggetion == false &&
       chessBoard[selectChessItem.indexofChesscheck - 35] === null &&
@@ -8849,6 +7006,10 @@ function isWhiteBishop() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 28] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 35] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 35]
     ) {
@@ -8857,6 +7018,88 @@ function isWhiteBishop() {
         "makeMove(-35)"
       );
       emptyBox[selectChessItem.indexofChesscheck - 35].style.background =
+        "#27AE60";
+    }
+
+    let findIndexSix = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck - 42
+    );
+    if (
+      findIndexSix != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 28] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 35] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 42] === null &&
+      cornerNumber[findIndexSix] <= selectChessItem.indexofChesscheck - 42 &&
+      stopSuggetion == false &&
+      emptyBox[selectChessItem.indexofChesscheck - 42]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 42].setAttribute(
+        "onClick",
+        "makeMove(-42)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 42].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 28] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 35] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 42] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 42]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck - 42].setAttribute(
+        "onClick",
+        "makeMove(-42)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 42].style.background =
+        "#27AE60";
+    }
+
+    let findIndexSeven = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck - 49
+    );
+    if (
+      findIndexSeven != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 28] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 35] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 42] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 49] === null &&
+      cornerNumber[findIndexSeven] <= selectChessItem.indexofChesscheck - 49 &&
+      stopSuggetion == false &&
+      emptyBox[selectChessItem.indexofChesscheck - 49]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 49].setAttribute(
+        "onClick",
+        "makeMove(-49)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 49].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 28] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 35] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 42] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 49] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 49]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck - 49].setAttribute(
+        "onClick",
+        "makeMove(-49)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 49].style.background =
         "#27AE60";
     }
   }
@@ -8896,6 +7139,7 @@ function isWhiteBishop() {
       stopSuggetion == false &&
       findIndexTwo != -1 &&
       cornerNumber[findIndexTwo] <= selectChessItem.indexofChesscheck - 18 &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 18]
     ) {
@@ -8908,6 +7152,7 @@ function isWhiteBishop() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 18]
     ) {
@@ -8923,9 +7168,11 @@ function isWhiteBishop() {
     );
     if (
       findIndexThree != -1 &&
-      cornerNumber[findIndexThree] <= selectChessItem.indexofChesscheck - 27 &&
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
+      cornerNumber[findIndexThree] <= selectChessItem.indexofChesscheck - 27 &&
       emptyBox[selectChessItem.indexofChesscheck - 27]
     ) {
       stopSuggetion = true;
@@ -8937,6 +7184,8 @@ function isWhiteBishop() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 27]
     ) {
@@ -8952,9 +7201,12 @@ function isWhiteBishop() {
     );
     if (
       findIndexFour != -1 &&
-      cornerNumber[findIndexFour] <= selectChessItem.indexofChesscheck - 36 &&
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
+      cornerNumber[findIndexFour] <= selectChessItem.indexofChesscheck - 36 &&
       emptyBox[selectChessItem.indexofChesscheck - 36]
     ) {
       stopSuggetion = true;
@@ -8966,6 +7218,9 @@ function isWhiteBishop() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 36]
     ) {
@@ -8981,7 +7236,28 @@ function isWhiteBishop() {
     );
     if (
       findIndexFive != -1 &&
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
       cornerNumber[findIndexFive] <= selectChessItem.indexofChesscheck - 45 &&
+      chessBoard[selectChessItem.indexofChesscheck - 45] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 45]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 45].setAttribute(
+        "onClick",
+        "makeMove(-45)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 45].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 45] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 45]
     ) {
@@ -8992,21 +7268,302 @@ function isWhiteBishop() {
       emptyBox[selectChessItem.indexofChesscheck - 45].style.background =
         "#27AE60";
     }
+
+    let findIndexSix = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck - 54
+    );
+    if (
+      findIndexSix != -1 &&
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 45] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 54] === null &&
+      cornerNumber[findIndexSix] <= selectChessItem.indexofChesscheck - 54 &&
+      emptyBox[selectChessItem.indexofChesscheck - 54]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 54].setAttribute(
+        "onClick",
+        "makeMove(-54)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 54].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 45] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 54] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 54]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck - 54].setAttribute(
+        "onClick",
+        "makeMove(-54)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 54].style.background =
+        "#27AE60";
+    }
+
+    let findIndexSeven = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck - 63
+    );
+    if (
+      findIndexSeven != -1 &&
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 45] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 54] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 63] === null &&
+      cornerNumber[findIndexSeven] <= selectChessItem.indexofChesscheck - 63 &&
+      emptyBox[selectChessItem.indexofChesscheck - 63]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 63].setAttribute(
+        "onClick",
+        "makeMove(-54)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 63].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 45] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 54] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 63] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 63]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck - 63].setAttribute(
+        "onClick",
+        "makeMove(-63)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 63].style.background =
+        "#27AE60";
+    }
   }
-  let classOne =
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 7)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 7)
-      .getElementsByTagName("img")
-      .item(0).className;
+
+  // FOR KILL -7 BLACK PIECES
   if (
-    classOne === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 7 < currentLineBetween[0] &&
+    selectChessItem.indexofChesscheck - 7 >= 0 &&
+    chessBoard[selectChessItem.indexofChesscheck - 7] == null &&
+    !currentSide.includes(selectChessItem.indexofChesscheck - 7)
+  ) {
+    if (
+      selectChessItem.indexofChesscheck - 14 >= 0 &&
+      chessBoard[selectChessItem.indexofChesscheck - 14] == null &&
+      !currentSide.includes(selectChessItem.indexofChesscheck - 14)
+    ) {
+      if (
+        selectChessItem.indexofChesscheck - 21 >= 0 &&
+        chessBoard[selectChessItem.indexofChesscheck - 21] == null &&
+        !currentSide.includes(selectChessItem.indexofChesscheck - 21)
+      ) {
+        if (
+          selectChessItem.indexofChesscheck - 28 >= 0 &&
+          chessBoard[selectChessItem.indexofChesscheck - 28] == null &&
+          !currentSide.includes(selectChessItem.indexofChesscheck - 28)
+        ) {
+          if (
+            selectChessItem.indexofChesscheck - 35 >= 0 &&
+            chessBoard[selectChessItem.indexofChesscheck - 35] == null &&
+            !currentSide.includes(selectChessItem.indexofChesscheck - 35)
+          ) {
+            if (
+              selectChessItem.indexofChesscheck - 42 >= 0 &&
+              chessBoard[selectChessItem.indexofChesscheck - 42] == null &&
+              !currentSide.includes(selectChessItem.indexofChesscheck - 42)
+            ) {
+              if (
+                selectChessItem.indexofChesscheck - 49 >= 0 &&
+                chessBoard[selectChessItem.indexofChesscheck - 49]
+              ) {
+                let classFNine =
+                  document.getElementById(
+                    selectChessItem.indexofChesscheck - 49
+                  ) &&
+                  document
+                    .getElementById(selectChessItem.indexofChesscheck - 49)
+                    .getElementsByTagName("img")
+                    .item(0) &&
+                  document
+                    .getElementById(selectChessItem.indexofChesscheck - 49)
+                    .getElementsByTagName("img")
+                    .item(0).className;
+                if (
+                  classFNine === "BLACK_PIECE" &&
+                  chessBoard[selectChessItem.indexofChesscheck - 7] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 14] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 21] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 28] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 35] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 42] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 49] &&
+                  emptyBox[selectChessItem.indexofChesscheck - 49]
+                ) {
+                  emptyBox[selectChessItem.indexofChesscheck - 49].setAttribute(
+                    "onClick",
+                    "makeMove(-49)"
+                  );
+                  emptyBox[
+                    selectChessItem.indexofChesscheck - 49
+                  ].style.background = "#CA2F1F";
+                }
+              }
+            } else {
+              let classFTwo =
+                document.getElementById(
+                  selectChessItem.indexofChesscheck - 42
+                ) &&
+                document
+                  .getElementById(selectChessItem.indexofChesscheck - 42)
+                  .getElementsByTagName("img")
+                  .item(0) &&
+                document
+                  .getElementById(selectChessItem.indexofChesscheck - 42)
+                  .getElementsByTagName("img")
+                  .item(0).className;
+              if (
+                classFTwo === "BLACK_PIECE" &&
+                chessBoard[selectChessItem.indexofChesscheck - 7] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 14] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 21] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 28] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 35] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 42] &&
+                emptyBox[selectChessItem.indexofChesscheck - 42]
+              ) {
+                emptyBox[selectChessItem.indexofChesscheck - 42].setAttribute(
+                  "onClick",
+                  "makeMove(-42)"
+                );
+                emptyBox[
+                  selectChessItem.indexofChesscheck - 42
+                ].style.background = "#CA2F1F";
+              }
+            }
+          } else {
+            let classFive =
+              document.getElementById(selectChessItem.indexofChesscheck - 35) &&
+              document
+                .getElementById(selectChessItem.indexofChesscheck - 35)
+                .getElementsByTagName("img")
+                .item(0) &&
+              document
+                .getElementById(selectChessItem.indexofChesscheck - 35)
+                .getElementsByTagName("img")
+                .item(0).className;
+            if (
+              classFive === "BLACK_PIECE" &&
+              chessBoard[selectChessItem.indexofChesscheck - 7] == null &&
+              chessBoard[selectChessItem.indexofChesscheck - 14] == null &&
+              chessBoard[selectChessItem.indexofChesscheck - 21] == null &&
+              chessBoard[selectChessItem.indexofChesscheck - 28] == null &&
+              chessBoard[selectChessItem.indexofChesscheck - 35] &&
+              emptyBox[selectChessItem.indexofChesscheck - 35]
+            ) {
+              emptyBox[selectChessItem.indexofChesscheck - 35].setAttribute(
+                "onClick",
+                "makeMove(-35)"
+              );
+              emptyBox[
+                selectChessItem.indexofChesscheck - 35
+              ].style.background = "#CA2F1F";
+            }
+          }
+        } else {
+          let classFour =
+            document.getElementById(selectChessItem.indexofChesscheck - 28) &&
+            document
+              .getElementById(selectChessItem.indexofChesscheck - 28)
+              .getElementsByTagName("img")
+              .item(0) &&
+            document
+              .getElementById(selectChessItem.indexofChesscheck - 28)
+              .getElementsByTagName("img")
+              .item(0).className;
+          if (
+            classFour === "BLACK_PIECE" &&
+            chessBoard[selectChessItem.indexofChesscheck - 7] == null &&
+            chessBoard[selectChessItem.indexofChesscheck - 14] == null &&
+            chessBoard[selectChessItem.indexofChesscheck - 21] == null &&
+            chessBoard[selectChessItem.indexofChesscheck - 28] &&
+            emptyBox[selectChessItem.indexofChesscheck - 28]
+          ) {
+            emptyBox[selectChessItem.indexofChesscheck - 28].setAttribute(
+              "onClick",
+              "makeMove(-28)"
+            );
+            emptyBox[selectChessItem.indexofChesscheck - 28].style.background =
+              "#CA2F1F";
+          }
+        }
+      } else {
+        let classThree =
+          document.getElementById(selectChessItem.indexofChesscheck - 21) &&
+          document
+            .getElementById(selectChessItem.indexofChesscheck - 21)
+            .getElementsByTagName("img")
+            .item(0) &&
+          document
+            .getElementById(selectChessItem.indexofChesscheck - 21)
+            .getElementsByTagName("img")
+            .item(0).className;
+        if (
+          classThree === "BLACK_PIECE" &&
+          chessBoard[selectChessItem.indexofChesscheck - 7] == null &&
+          chessBoard[selectChessItem.indexofChesscheck - 14] == null &&
+          chessBoard[selectChessItem.indexofChesscheck - 21] &&
+          emptyBox[selectChessItem.indexofChesscheck - 21]
+        ) {
+          emptyBox[selectChessItem.indexofChesscheck - 21].setAttribute(
+            "onClick",
+            "makeMove(-21)"
+          );
+          emptyBox[selectChessItem.indexofChesscheck - 21].style.background =
+            "#CA2F1F";
+        }
+      }
+    } else {
+      let classTwo =
+        document.getElementById(selectChessItem.indexofChesscheck - 14) &&
+        document
+          .getElementById(selectChessItem.indexofChesscheck - 14)
+          .getElementsByTagName("img")
+          .item(0) &&
+        document
+          .getElementById(selectChessItem.indexofChesscheck - 14)
+          .getElementsByTagName("img")
+          .item(0).className;
+      if (
+        classTwo === "BLACK_PIECE" &&
+        chessBoard[selectChessItem.indexofChesscheck - 14] &&
+        emptyBox[selectChessItem.indexofChesscheck - 14]
+      ) {
+        emptyBox[selectChessItem.indexofChesscheck - 14].setAttribute(
+          "onClick",
+          "makeMove(-14)"
+        );
+        emptyBox[selectChessItem.indexofChesscheck - 14].style.background =
+          "#CA2F1F";
+      }
+    }
+  } else if (
+    selectChessItem.indexofChesscheck - 7 < currentLineBetween[0] &&
     chessBoard[selectChessItem.indexofChesscheck - 7]
   ) {
     let classOne =
+      document.getElementById(selectChessItem.indexofChesscheck - 7) &&
       document
         .getElementById(selectChessItem.indexofChesscheck - 7)
         .getElementsByTagName("img")
@@ -9027,178 +7584,720 @@ function isWhiteBishop() {
       emptyBox[selectChessItem.indexofChesscheck - 7].style.background =
         "#CA2F1F";
     }
-    let classTwo =
+  }
+
+  // FOR KILL -9 BLACK PIECES
+  if (
+    selectChessItem.indexofChesscheck - 9 >= currentLineBetween[0] - 8 &&
+    selectChessItem.indexofChesscheck - 9 >= 0 &&
+    chessBoard[selectChessItem.indexofChesscheck - 9] == null &&
+    !currentSide.includes(selectChessItem.indexofChesscheck - 9)
+  ) {
+    if (
+      selectChessItem.indexofChesscheck - 18 >= 0 &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] == null &&
+      !currentSide.includes(selectChessItem.indexofChesscheck - 18)
+    ) {
+      if (
+        selectChessItem.indexofChesscheck - 27 >= 0 &&
+        chessBoard[selectChessItem.indexofChesscheck - 27] == null &&
+        !currentSide.includes(selectChessItem.indexofChesscheck - 27)
+      ) {
+        if (
+          selectChessItem.indexofChesscheck - 36 >= 0 &&
+          chessBoard[selectChessItem.indexofChesscheck - 36] == null &&
+          !currentSide.includes(selectChessItem.indexofChesscheck - 36)
+        ) {
+          if (
+            selectChessItem.indexofChesscheck - 45 >= 0 &&
+            chessBoard[selectChessItem.indexofChesscheck - 45] == null &&
+            !currentSide.includes(selectChessItem.indexofChesscheck - 45)
+          ) {
+            if (
+              selectChessItem.indexofChesscheck - 54 >= 0 &&
+              chessBoard[selectChessItem.indexofChesscheck - 54] == null &&
+              !currentSide.includes(selectChessItem.indexofChesscheck - 54)
+            ) {
+              if (
+                selectChessItem.indexofChesscheck - 63 >= 0 &&
+                chessBoard[selectChessItem.indexofChesscheck - 63]
+              ) {
+                let classSThree =
+                  document.getElementById(
+                    selectChessItem.indexofChesscheck - 63
+                  ) &&
+                  document
+                    .getElementById(selectChessItem.indexofChesscheck - 63)
+                    .getElementsByTagName("img")
+                    .item(0) &&
+                  document
+                    .getElementById(selectChessItem.indexofChesscheck - 63)
+                    .getElementsByTagName("img")
+                    .item(0).className;
+                if (
+                  classSThree === "BLACK_PIECE" &&
+                  chessBoard[selectChessItem.indexofChesscheck - 9] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 18] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 27] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 36] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 45] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 54] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 63] &&
+                  emptyBox[selectChessItem.indexofChesscheck - 63]
+                ) {
+                  emptyBox[selectChessItem.indexofChesscheck - 63].setAttribute(
+                    "onClick",
+                    "makeMove(-63)"
+                  );
+                  emptyBox[
+                    selectChessItem.indexofChesscheck - 63
+                  ].style.background = "#CA2F1F";
+                }
+              }
+            } else {
+              let classFFour =
+                document.getElementById(
+                  selectChessItem.indexofChesscheck - 54
+                ) &&
+                document
+                  .getElementById(selectChessItem.indexofChesscheck - 54)
+                  .getElementsByTagName("img")
+                  .item(0) &&
+                document
+                  .getElementById(selectChessItem.indexofChesscheck - 54)
+                  .getElementsByTagName("img")
+                  .item(0).className;
+              if (
+                classFFour === "BLACK_PIECE" &&
+                chessBoard[selectChessItem.indexofChesscheck - 9] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 18] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 27] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 36] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 45] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 54] &&
+                emptyBox[selectChessItem.indexofChesscheck - 54]
+              ) {
+                emptyBox[selectChessItem.indexofChesscheck - 54].setAttribute(
+                  "onClick",
+                  "makeMove(-54)"
+                );
+                emptyBox[
+                  selectChessItem.indexofChesscheck - 54
+                ].style.background = "#CA2F1F";
+              }
+            }
+          } else {
+            let classFFive =
+              document.getElementById(selectChessItem.indexofChesscheck - 45) &&
+              document
+                .getElementById(selectChessItem.indexofChesscheck - 45)
+                .getElementsByTagName("img")
+                .item(0) &&
+              document
+                .getElementById(selectChessItem.indexofChesscheck - 45)
+                .getElementsByTagName("img")
+                .item(0).className;
+            if (
+              classFFive === "BLACK_PIECE" &&
+              chessBoard[selectChessItem.indexofChesscheck - 9] == null &&
+              chessBoard[selectChessItem.indexofChesscheck - 18] == null &&
+              chessBoard[selectChessItem.indexofChesscheck - 27] == null &&
+              chessBoard[selectChessItem.indexofChesscheck - 36] == null &&
+              chessBoard[selectChessItem.indexofChesscheck - 45] &&
+              emptyBox[selectChessItem.indexofChesscheck - 45]
+            ) {
+              emptyBox[selectChessItem.indexofChesscheck - 45].setAttribute(
+                "onClick",
+                "makeMove(-45)"
+              );
+              emptyBox[
+                selectChessItem.indexofChesscheck - 45
+              ].style.background = "#CA2F1F";
+            }
+          }
+        } else {
+          let classNine =
+            document.getElementById(selectChessItem.indexofChesscheck - 36) &&
+            document
+              .getElementById(selectChessItem.indexofChesscheck - 36)
+              .getElementsByTagName("img")
+              .item(0) &&
+            document
+              .getElementById(selectChessItem.indexofChesscheck - 36)
+              .getElementsByTagName("img")
+              .item(0).className;
+          if (
+            classNine === "BLACK_PIECE" &&
+            chessBoard[selectChessItem.indexofChesscheck - 9] == null &&
+            chessBoard[selectChessItem.indexofChesscheck - 18] == null &&
+            chessBoard[selectChessItem.indexofChesscheck - 27] == null &&
+            chessBoard[selectChessItem.indexofChesscheck - 36] &&
+            emptyBox[selectChessItem.indexofChesscheck - 36]
+          ) {
+            emptyBox[selectChessItem.indexofChesscheck - 36].setAttribute(
+              "onClick",
+              "makeMove(-36)"
+            );
+            emptyBox[selectChessItem.indexofChesscheck - 36].style.background =
+              "#CA2F1F";
+          }
+        }
+      } else {
+        let classEight =
+          document.getElementById(selectChessItem.indexofChesscheck - 27) &&
+          document
+            .getElementById(selectChessItem.indexofChesscheck - 27)
+            .getElementsByTagName("img")
+            .item(0) &&
+          document
+            .getElementById(selectChessItem.indexofChesscheck - 27)
+            .getElementsByTagName("img")
+            .item(0).className;
+        if (
+          classEight === "BLACK_PIECE" &&
+          chessBoard[selectChessItem.indexofChesscheck - 9] == null &&
+          chessBoard[selectChessItem.indexofChesscheck - 18] == null &&
+          chessBoard[selectChessItem.indexofChesscheck - 27] &&
+          emptyBox[selectChessItem.indexofChesscheck - 27]
+        ) {
+          emptyBox[selectChessItem.indexofChesscheck - 27].setAttribute(
+            "onClick",
+            "makeMove(-27)"
+          );
+          emptyBox[selectChessItem.indexofChesscheck - 27].style.background =
+            "#CA2F1F";
+        }
+      }
+    } else {
+      let classSeven =
+        document.getElementById(selectChessItem.indexofChesscheck - 18) &&
+        document
+          .getElementById(selectChessItem.indexofChesscheck - 18)
+          .getElementsByTagName("img")
+          .item(0) &&
+        document
+          .getElementById(selectChessItem.indexofChesscheck - 18)
+          .getElementsByTagName("img")
+          .item(0).className;
+      if (
+        classSeven === "BLACK_PIECE" &&
+        chessBoard[selectChessItem.indexofChesscheck - 9] == null &&
+        chessBoard[selectChessItem.indexofChesscheck - 18] &&
+        emptyBox[selectChessItem.indexofChesscheck - 18]
+      ) {
+        emptyBox[selectChessItem.indexofChesscheck - 18].setAttribute(
+          "onClick",
+          "makeMove(-18)"
+        );
+        emptyBox[selectChessItem.indexofChesscheck - 18].style.background =
+          "#CA2F1F";
+      }
+    }
+  } else if (
+    selectChessItem.indexofChesscheck - 9 >= currentLineBetween[0] - 8 &&
+    chessBoard[selectChessItem.indexofChesscheck - 9]
+  ) {
+    let classSix =
+      document.getElementById(selectChessItem.indexofChesscheck - 9) &&
       document
-        .getElementById(selectChessItem.indexofChesscheck - 14)
+        .getElementById(selectChessItem.indexofChesscheck - 9)
         .getElementsByTagName("img")
         .item(0) &&
       document
-        .getElementById(selectChessItem.indexofChesscheck - 14)
+        .getElementById(selectChessItem.indexofChesscheck - 9)
         .getElementsByTagName("img")
         .item(0).className;
     if (
-      classTwo === "BLACK_PIECE" &&
-      chessBoard[selectChessItem.indexofChesscheck - 14] &&
-      emptyBox[selectChessItem.indexofChesscheck - 14]
+      classSix === "BLACK_PIECE" &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] &&
+      emptyBox[selectChessItem.indexofChesscheck - 9]
     ) {
-      emptyBox[selectChessItem.indexofChesscheck - 14].setAttribute(
+      emptyBox[selectChessItem.indexofChesscheck - 9].setAttribute(
         "onClick",
-        "makeMove(-14)"
+        "makeMove(-9)"
       );
-      emptyBox[selectChessItem.indexofChesscheck - 14].style.background =
+      emptyBox[selectChessItem.indexofChesscheck - 9].style.background =
         "#CA2F1F";
     }
-    let classThree =
+  }
+
+  // FOR KILL 7 BLACK PIECES
+  if (
+    selectChessItem.indexofChesscheck + 7 > currentLineBetween[1] &&
+    selectChessItem.indexofChesscheck + 7 <= 63 &&
+    chessBoard[selectChessItem.indexofChesscheck + 7] == null &&
+    !currentSide.includes(selectChessItem.indexofChesscheck + 7)
+  ) {
+    if (
+      selectChessItem.indexofChesscheck + 14 <= 63 &&
+      chessBoard[selectChessItem.indexofChesscheck + 14] == null &&
+      !currentSide.includes(selectChessItem.indexofChesscheck + 14)
+    ) {
+      if (
+        selectChessItem.indexofChesscheck + 21 <= 63 &&
+        chessBoard[selectChessItem.indexofChesscheck + 21] == null &&
+        !currentSide.includes(selectChessItem.indexofChesscheck + 21)
+      ) {
+        if (
+          selectChessItem.indexofChesscheck + 28 <= 63 &&
+          chessBoard[selectChessItem.indexofChesscheck + 28] == null &&
+          !currentSide.includes(selectChessItem.indexofChesscheck + 28)
+        ) {
+          if (
+            selectChessItem.indexofChesscheck + 35 <= 63 &&
+            chessBoard[selectChessItem.indexofChesscheck + 35] == null &&
+            !currentSide.includes(selectChessItem.indexofChesscheck + 35)
+          ) {
+            if (
+              selectChessItem.indexofChesscheck + 42 <= 63 &&
+              chessBoard[selectChessItem.indexofChesscheck + 42] == null &&
+              !currentSide.includes(selectChessItem.indexofChesscheck + 42)
+            ) {
+              if (
+                selectChessItem.indexofChesscheck + 49 <= 63 &&
+                chessBoard[selectChessItem.indexofChesscheck + 49]
+              ) {
+                let classFNine =
+                  document.getElementById(
+                    selectChessItem.indexofChesscheck + 49
+                  ) &&
+                  document
+                    .getElementById(selectChessItem.indexofChesscheck + 49)
+                    .getElementsByTagName("img")
+                    .item(0) &&
+                  document
+                    .getElementById(selectChessItem.indexofChesscheck + 49)
+                    .getElementsByTagName("img")
+                    .item(0).className;
+                if (
+                  classFNine === "BLACK_PIECE" &&
+                  chessBoard[selectChessItem.indexofChesscheck + 7] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 14] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 21] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 28] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 35] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 42] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 49] &&
+                  emptyBox[selectChessItem.indexofChesscheck + 49]
+                ) {
+                  emptyBox[selectChessItem.indexofChesscheck + 49].setAttribute(
+                    "onClick",
+                    "makeMove(49)"
+                  );
+                  emptyBox[
+                    selectChessItem.indexofChesscheck + 49
+                  ].style.background = "#CA2F1F";
+                }
+              }
+            } else {
+              let classFTwo =
+                document.getElementById(
+                  selectChessItem.indexofChesscheck + 42
+                ) &&
+                document
+                  .getElementById(selectChessItem.indexofChesscheck + 42)
+                  .getElementsByTagName("img")
+                  .item(0) &&
+                document
+                  .getElementById(selectChessItem.indexofChesscheck + 42)
+                  .getElementsByTagName("img")
+                  .item(0).className;
+              if (
+                classFTwo === "BLACK_PIECE" &&
+                chessBoard[selectChessItem.indexofChesscheck + 7] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 14] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 21] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 28] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 35] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 42] &&
+                emptyBox[selectChessItem.indexofChesscheck + 42]
+              ) {
+                emptyBox[selectChessItem.indexofChesscheck + 42].setAttribute(
+                  "onClick",
+                  "makeMove(42)"
+                );
+                emptyBox[
+                  selectChessItem.indexofChesscheck + 42
+                ].style.background = "#CA2F1F";
+              }
+            }
+          } else {
+            let classFive =
+              document.getElementById(selectChessItem.indexofChesscheck + 35) &&
+              document
+                .getElementById(selectChessItem.indexofChesscheck + 35)
+                .getElementsByTagName("img")
+                .item(0) &&
+              document
+                .getElementById(selectChessItem.indexofChesscheck + 35)
+                .getElementsByTagName("img")
+                .item(0).className;
+            if (
+              classFive === "BLACK_PIECE" &&
+              chessBoard[selectChessItem.indexofChesscheck + 7] == null &&
+              chessBoard[selectChessItem.indexofChesscheck + 14] == null &&
+              chessBoard[selectChessItem.indexofChesscheck + 21] == null &&
+              chessBoard[selectChessItem.indexofChesscheck + 28] == null &&
+              chessBoard[selectChessItem.indexofChesscheck + 35] &&
+              emptyBox[selectChessItem.indexofChesscheck + 35]
+            ) {
+              emptyBox[selectChessItem.indexofChesscheck + 35].setAttribute(
+                "onClick",
+                "makeMove(35)"
+              );
+              emptyBox[
+                selectChessItem.indexofChesscheck + 35
+              ].style.background = "#CA2F1F";
+            }
+          }
+        } else {
+          let classFour =
+            document.getElementById(selectChessItem.indexofChesscheck + 28) &&
+            document
+              .getElementById(selectChessItem.indexofChesscheck + 28)
+              .getElementsByTagName("img")
+              .item(0) &&
+            document
+              .getElementById(selectChessItem.indexofChesscheck + 28)
+              .getElementsByTagName("img")
+              .item(0).className;
+          if (
+            classFour === "BLACK_PIECE" &&
+            chessBoard[selectChessItem.indexofChesscheck + 7] == null &&
+            chessBoard[selectChessItem.indexofChesscheck + 14] == null &&
+            chessBoard[selectChessItem.indexofChesscheck + 21] == null &&
+            chessBoard[selectChessItem.indexofChesscheck + 28] &&
+            emptyBox[selectChessItem.indexofChesscheck + 28]
+          ) {
+            emptyBox[selectChessItem.indexofChesscheck + 28].setAttribute(
+              "onClick",
+              "makeMove(28)"
+            );
+            emptyBox[selectChessItem.indexofChesscheck + 28].style.background =
+              "#CA2F1F";
+          }
+        }
+      } else {
+        let classThree =
+          document.getElementById(selectChessItem.indexofChesscheck + 21) &&
+          document
+            .getElementById(selectChessItem.indexofChesscheck + 21)
+            .getElementsByTagName("img")
+            .item(0) &&
+          document
+            .getElementById(selectChessItem.indexofChesscheck + 21)
+            .getElementsByTagName("img")
+            .item(0).className;
+        if (
+          classThree === "BLACK_PIECE" &&
+          chessBoard[selectChessItem.indexofChesscheck + 7] == null &&
+          chessBoard[selectChessItem.indexofChesscheck + 14] == null &&
+          chessBoard[selectChessItem.indexofChesscheck + 21] &&
+          emptyBox[selectChessItem.indexofChesscheck + 21]
+        ) {
+          emptyBox[selectChessItem.indexofChesscheck + 21].setAttribute(
+            "onClick",
+            "makeMove(21)"
+          );
+          emptyBox[selectChessItem.indexofChesscheck + 21].style.background =
+            "#CA2F1F";
+        }
+      }
+    } else {
+      let classTwo =
+        document.getElementById(selectChessItem.indexofChesscheck + 14) &&
+        document
+          .getElementById(selectChessItem.indexofChesscheck + 14)
+          .getElementsByTagName("img")
+          .item(0) &&
+        document
+          .getElementById(selectChessItem.indexofChesscheck + 14)
+          .getElementsByTagName("img")
+          .item(0).className;
+      if (
+        classTwo === "BLACK_PIECE" &&
+        chessBoard[selectChessItem.indexofChesscheck + 7] == null &&
+        chessBoard[selectChessItem.indexofChesscheck + 14] &&
+        emptyBox[selectChessItem.indexofChesscheck + 14]
+      ) {
+        emptyBox[selectChessItem.indexofChesscheck + 14].setAttribute(
+          "onClick",
+          "makeMove(14)"
+        );
+        emptyBox[selectChessItem.indexofChesscheck + 14].style.background =
+          "#CA2F1F";
+      }
+    }
+  } else if (
+    selectChessItem.indexofChesscheck + 7 > currentLineBetween[1] &&
+    chessBoard[selectChessItem.indexofChesscheck + 7]
+  ) {
+    let classOne =
+      document.getElementById(selectChessItem.indexofChesscheck + 7) &&
       document
-        .getElementById(selectChessItem.indexofChesscheck - 21)
+        .getElementById(selectChessItem.indexofChesscheck + 7)
         .getElementsByTagName("img")
         .item(0) &&
       document
-        .getElementById(selectChessItem.indexofChesscheck - 21)
+        .getElementById(selectChessItem.indexofChesscheck + 7)
         .getElementsByTagName("img")
         .item(0).className;
     if (
-      classThree === "BLACK_PIECE" &&
-      chessBoard[selectChessItem.indexofChesscheck - 21] &&
-      emptyBox[selectChessItem.indexofChesscheck - 21]
+      classOne === "BLACK_PIECE" &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] &&
+      emptyBox[selectChessItem.indexofChesscheck + 7]
     ) {
-      emptyBox[selectChessItem.indexofChesscheck - 21].setAttribute(
+      emptyBox[selectChessItem.indexofChesscheck + 7].setAttribute(
         "onClick",
-        "makeMove(-21)"
+        "makeMove(7)"
       );
-      emptyBox[selectChessItem.indexofChesscheck - 21].style.background =
+      emptyBox[selectChessItem.indexofChesscheck + 7].style.background =
         "#CA2F1F";
     }
-    let classFour =
+  }
+
+  // FOR KILL 9 BLACK PIECES
+  if (
+    selectChessItem.indexofChesscheck + 9 <= currentLineBetween[1] + 8 &&
+    selectChessItem.indexofChesscheck + 9 <= 63 &&
+    chessBoard[selectChessItem.indexofChesscheck + 9] == null &&
+    !currentSide.includes(selectChessItem.indexofChesscheck + 9)
+  ) {
+    if (
+      selectChessItem.indexofChesscheck + 18 <= 63 &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] == null &&
+      !currentSide.includes(selectChessItem.indexofChesscheck + 18)
+    ) {
+      if (
+        selectChessItem.indexofChesscheck + 27 <= 63 &&
+        chessBoard[selectChessItem.indexofChesscheck + 27] == null &&
+        !currentSide.includes(selectChessItem.indexofChesscheck + 27)
+      ) {
+        if (
+          selectChessItem.indexofChesscheck + 36 <= 63 &&
+          chessBoard[selectChessItem.indexofChesscheck + 36] == null &&
+          !currentSide.includes(selectChessItem.indexofChesscheck + 36)
+        ) {
+          if (
+            selectChessItem.indexofChesscheck + 45 <= 63 &&
+            chessBoard[selectChessItem.indexofChesscheck + 45] == null &&
+            !currentSide.includes(selectChessItem.indexofChesscheck + 45)
+          ) {
+            if (
+              selectChessItem.indexofChesscheck + 54 <= 63 &&
+              chessBoard[selectChessItem.indexofChesscheck + 54] == null &&
+              !currentSide.includes(selectChessItem.indexofChesscheck + 54)
+            ) {
+              if (
+                selectChessItem.indexofChesscheck + 63 <= 63 &&
+                chessBoard[selectChessItem.indexofChesscheck + 63]
+              ) {
+                let classPSThree =
+                  document.getElementById(
+                    selectChessItem.indexofChesscheck + 63
+                  ) &&
+                  document
+                    .getElementById(selectChessItem.indexofChesscheck + 63)
+                    .getElementsByTagName("img")
+                    .item(0) &&
+                  document
+                    .getElementById(selectChessItem.indexofChesscheck + 63)
+                    .getElementsByTagName("img")
+                    .item(0).className;
+                if (
+                  classPSThree === "BLACK_PIECE" &&
+                  chessBoard[selectChessItem.indexofChesscheck + 9] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 18] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 27] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 36] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 45] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 54] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 63] &&
+                  emptyBox[selectChessItem.indexofChesscheck + 63]
+                ) {
+                  emptyBox[selectChessItem.indexofChesscheck + 63].setAttribute(
+                    "onClick",
+                    "makeMove(63)"
+                  );
+                  emptyBox[
+                    selectChessItem.indexofChesscheck + 63
+                  ].style.background = "#CA2F1F";
+                }
+              }
+            } else {
+              let classPFFour =
+                document.getElementById(
+                  selectChessItem.indexofChesscheck + 54
+                ) &&
+                document
+                  .getElementById(selectChessItem.indexofChesscheck + 54)
+                  .getElementsByTagName("img")
+                  .item(0) &&
+                document
+                  .getElementById(selectChessItem.indexofChesscheck + 54)
+                  .getElementsByTagName("img")
+                  .item(0).className;
+              if (
+                classPFFour === "BLACK_PIECE" &&
+                chessBoard[selectChessItem.indexofChesscheck + 9] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 18] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 27] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 36] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 45] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 54] &&
+                emptyBox[selectChessItem.indexofChesscheck + 54]
+              ) {
+                emptyBox[selectChessItem.indexofChesscheck + 54].setAttribute(
+                  "onClick",
+                  "makeMove(54)"
+                );
+                emptyBox[
+                  selectChessItem.indexofChesscheck + 54
+                ].style.background = "#CA2F1F";
+              }
+            }
+          } else {
+            let classPFFive =
+              document.getElementById(selectChessItem.indexofChesscheck + 45) &&
+              document
+                .getElementById(selectChessItem.indexofChesscheck + 45)
+                .getElementsByTagName("img")
+                .item(0) &&
+              document
+                .getElementById(selectChessItem.indexofChesscheck + 45)
+                .getElementsByTagName("img")
+                .item(0).className;
+            if (
+              classPFFive === "BLACK_PIECE" &&
+              chessBoard[selectChessItem.indexofChesscheck + 9] == null &&
+              chessBoard[selectChessItem.indexofChesscheck + 18] == null &&
+              chessBoard[selectChessItem.indexofChesscheck + 27] == null &&
+              chessBoard[selectChessItem.indexofChesscheck + 36] == null &&
+              chessBoard[selectChessItem.indexofChesscheck + 45] &&
+              emptyBox[selectChessItem.indexofChesscheck + 45]
+            ) {
+              emptyBox[selectChessItem.indexofChesscheck + 45].setAttribute(
+                "onClick",
+                "makeMove(45)"
+              );
+              emptyBox[
+                selectChessItem.indexofChesscheck + 45
+              ].style.background = "#CA2F1F";
+            }
+          }
+        } else {
+          let classPTSix =
+            document.getElementById(selectChessItem.indexofChesscheck + 36) &&
+            document
+              .getElementById(selectChessItem.indexofChesscheck + 36)
+              .getElementsByTagName("img")
+              .item(0) &&
+            document
+              .getElementById(selectChessItem.indexofChesscheck + 36)
+              .getElementsByTagName("img")
+              .item(0).className;
+          if (
+            classPTSix === "BLACK_PIECE" &&
+            chessBoard[selectChessItem.indexofChesscheck + 9] == null &&
+            chessBoard[selectChessItem.indexofChesscheck + 18] == null &&
+            chessBoard[selectChessItem.indexofChesscheck + 27] == null &&
+            chessBoard[selectChessItem.indexofChesscheck + 36] &&
+            emptyBox[selectChessItem.indexofChesscheck + 36]
+          ) {
+            emptyBox[selectChessItem.indexofChesscheck + 36].setAttribute(
+              "onClick",
+              "makeMove(36)"
+            );
+            emptyBox[selectChessItem.indexofChesscheck + 36].style.background =
+              "#CA2F1F";
+          }
+        }
+      } else {
+        let classPTSeven =
+          document.getElementById(selectChessItem.indexofChesscheck + 27) &&
+          document
+            .getElementById(selectChessItem.indexofChesscheck + 27)
+            .getElementsByTagName("img")
+            .item(0) &&
+          document
+            .getElementById(selectChessItem.indexofChesscheck + 27)
+            .getElementsByTagName("img")
+            .item(0).className;
+        if (
+          classPTSeven === "BLACK_PIECE" &&
+          chessBoard[selectChessItem.indexofChesscheck + 9] == null &&
+          chessBoard[selectChessItem.indexofChesscheck + 18] == null &&
+          chessBoard[selectChessItem.indexofChesscheck + 27] &&
+          emptyBox[selectChessItem.indexofChesscheck + 27]
+        ) {
+          emptyBox[selectChessItem.indexofChesscheck + 27].setAttribute(
+            "onClick",
+            "makeMove(27)"
+          );
+          emptyBox[selectChessItem.indexofChesscheck + 27].style.background =
+            "#CA2F1F";
+        }
+      }
+    } else {
+      let classPEighty =
+        document.getElementById(selectChessItem.indexofChesscheck + 18) &&
+        document
+          .getElementById(selectChessItem.indexofChesscheck + 18)
+          .getElementsByTagName("img")
+          .item(0) &&
+        document
+          .getElementById(selectChessItem.indexofChesscheck + 18)
+          .getElementsByTagName("img")
+          .item(0).className;
+      if (
+        classPEighty === "BLACK_PIECE" &&
+        chessBoard[selectChessItem.indexofChesscheck + 9] == null &&
+        chessBoard[selectChessItem.indexofChesscheck + 18] &&
+        emptyBox[selectChessItem.indexofChesscheck + 18]
+      ) {
+        emptyBox[selectChessItem.indexofChesscheck + 18].setAttribute(
+          "onClick",
+          "makeMove(18)"
+        );
+        emptyBox[selectChessItem.indexofChesscheck + 18].style.background =
+          "#CA2F1F";
+      }
+    }
+  } else if (
+    selectChessItem.indexofChesscheck + 9 <= currentLineBetween[1] + 8 &&
+    chessBoard[selectChessItem.indexofChesscheck + 9]
+  ) {
+    let classPNine =
+      document.getElementById(selectChessItem.indexofChesscheck + 9) &&
       document
-        .getElementById(selectChessItem.indexofChesscheck - 28)
+        .getElementById(selectChessItem.indexofChesscheck + 9)
         .getElementsByTagName("img")
         .item(0) &&
       document
-        .getElementById(selectChessItem.indexofChesscheck - 28)
+        .getElementById(selectChessItem.indexofChesscheck + 9)
         .getElementsByTagName("img")
         .item(0).className;
     if (
-      classFour === "BLACK_PIECE" &&
-      chessBoard[selectChessItem.indexofChesscheck - 28] &&
-      emptyBox[selectChessItem.indexofChesscheck - 28]
+      classPNine === "BLACK_PIECE" &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] &&
+      emptyBox[selectChessItem.indexofChesscheck + 9]
     ) {
-      emptyBox[selectChessItem.indexofChesscheck - 28].setAttribute(
+      emptyBox[selectChessItem.indexofChesscheck + 9].setAttribute(
         "onClick",
-        "makeMove(-28)"
+        "makeMove(9)"
       );
-      emptyBox[selectChessItem.indexofChesscheck - 28].style.background =
+      emptyBox[selectChessItem.indexofChesscheck + 9].style.background =
         "#CA2F1F";
     }
-    let classFive =
-      document
-        .getElementById(selectChessItem.indexofChesscheck - 35)
-        .getElementsByTagName("img")
-        .item(0) &&
-      document
-        .getElementById(selectChessItem.indexofChesscheck - 35)
-        .getElementsByTagName("img")
-        .item(0).className;
-    if (
-      classFive === "BLACK_PIECE" &&
-      chessBoard[selectChessItem.indexofChesscheck - 35] &&
-      emptyBox[selectChessItem.indexofChesscheck - 35]
-    ) {
-      emptyBox[selectChessItem.indexofChesscheck - 35].setAttribute(
-        "onClick",
-        "makeMove(-35)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck - 35].style.background =
-        "#CA2F1F";
-    }
-  }
-  let classSix =
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 9)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 9)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    classSix === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 9] &&
-    emptyBox[selectChessItem.indexofChesscheck - 9]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 9].setAttribute(
-      "onClick",
-      "makeMove(-9)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 9].style.background =
-      "#CA2F1F";
-  }
-  let classSeven =
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 18)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 18)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    classSeven === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 18] &&
-    emptyBox[selectChessItem.indexofChesscheck - 18]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 18].setAttribute(
-      "onClick",
-      "makeMove(-18)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 18].style.background =
-      "#CA2F1F";
-  }
-  let classEight =
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 27)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 27)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    classEight === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 27] &&
-    emptyBox[selectChessItem.indexofChesscheck - 27]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 27].setAttribute(
-      "onClick",
-      "makeMove(-27)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 27].style.background =
-      "#CA2F1F";
-  }
-  let classNine =
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 36)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 36)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    classNine === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 36] &&
-    emptyBox[selectChessItem.indexofChesscheck - 36]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 36].setAttribute(
-      "onClick",
-      "makeMove(-36)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 36].style.background =
-      "#CA2F1F";
   }
 }
 
 function isWhiteRook() {
+  let currentLineBetween;
+  currentLineBetween = currentLine.find(
+    (arr) => selectChessItem.indexofChesscheck <= arr[1]
+  );
+
   document.getElementById(selectChessItem.indexofChesscheck).style.background =
     "#BBCB2B";
   if (pieceColor != "white") {
@@ -9251,7 +8350,7 @@ function isWhiteRook() {
     stopSuggetion = true;
   }
   if (
-    stopSuggetion == false &&
+    selectChessItem.indexofChesscheck - 8 >= 0 &&
     chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
     emptyBox[selectChessItem.indexofChesscheck - 16]
@@ -9541,13 +8640,17 @@ function isWhiteRook() {
     }
   }
 
-  if (chessBoard[selectChessItem.indexofChesscheck + 1] === null) {
+  if (
+    chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+    selectChessItem.indexofChesscheck + 1 <= currentLineBetween[1]
+  ) {
     let stopSuggetion = false;
     let rookIndexOne = cornerNumber.findIndex(
       (item) => item == selectChessItem.indexofChesscheck + 1
     );
     if (
       rookIndexOne != -1 &&
+      selectChessItem.indexofChesscheck + 1 <= currentLineBetween[1] &&
       cornerNumber[rookIndexOne] <= selectChessItem.indexofChesscheck + 1 &&
       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 1]
@@ -9560,6 +8663,7 @@ function isWhiteRook() {
       emptyBox[selectChessItem.indexofChesscheck + 1].style.background =
         "#27AE60";
     } else if (
+      selectChessItem.indexofChesscheck + 1 <= currentLineBetween[1] &&
       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 1]
     ) {
@@ -9576,6 +8680,7 @@ function isWhiteRook() {
     if (
       stopSuggetion == false &&
       rookIndexTwo != -1 &&
+      selectChessItem.indexofChesscheck + 2 <= currentLineBetween[1] &&
       cornerNumber[rookIndexTwo] <= selectChessItem.indexofChesscheck + 2 &&
       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
@@ -9590,6 +8695,7 @@ function isWhiteRook() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      selectChessItem.indexofChesscheck + 2 <= currentLineBetween[1] &&
       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 2]
@@ -9607,6 +8713,7 @@ function isWhiteRook() {
     if (
       stopSuggetion == false &&
       rookIndexThree != -1 &&
+      selectChessItem.indexofChesscheck + 3 <= currentLineBetween[1] &&
       cornerNumber[rookIndexThree] <= selectChessItem.indexofChesscheck + 3 &&
       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
@@ -9622,6 +8729,7 @@ function isWhiteRook() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      selectChessItem.indexofChesscheck + 3 <= currentLineBetween[1] &&
       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
@@ -9640,6 +8748,7 @@ function isWhiteRook() {
     if (
       stopSuggetion == false &&
       rookIndexFour != -1 &&
+      selectChessItem.indexofChesscheck + 4 <= currentLineBetween[1] &&
       cornerNumber[rookIndexFour] <= selectChessItem.indexofChesscheck + 4 &&
       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
@@ -9656,6 +8765,7 @@ function isWhiteRook() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      selectChessItem.indexofChesscheck + 4 <= currentLineBetween[1] &&
       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
@@ -9675,6 +8785,7 @@ function isWhiteRook() {
     if (
       stopSuggetion == false &&
       rookIndexFive != -1 &&
+      selectChessItem.indexofChesscheck + 5 <= currentLineBetween[1] &&
       cornerNumber[rookIndexFive] <= selectChessItem.indexofChesscheck + 5 &&
       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
@@ -9693,6 +8804,7 @@ function isWhiteRook() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      selectChessItem.indexofChesscheck + 5 <= currentLineBetween[1] &&
       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
@@ -9713,6 +8825,7 @@ function isWhiteRook() {
     if (
       stopSuggetion == false &&
       rookIndexFSix != -1 &&
+      selectChessItem.indexofChesscheck + 6 <= currentLineBetween[1] &&
       cornerNumber[rookIndexFSix] <= selectChessItem.indexofChesscheck + 6 &&
       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
@@ -9731,6 +8844,7 @@ function isWhiteRook() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      selectChessItem.indexofChesscheck + 6 <= currentLineBetween[1] &&
       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
@@ -9752,6 +8866,7 @@ function isWhiteRook() {
     if (
       stopSuggetion == false &&
       rookIndexFSeven != -1 &&
+      selectChessItem.indexofChesscheck + 7 <= currentLineBetween[1] &&
       cornerNumber[rookIndexFSeven] <= selectChessItem.indexofChesscheck + 7 &&
       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
@@ -9771,6 +8886,7 @@ function isWhiteRook() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      selectChessItem.indexofChesscheck + 7 <= currentLineBetween[1] &&
       chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
@@ -9789,13 +8905,17 @@ function isWhiteRook() {
     }
   }
 
-  if (chessBoard[selectChessItem.indexofChesscheck - 1] === null) {
+  if (
+    chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+    selectChessItem.indexofChesscheck - 1 >= currentLineBetween[0]
+  ) {
     let stopSuggetion = false;
     let rookIndexOne = cornerNumber.findIndex(
       (item) => item == selectChessItem.indexofChesscheck - 1
     );
     if (
       rookIndexOne != -1 &&
+      selectChessItem.indexofChesscheck - 1 >= currentLineBetween[0] &&
       cornerNumber[rookIndexOne] <= selectChessItem.indexofChesscheck - 1 &&
       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 1]
@@ -9808,6 +8928,7 @@ function isWhiteRook() {
       emptyBox[selectChessItem.indexofChesscheck - 1].style.background =
         "#27AE60";
     } else if (
+      selectChessItem.indexofChesscheck - 1 >= currentLineBetween[0] &&
       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 1]
     ) {
@@ -9824,6 +8945,7 @@ function isWhiteRook() {
     if (
       stopSuggetion == false &&
       rookIndexTwo != -1 &&
+      selectChessItem.indexofChesscheck - 2 >= currentLineBetween[0] &&
       cornerNumber[rookIndexTwo] <= selectChessItem.indexofChesscheck - 2 &&
       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
@@ -9838,6 +8960,7 @@ function isWhiteRook() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      selectChessItem.indexofChesscheck - 2 >= currentLineBetween[0] &&
       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 2]
@@ -9855,6 +8978,7 @@ function isWhiteRook() {
     if (
       stopSuggetion == false &&
       rookIndexThree != -1 &&
+      selectChessItem.indexofChesscheck - 3 >= currentLineBetween[0] &&
       cornerNumber[rookIndexThree] <= selectChessItem.indexofChesscheck - 3 &&
       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
@@ -9870,6 +8994,7 @@ function isWhiteRook() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      selectChessItem.indexofChesscheck - 3 >= currentLineBetween[0] &&
       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
@@ -9889,6 +9014,7 @@ function isWhiteRook() {
     if (
       stopSuggetion == false &&
       rookIndexFour != -1 &&
+      selectChessItem.indexofChesscheck - 4 >= currentLineBetween[0] &&
       cornerNumber[rookIndexFour] <= selectChessItem.indexofChesscheck - 4 &&
       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
@@ -9905,6 +9031,7 @@ function isWhiteRook() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      selectChessItem.indexofChesscheck - 4 >= currentLineBetween[0] &&
       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
@@ -9924,6 +9051,7 @@ function isWhiteRook() {
     if (
       stopSuggetion == false &&
       rookIndexFive != -1 &&
+      selectChessItem.indexofChesscheck - 5 >= currentLineBetween[0] &&
       cornerNumber[rookIndexFive] <= selectChessItem.indexofChesscheck - 5 &&
       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
@@ -9941,6 +9069,7 @@ function isWhiteRook() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      selectChessItem.indexofChesscheck - 5 >= currentLineBetween[0] &&
       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
@@ -9961,6 +9090,7 @@ function isWhiteRook() {
     if (
       stopSuggetion == false &&
       rookIndexFSix != -1 &&
+      selectChessItem.indexofChesscheck - 6 >= currentLineBetween[0] &&
       cornerNumber[rookIndexFSix] <= selectChessItem.indexofChesscheck - 6 &&
       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
@@ -9979,6 +9109,7 @@ function isWhiteRook() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      selectChessItem.indexofChesscheck - 6 >= currentLineBetween[0] &&
       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
@@ -10000,6 +9131,7 @@ function isWhiteRook() {
     if (
       stopSuggetion == false &&
       rookIndexFSeven != -1 &&
+      selectChessItem.indexofChesscheck - 7 >= currentLineBetween[0] &&
       cornerNumber[rookIndexFSeven] <= selectChessItem.indexofChesscheck - 7 &&
       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
@@ -10019,6 +9151,7 @@ function isWhiteRook() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      selectChessItem.indexofChesscheck - 7 >= currentLineBetween[0] &&
       chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
@@ -10047,6 +9180,7 @@ function isWhiteRook() {
       .getElementById(selectChessItem.indexofChesscheck + 8)
       .getElementsByTagName("img")
       .item(0).className;
+
   if (
     rookOne === "BLACK_PIECE" &&
     chessBoard[selectChessItem.indexofChesscheck + 8] &&
@@ -10209,6 +9343,196 @@ function isWhiteRook() {
     emptyBox[selectChessItem.indexofChesscheck + 56].style.background =
       "#CA2F1F";
   }
+
+  let rookMEight =
+    document.getElementById(selectChessItem.indexofChesscheck - 8) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 8)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 8)
+      .getElementsByTagName("img")
+      .item(0).className;
+
+  if (
+    rookMEight === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] &&
+    emptyBox[selectChessItem.indexofChesscheck - 8]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 8].setAttribute(
+      "onClick",
+      "makeMove(-8)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 8].style.background =
+      "#CA2F1F";
+  }
+
+  let rookMSixteen =
+    document.getElementById(selectChessItem.indexofChesscheck - 16) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 16)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 16)
+      .getElementsByTagName("img")
+      .item(0).className;
+
+  if (
+    rookMSixteen === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] &&
+    emptyBox[selectChessItem.indexofChesscheck - 16]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 16].setAttribute(
+      "onClick",
+      "makeMove(-16)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 16].style.background =
+      "#CA2F1F";
+  }
+
+  let rookMTFour =
+    document.getElementById(selectChessItem.indexofChesscheck - 24) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 24)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 24)
+      .getElementsByTagName("img")
+      .item(0).className;
+
+  if (
+    rookMTFour === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] &&
+    emptyBox[selectChessItem.indexofChesscheck - 24]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 24].setAttribute(
+      "onClick",
+      "makeMove(-24)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 24].style.background =
+      "#CA2F1F";
+  }
+
+  let rookMTTwo =
+    document.getElementById(selectChessItem.indexofChesscheck - 32) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 32)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 32)
+      .getElementsByTagName("img")
+      .item(0).className;
+
+  if (
+    rookMTTwo === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 32] &&
+    emptyBox[selectChessItem.indexofChesscheck - 32]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 32].setAttribute(
+      "onClick",
+      "makeMove(-32)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 32].style.background =
+      "#CA2F1F";
+  }
+
+  let rookMForty =
+    document.getElementById(selectChessItem.indexofChesscheck - 40) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 40)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 40)
+      .getElementsByTagName("img")
+      .item(0).className;
+
+  if (
+    rookMForty === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 40] &&
+    emptyBox[selectChessItem.indexofChesscheck - 40]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 40].setAttribute(
+      "onClick",
+      "makeMove(-40)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 40].style.background =
+      "#CA2F1F";
+  }
+
+  let rookMFEight =
+    document.getElementById(selectChessItem.indexofChesscheck - 48) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 48)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 48)
+      .getElementsByTagName("img")
+      .item(0).className;
+
+  if (
+    rookMFEight === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 40] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 48] &&
+    emptyBox[selectChessItem.indexofChesscheck - 48]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 48].setAttribute(
+      "onClick",
+      "makeMove(-48)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 48].style.background =
+      "#CA2F1F";
+  }
+
+  let rookMFSix =
+    document.getElementById(selectChessItem.indexofChesscheck - 56) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 56)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 56)
+      .getElementsByTagName("img")
+      .item(0).className;
+
+  if (
+    rookMFSix === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 40] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 48] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 56] &&
+    emptyBox[selectChessItem.indexofChesscheck - 56]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 56].setAttribute(
+      "onClick",
+      "makeMove(-56)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 56].style.background =
+      "#CA2F1F";
+  }
+
   let BROne =
     document.getElementById(selectChessItem.indexofChesscheck - 1) &&
     document
@@ -10221,6 +9545,7 @@ function isWhiteRook() {
       .item(0).className;
   if (
     BROne === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 1 >= currentLineBetween[0] &&
     chessBoard[selectChessItem.indexofChesscheck - 1] &&
     emptyBox[selectChessItem.indexofChesscheck - 1]
   ) {
@@ -10243,6 +9568,7 @@ function isWhiteRook() {
       .item(0).className;
   if (
     BRTwo === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 2 >= currentLineBetween[0] &&
     chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 2] &&
     emptyBox[selectChessItem.indexofChesscheck - 2]
@@ -10266,6 +9592,7 @@ function isWhiteRook() {
       .item(0).className;
   if (
     BRThree === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 3 >= currentLineBetween[0] &&
     chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 3] &&
@@ -10291,6 +9618,7 @@ function isWhiteRook() {
       .item(0).className;
   if (
     BRFour === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 4 >= currentLineBetween[0] &&
     chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
@@ -10316,6 +9644,7 @@ function isWhiteRook() {
       .item(0).className;
   if (
     BRFive === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 5 >= currentLineBetween[0] &&
     chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
@@ -10342,6 +9671,7 @@ function isWhiteRook() {
       .item(0).className;
   if (
     BRSix === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 6 >= currentLineBetween[0] &&
     chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
@@ -10369,6 +9699,7 @@ function isWhiteRook() {
       .item(0).className;
   if (
     BRSeven === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 7 >= currentLineBetween[0] &&
     chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
     chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
@@ -10385,6 +9716,7 @@ function isWhiteRook() {
     emptyBox[selectChessItem.indexofChesscheck - 7].style.background =
       "#CA2F1F";
   }
+
   let rookClassOne =
     document.getElementById(selectChessItem.indexofChesscheck + 1) &&
     document
@@ -10397,6 +9729,7 @@ function isWhiteRook() {
       .item(0).className;
   if (
     rookClassOne === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 1 <= currentLineBetween[1] &&
     chessBoard[selectChessItem.indexofChesscheck + 1] &&
     emptyBox[selectChessItem.indexofChesscheck + 1]
   ) {
@@ -10419,6 +9752,7 @@ function isWhiteRook() {
       .item(0).className;
   if (
     rookClassTwo === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 2 <= currentLineBetween[1] &&
     chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck + 2] &&
     emptyBox[selectChessItem.indexofChesscheck + 2]
@@ -10442,6 +9776,7 @@ function isWhiteRook() {
       .item(0).className;
   if (
     rookClassThree === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 3 <= currentLineBetween[1] &&
     chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
     chessBoard[selectChessItem.indexofChesscheck + 3] &&
@@ -10466,6 +9801,7 @@ function isWhiteRook() {
       .item(0).className;
   if (
     rookClassFour === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 4 <= currentLineBetween[1] &&
     chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
     chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
@@ -10491,6 +9827,7 @@ function isWhiteRook() {
       .item(0).className;
   if (
     rookClassFive === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 5 <= currentLineBetween[1] &&
     chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
     chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
@@ -10517,6 +9854,7 @@ function isWhiteRook() {
       .item(0).className;
   if (
     rookClassSix === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 6 <= currentLineBetween[1] &&
     chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
     chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
@@ -10544,6 +9882,7 @@ function isWhiteRook() {
       .item(0).className;
   if (
     rookClassSeven === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 7 <= currentLineBetween[1] &&
     chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
     chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
     chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
@@ -10658,6 +9997,7 @@ function isWhiteKing() {
       "#27AE60";
   }
   let wKingOne =
+    document.getElementById(selectChessItem.indexofChesscheck - 1) &&
     document
       .getElementById(selectChessItem.indexofChesscheck - 1)
       .getElementsByTagName("img")
@@ -10679,6 +10019,7 @@ function isWhiteKing() {
       "#CA2F1F";
   }
   let wKingTwo =
+    document.getElementById(selectChessItem.indexofChesscheck - 7) &&
     document
       .getElementById(selectChessItem.indexofChesscheck - 7)
       .getElementsByTagName("img")
@@ -10700,6 +10041,7 @@ function isWhiteKing() {
       "#CA2F1F";
   }
   let wKingThree =
+    document.getElementById(selectChessItem.indexofChesscheck - 8) &&
     document
       .getElementById(selectChessItem.indexofChesscheck - 8)
       .getElementsByTagName("img")
@@ -10721,6 +10063,7 @@ function isWhiteKing() {
       "#CA2F1F";
   }
   let wKingFour =
+    document.getElementById(selectChessItem.indexofChesscheck - 9) &&
     document
       .getElementById(selectChessItem.indexofChesscheck - 9)
       .getElementsByTagName("img")
@@ -10742,6 +10085,7 @@ function isWhiteKing() {
       "#CA2F1F";
   }
   let wKingFive =
+    document.getElementById(selectChessItem.indexofChesscheck + 1) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 1)
       .getElementsByTagName("img")
@@ -10763,6 +10107,7 @@ function isWhiteKing() {
       "#CA2F1F";
   }
   let wKingSix =
+    document.getElementById(selectChessItem.indexofChesscheck + 7) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 7)
       .getElementsByTagName("img")
@@ -10784,6 +10129,7 @@ function isWhiteKing() {
       "#CA2F1F";
   }
   let wKingSeven =
+    document.getElementById(selectChessItem.indexofChesscheck + 8) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 8)
       .getElementsByTagName("img")
@@ -10807,19 +10153,573 @@ function isWhiteKing() {
 }
 
 function isWhiteQueen() {
+  let currentLineBetween;
+  currentLineBetween = currentLine.find(
+    (arr) => selectChessItem.indexofChesscheck <= arr[1]
+  );
   document.getElementById(selectChessItem.indexofChesscheck).style.background =
     "#BBCB2B";
   if (pieceColor != "white") {
     return;
   }
-  if (chessBoard[selectChessItem.indexofChesscheck + 7] === null) {
+
+  let whiteMRookone =
+    document.getElementById(selectChessItem.indexofChesscheck - 8) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 8)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 8)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    whiteMRookone === "WHITE_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8]
+  ) {
+    stopSuggetion = true;
+  }
+  if (
+    stopSuggetion == false &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    emptyBox[selectChessItem.indexofChesscheck - 8]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 8].setAttribute(
+      "onClick",
+      "makeMove(-8)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 8].style.background =
+      "#27AE60";
+  }
+  let whiteMRookTwo =
+    document.getElementById(selectChessItem.indexofChesscheck - 16) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 16)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 16)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    whiteMRookTwo === "WHITE_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16]
+  ) {
+    stopSuggetion = true;
+  }
+  if (
+    selectChessItem.indexofChesscheck - 8 >= 0 &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    emptyBox[selectChessItem.indexofChesscheck - 16]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 16].setAttribute(
+      "onClick",
+      "makeMove(-16)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 16].style.background =
+      "#27AE60";
+  }
+  let whiteMRookThree =
+    document.getElementById(selectChessItem.indexofChesscheck - 24) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 24)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 24)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    whiteMRookThree === "WHITE_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24]
+  ) {
+    stopSuggetion = true;
+  }
+  if (
+    stopSuggetion == false &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    emptyBox[selectChessItem.indexofChesscheck - 24]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 24].setAttribute(
+      "onClick",
+      "makeMove(-24)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 24].style.background =
+      "#27AE60";
+  }
+  let whiteMRookFour =
+    document.getElementById(selectChessItem.indexofChesscheck - 32) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 32)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 32)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    whiteMRookFour === "WHITE_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 32]
+  ) {
+    stopSuggetion = true;
+  }
+  if (
+    stopSuggetion == false &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
+    emptyBox[selectChessItem.indexofChesscheck - 32]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 32].setAttribute(
+      "onClick",
+      "makeMove(-32)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 32].style.background =
+      "#27AE60";
+  }
+  let whiteMRookFive =
+    document.getElementById(selectChessItem.indexofChesscheck - 40) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 40)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 40)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    whiteMRookFive === "WHITE_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 40]
+  ) {
+    stopSuggetion = true;
+  }
+  if (
+    stopSuggetion == false &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 40] === null &&
+    emptyBox[selectChessItem.indexofChesscheck - 40]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 40].setAttribute(
+      "onClick",
+      "makeMove(-40)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 40].style.background =
+      "#27AE60";
+  }
+  let whiteMRookSix =
+    document.getElementById(selectChessItem.indexofChesscheck - 48) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 48)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 48)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    whiteMRookSix === "WHITE_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 40] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 48]
+  ) {
+    stopSuggetion = true;
+  }
+  if (
+    stopSuggetion == false &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 40] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 48] === null &&
+    emptyBox[selectChessItem.indexofChesscheck - 48]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 48].setAttribute(
+      "onClick",
+      "makeMove(-48)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 48].style.background =
+      "#27AE60";
+  }
+
+  let whiteMRookSeven =
+    document.getElementById(selectChessItem.indexofChesscheck - 56) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 56)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 56)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    whiteMRookSeven === "WHITE_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 40] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 48] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 56]
+  ) {
+    stopSuggetion = true;
+  }
+  if (
+    stopSuggetion == false &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 40] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 48] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 56] === null &&
+    emptyBox[selectChessItem.indexofChesscheck - 56]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 56].setAttribute(
+      "onClick",
+      "makeMove(-56)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 56].style.background =
+      "#27AE60";
+  }
+
+  if (
+    chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
+    emptyBox[selectChessItem.indexofChesscheck + 8]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 8].setAttribute(
+      "onClick",
+      "makeMove(8)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 8].style.background =
+      "#27AE60";
+  }
+  if (
+    chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
+    emptyBox[selectChessItem.indexofChesscheck + 16]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 16].setAttribute(
+      "onClick",
+      "makeMove(16)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 16].style.background =
+      "#27AE60";
+  }
+  if (
+    chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 24] === null &&
+    emptyBox[selectChessItem.indexofChesscheck + 24]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 24].setAttribute(
+      "onClick",
+      "makeMove(24)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 24].style.background =
+      "#27AE60";
+    if (
+      chessBoard[selectChessItem.indexofChesscheck + 32] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 32]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 32].setAttribute(
+        "onClick",
+        "makeMove(32)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 32].style.background =
+        "#27AE60";
+
+      if (
+        chessBoard[selectChessItem.indexofChesscheck + 40] === null &&
+        emptyBox[selectChessItem.indexofChesscheck + 40]
+      ) {
+        emptyBox[selectChessItem.indexofChesscheck + 40].setAttribute(
+          "onClick",
+          "makeMove(40)"
+        );
+        emptyBox[selectChessItem.indexofChesscheck + 40].style.background =
+          "#27AE60";
+
+        if (
+          chessBoard[selectChessItem.indexofChesscheck + 48] === null &&
+          emptyBox[selectChessItem.indexofChesscheck + 48]
+        ) {
+          emptyBox[selectChessItem.indexofChesscheck + 48].setAttribute(
+            "onClick",
+            "makeMove(48)"
+          );
+          emptyBox[selectChessItem.indexofChesscheck + 48].style.background =
+            "#27AE60";
+          if (
+            chessBoard[selectChessItem.indexofChesscheck + 56] === null &&
+            emptyBox[selectChessItem.indexofChesscheck + 56]
+          ) {
+            emptyBox[selectChessItem.indexofChesscheck + 56].setAttribute(
+              "onClick",
+              "makeMove(56)"
+            );
+            emptyBox[selectChessItem.indexofChesscheck + 56].style.background =
+              "#27AE60";
+          }
+        }
+      }
+    }
+  }
+
+  if (
+    chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+    selectChessItem.indexofChesscheck + 1 <= currentLineBetween[1]
+  ) {
     let stopSuggetion = false;
-    let findIndexOne = cornerNumber.findIndex(
+    let rookIndexOne = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck + 1
+    );
+    if (
+      rookIndexOne != -1 &&
+      selectChessItem.indexofChesscheck + 1 <= currentLineBetween[1] &&
+      cornerNumber[rookIndexOne] <= selectChessItem.indexofChesscheck + 1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 1]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck + 1].setAttribute(
+        "onClick",
+        "makeMove(1)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 1].style.background =
+        "#27AE60";
+    } else if (
+      selectChessItem.indexofChesscheck + 1 <= currentLineBetween[1] &&
+      chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 1]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 1].setAttribute(
+        "onClick",
+        "makeMove(1)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 1].style.background =
+        "#27AE60";
+    }
+    let rookIndexTwo = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck + 2
+    );
+    if (
+      stopSuggetion == false &&
+      rookIndexTwo != -1 &&
+      selectChessItem.indexofChesscheck + 2 <= currentLineBetween[1] &&
+      cornerNumber[rookIndexTwo] <= selectChessItem.indexofChesscheck + 2 &&
+      chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 2]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck + 2].setAttribute(
+        "onClick",
+        "makeMove(2)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 2].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      selectChessItem.indexofChesscheck + 2 <= currentLineBetween[1] &&
+      chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 2]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 2].setAttribute(
+        "onClick",
+        "makeMove(2)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 2].style.background =
+        "#27AE60";
+    }
+    let rookIndexThree = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck + 3
+    );
+    if (
+      stopSuggetion == false &&
+      rookIndexThree != -1 &&
+      selectChessItem.indexofChesscheck + 3 <= currentLineBetween[1] &&
+      cornerNumber[rookIndexThree] <= selectChessItem.indexofChesscheck + 3 &&
+      chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 3]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck + 3].setAttribute(
+        "onClick",
+        "makeMove(3)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 3].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      selectChessItem.indexofChesscheck + 3 <= currentLineBetween[1] &&
+      chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 3]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 3].setAttribute(
+        "onClick",
+        "makeMove(3)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 3].style.background =
+        "#27AE60";
+    }
+    let rookIndexFour = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck + 4
+    );
+    if (
+      stopSuggetion == false &&
+      rookIndexFour != -1 &&
+      selectChessItem.indexofChesscheck + 4 <= currentLineBetween[1] &&
+      cornerNumber[rookIndexFour] <= selectChessItem.indexofChesscheck + 4 &&
+      chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 4]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck + 4].setAttribute(
+        "onClick",
+        "makeMove(4)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 4].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      selectChessItem.indexofChesscheck + 4 <= currentLineBetween[1] &&
+      chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 4]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 4].setAttribute(
+        "onClick",
+        "makeMove(4)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 4].style.background =
+        "#27AE60";
+    }
+    let rookIndexFive = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck + 5
+    );
+    if (
+      stopSuggetion == false &&
+      rookIndexFive != -1 &&
+      selectChessItem.indexofChesscheck + 5 <= currentLineBetween[1] &&
+      cornerNumber[rookIndexFive] <= selectChessItem.indexofChesscheck + 5 &&
+      chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 5]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck + 5].setAttribute(
+        "onClick",
+        "makeMove(5)"
+      );
+
+      emptyBox[selectChessItem.indexofChesscheck + 5].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      selectChessItem.indexofChesscheck + 5 <= currentLineBetween[1] &&
+      chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 5]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 5].setAttribute(
+        "onClick",
+        "makeMove(5)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 5].style.background =
+        "#27AE60";
+    }
+    let rookIndexFSix = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck + 6
+    );
+    if (
+      stopSuggetion == false &&
+      rookIndexFSix != -1 &&
+      selectChessItem.indexofChesscheck + 6 <= currentLineBetween[1] &&
+      cornerNumber[rookIndexFSix] <= selectChessItem.indexofChesscheck + 6 &&
+      chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 6]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck + 6].setAttribute(
+        "onClick",
+        "makeMove(6)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 6].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      selectChessItem.indexofChesscheck + 6 <= currentLineBetween[1] &&
+      chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 6]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 6].setAttribute(
+        "onClick",
+        "makeMove(6)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 6].style.background =
+        "#27AE60";
+    }
+    let rookIndexFSeven = cornerNumber.findIndex(
       (item) => item == selectChessItem.indexofChesscheck + 7
     );
     if (
-      findIndexOne != -1 &&
-      cornerNumber[findIndexOne] <= selectChessItem.indexofChesscheck + 7 &&
+      stopSuggetion == false &&
+      rookIndexFSeven != -1 &&
+      selectChessItem.indexofChesscheck + 7 <= currentLineBetween[1] &&
+      cornerNumber[rookIndexFSeven] <= selectChessItem.indexofChesscheck + 7 &&
+      chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 7]
     ) {
@@ -10831,6 +10731,1046 @@ function isWhiteQueen() {
       emptyBox[selectChessItem.indexofChesscheck + 7].style.background =
         "#27AE60";
     } else if (
+      stopSuggetion == false &&
+      selectChessItem.indexofChesscheck + 7 <= currentLineBetween[1] &&
+      chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 7]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 7].setAttribute(
+        "onClick",
+        "makeMove(7)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 7].style.background =
+        "#27AE60";
+    }
+  }
+
+  if (
+    chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+    selectChessItem.indexofChesscheck - 1 >= currentLineBetween[0]
+  ) {
+    let stopSuggetion = false;
+    let rookIndexOne = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck - 1
+    );
+    if (
+      rookIndexOne != -1 &&
+      selectChessItem.indexofChesscheck - 1 >= currentLineBetween[0] &&
+      cornerNumber[rookIndexOne] <= selectChessItem.indexofChesscheck - 1 &&
+      chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 1]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 1].setAttribute(
+        "onClick",
+        "makeMove(-1)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 1].style.background =
+        "#27AE60";
+    } else if (
+      selectChessItem.indexofChesscheck - 1 >= currentLineBetween[0] &&
+      chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 1]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck - 1].setAttribute(
+        "onClick",
+        "makeMove(-1)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 1].style.background =
+        "#27AE60";
+    }
+    let rookIndexTwo = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck - 2
+    );
+    if (
+      stopSuggetion == false &&
+      rookIndexTwo != -1 &&
+      selectChessItem.indexofChesscheck - 2 >= currentLineBetween[0] &&
+      cornerNumber[rookIndexTwo] <= selectChessItem.indexofChesscheck - 2 &&
+      chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 2]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 2].setAttribute(
+        "onClick",
+        "makeMove(-2)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 2].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      selectChessItem.indexofChesscheck - 2 >= currentLineBetween[0] &&
+      chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 2]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck - 2].setAttribute(
+        "onClick",
+        "makeMove(-2)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 2].style.background =
+        "#27AE60";
+    }
+    let rookIndexThree = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck - 3
+    );
+    if (
+      stopSuggetion == false &&
+      rookIndexThree != -1 &&
+      selectChessItem.indexofChesscheck - 3 >= currentLineBetween[0] &&
+      cornerNumber[rookIndexThree] <= selectChessItem.indexofChesscheck - 3 &&
+      chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 3]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 3].setAttribute(
+        "onClick",
+        "makeMove(-3)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 3].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      selectChessItem.indexofChesscheck - 3 >= currentLineBetween[0] &&
+      chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 3]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck - 3].setAttribute(
+        "onClick",
+        "makeMove(-3)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 3].style.background =
+        "#27AE60";
+    }
+    let rookIndexFour = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck - 4
+    );
+
+    if (
+      stopSuggetion == false &&
+      rookIndexFour != -1 &&
+      selectChessItem.indexofChesscheck - 4 >= currentLineBetween[0] &&
+      cornerNumber[rookIndexFour] <= selectChessItem.indexofChesscheck - 4 &&
+      chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 4]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 4].setAttribute(
+        "onClick",
+        "makeMove(-4)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 4].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      selectChessItem.indexofChesscheck - 4 >= currentLineBetween[0] &&
+      chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 4]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck - 4].setAttribute(
+        "onClick",
+        "makeMove(-4)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 4].style.background =
+        "#27AE60";
+    }
+    let rookIndexFive = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck - 5
+    );
+    if (
+      stopSuggetion == false &&
+      rookIndexFive != -1 &&
+      selectChessItem.indexofChesscheck - 5 >= currentLineBetween[0] &&
+      cornerNumber[rookIndexFive] <= selectChessItem.indexofChesscheck - 5 &&
+      chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 5]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 5].setAttribute(
+        "onClick",
+        "makeMove(-5)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 5].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      selectChessItem.indexofChesscheck - 5 >= currentLineBetween[0] &&
+      chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 5]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck - 5].setAttribute(
+        "onClick",
+        "makeMove(-5)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 5].style.background =
+        "#27AE60";
+    }
+    let rookIndexFSix = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck - 6
+    );
+    if (
+      stopSuggetion == false &&
+      rookIndexFSix != -1 &&
+      selectChessItem.indexofChesscheck - 6 >= currentLineBetween[0] &&
+      cornerNumber[rookIndexFSix] <= selectChessItem.indexofChesscheck - 6 &&
+      chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 6]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 6].setAttribute(
+        "onClick",
+        "makeMove(-6)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 6].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      selectChessItem.indexofChesscheck - 6 >= currentLineBetween[0] &&
+      chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 6]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck - 6].setAttribute(
+        "onClick",
+        "makeMove(-6)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 6].style.background =
+        "#27AE60";
+    }
+    let rookIndexFSeven = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck - 7
+    );
+    if (
+      stopSuggetion == false &&
+      rookIndexFSeven != -1 &&
+      selectChessItem.indexofChesscheck - 7 >= currentLineBetween[0] &&
+      cornerNumber[rookIndexFSeven] <= selectChessItem.indexofChesscheck - 7 &&
+      chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 7]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 7].setAttribute(
+        "onClick",
+        "makeMove(-7)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 7].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      selectChessItem.indexofChesscheck - 7 >= currentLineBetween[0] &&
+      chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 7]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck - 7].setAttribute(
+        "onClick",
+        "makeMove(-7)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 7].style.background =
+        "#27AE60";
+    }
+  }
+
+  let rookOne =
+    document.getElementById(selectChessItem.indexofChesscheck + 8) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 8)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 8)
+      .getElementsByTagName("img")
+      .item(0).className;
+
+  if (
+    rookOne === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck + 8] &&
+    emptyBox[selectChessItem.indexofChesscheck + 8]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 8].setAttribute(
+      "onClick",
+      "makeMove(8)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 8].style.background =
+      "#CA2F1F";
+  }
+  let rookTwo =
+    document.getElementById(selectChessItem.indexofChesscheck + 16) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 16)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 16)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    rookTwo === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 16] &&
+    emptyBox[selectChessItem.indexofChesscheck + 16]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 16].setAttribute(
+      "onClick",
+      "makeMove(16)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 16].style.background =
+      "#CA2F1F";
+  }
+  let rookThree =
+    document.getElementById(selectChessItem.indexofChesscheck + 24) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 24)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 24)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    rookThree === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 24] &&
+    emptyBox[selectChessItem.indexofChesscheck + 24]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 24].setAttribute(
+      "onClick",
+      "makeMove(24)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 24].style.background =
+      "#CA2F1F";
+  }
+  let rookFour =
+    document.getElementById(selectChessItem.indexofChesscheck + 32) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 32)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 32)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    rookFour === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 32] &&
+    emptyBox[selectChessItem.indexofChesscheck + 32]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 32].setAttribute(
+      "onClick",
+      "makeMove(32)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 32].style.background =
+      "#CA2F1F";
+  }
+  let rookFive =
+    document.getElementById(selectChessItem.indexofChesscheck + 40) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 40)
+      .getElementsByTagName("img") &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 40)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    rookFive === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 32] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 40] &&
+    emptyBox[selectChessItem.indexofChesscheck + 40]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 40].setAttribute(
+      "onClick",
+      "makeMove(40)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 40].style.background =
+      "#CA2F1F";
+  }
+  let rookSix =
+    document.getElementById(selectChessItem.indexofChesscheck + 48) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 48)
+      .getElementsByTagName("img") &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 48)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    rookSix === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 32] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 40] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 48] &&
+    emptyBox[selectChessItem.indexofChesscheck + 48]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 48].setAttribute(
+      "onClick",
+      "makeMove(48)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 48].style.background =
+      "#CA2F1F";
+  }
+  let rookSeven =
+    document.getElementById(selectChessItem.indexofChesscheck + 56) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 56)
+      .getElementsByTagName("img") &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 56)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    rookSeven === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 32] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 40] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 48] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 56] &&
+    emptyBox[selectChessItem.indexofChesscheck + 56]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 56].setAttribute(
+      "onClick",
+      "makeMove(56)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 56].style.background =
+      "#CA2F1F";
+  }
+
+  let rookMEight =
+    document.getElementById(selectChessItem.indexofChesscheck - 8) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 8)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 8)
+      .getElementsByTagName("img")
+      .item(0).className;
+
+  if (
+    rookMEight === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] &&
+    emptyBox[selectChessItem.indexofChesscheck - 8]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 8].setAttribute(
+      "onClick",
+      "makeMove(-8)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 8].style.background =
+      "#CA2F1F";
+  }
+
+  let rookMSixteen =
+    document.getElementById(selectChessItem.indexofChesscheck - 16) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 16)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 16)
+      .getElementsByTagName("img")
+      .item(0).className;
+
+  if (
+    rookMSixteen === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] &&
+    emptyBox[selectChessItem.indexofChesscheck - 16]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 16].setAttribute(
+      "onClick",
+      "makeMove(-16)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 16].style.background =
+      "#CA2F1F";
+  }
+
+  let rookMTFour =
+    document.getElementById(selectChessItem.indexofChesscheck - 24) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 24)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 24)
+      .getElementsByTagName("img")
+      .item(0).className;
+
+  if (
+    rookMTFour === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] &&
+    emptyBox[selectChessItem.indexofChesscheck - 24]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 24].setAttribute(
+      "onClick",
+      "makeMove(-24)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 24].style.background =
+      "#CA2F1F";
+  }
+
+  let rookMTTwo =
+    document.getElementById(selectChessItem.indexofChesscheck - 32) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 32)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 32)
+      .getElementsByTagName("img")
+      .item(0).className;
+
+  if (
+    rookMTTwo === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 32] &&
+    emptyBox[selectChessItem.indexofChesscheck - 32]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 32].setAttribute(
+      "onClick",
+      "makeMove(-32)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 32].style.background =
+      "#CA2F1F";
+  }
+
+  let rookMForty =
+    document.getElementById(selectChessItem.indexofChesscheck - 40) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 40)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 40)
+      .getElementsByTagName("img")
+      .item(0).className;
+
+  if (
+    rookMForty === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 40] &&
+    emptyBox[selectChessItem.indexofChesscheck - 40]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 40].setAttribute(
+      "onClick",
+      "makeMove(-40)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 40].style.background =
+      "#CA2F1F";
+  }
+
+  let rookMFEight =
+    document.getElementById(selectChessItem.indexofChesscheck - 48) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 48)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 48)
+      .getElementsByTagName("img")
+      .item(0).className;
+
+  if (
+    rookMFEight === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 40] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 48] &&
+    emptyBox[selectChessItem.indexofChesscheck - 48]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 48].setAttribute(
+      "onClick",
+      "makeMove(-48)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 48].style.background =
+      "#CA2F1F";
+  }
+
+  let rookMFSix =
+    document.getElementById(selectChessItem.indexofChesscheck - 56) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 56)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 56)
+      .getElementsByTagName("img")
+      .item(0).className;
+
+  if (
+    rookMFSix === "BLACK_PIECE" &&
+    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 40] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 48] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 56] &&
+    emptyBox[selectChessItem.indexofChesscheck - 56]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 56].setAttribute(
+      "onClick",
+      "makeMove(-56)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 56].style.background =
+      "#CA2F1F";
+  }
+
+  let BROne =
+    document.getElementById(selectChessItem.indexofChesscheck - 1) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 1)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 1)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    BROne === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 1 >= currentLineBetween[0] &&
+    chessBoard[selectChessItem.indexofChesscheck - 1] &&
+    emptyBox[selectChessItem.indexofChesscheck - 1]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 1].setAttribute(
+      "onClick",
+      "makeMove(-1)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 1].style.background =
+      "#CA2F1F";
+  }
+  let BRTwo =
+    document.getElementById(selectChessItem.indexofChesscheck - 2) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 2)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 2)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    BRTwo === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 2 >= currentLineBetween[0] &&
+    chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 2] &&
+    emptyBox[selectChessItem.indexofChesscheck - 2]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 2].setAttribute(
+      "onClick",
+      "makeMove(-2)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 2].style.background =
+      "#CA2F1F";
+  }
+  let BRThree =
+    document.getElementById(selectChessItem.indexofChesscheck - 3) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 3)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 3)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    BRThree === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 3 >= currentLineBetween[0] &&
+    chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 3] &&
+    emptyBox[selectChessItem.indexofChesscheck - 3]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 3].setAttribute(
+      "onClick",
+      "makeMove(-3)"
+    );
+
+    emptyBox[selectChessItem.indexofChesscheck - 3].style.background =
+      "#CA2F1F";
+  }
+  let BRFour =
+    document.getElementById(selectChessItem.indexofChesscheck - 4) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 4)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 4)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    BRFour === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 4 >= currentLineBetween[0] &&
+    chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 4] &&
+    emptyBox[selectChessItem.indexofChesscheck - 4]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 4].setAttribute(
+      "onClick",
+      "makeMove(-4)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 4].style.background =
+      "#CA2F1F";
+  }
+  let BRFive =
+    document.getElementById(selectChessItem.indexofChesscheck - 5) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 5)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 5)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    BRFive === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 5 >= currentLineBetween[0] &&
+    chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 5] &&
+    emptyBox[selectChessItem.indexofChesscheck - 5]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 5].setAttribute(
+      "onClick",
+      "makeMove(-5)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 5].style.background =
+      "#CA2F1F";
+  }
+  let BRSix =
+    document.getElementById(selectChessItem.indexofChesscheck - 6) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 6)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 6)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    BRSix === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 6 >= currentLineBetween[0] &&
+    chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 6] &&
+    emptyBox[selectChessItem.indexofChesscheck - 6]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 6].setAttribute(
+      "onClick",
+      "makeMove(-6)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 6].style.background =
+      "#CA2F1F";
+  }
+  let BRSeven =
+    document.getElementById(selectChessItem.indexofChesscheck - 7) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 7)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck - 7)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    BRSeven === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 7 >= currentLineBetween[0] &&
+    chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
+    chessBoard[selectChessItem.indexofChesscheck - 7] &&
+    emptyBox[selectChessItem.indexofChesscheck - 7]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck - 7].setAttribute(
+      "onClick",
+      "makeMove(-7)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 7].style.background =
+      "#CA2F1F";
+  }
+
+  let rookClassOne =
+    document.getElementById(selectChessItem.indexofChesscheck + 1) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 1)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 1)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    rookClassOne === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 1 <= currentLineBetween[1] &&
+    chessBoard[selectChessItem.indexofChesscheck + 1] &&
+    emptyBox[selectChessItem.indexofChesscheck + 1]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 1].setAttribute(
+      "onClick",
+      "makeMove(1)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 1].style.background =
+      "#CA2F1F";
+  }
+  let rookClassTwo =
+    document.getElementById(selectChessItem.indexofChesscheck + 2) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 2)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 2)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    rookClassTwo === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 2 <= currentLineBetween[1] &&
+    chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 2] &&
+    emptyBox[selectChessItem.indexofChesscheck + 2]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 2].setAttribute(
+      "onClick",
+      "makeMove(2)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 2].style.background =
+      "#CA2F1F";
+  }
+  let rookClassThree =
+    document.getElementById(selectChessItem.indexofChesscheck + 3) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 3)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 3)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    rookClassThree === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 3 <= currentLineBetween[1] &&
+    chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 3] &&
+    emptyBox[selectChessItem.indexofChesscheck + 3]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 3].setAttribute(
+      "onClick",
+      "makeMove(3)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 3].style.background =
+      "#CA2F1F";
+  }
+  let rookClassFour =
+    document.getElementById(selectChessItem.indexofChesscheck + 4) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 4)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 4)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    rookClassFour === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 4 <= currentLineBetween[1] &&
+    chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 4] &&
+    emptyBox[selectChessItem.indexofChesscheck + 4]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 4].setAttribute(
+      "onClick",
+      "makeMove(4)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 4].style.background =
+      "#CA2F1F";
+  }
+  let rookClassFive =
+    document.getElementById(selectChessItem.indexofChesscheck + 5) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 5)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 5)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    rookClassFive === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 5 <= currentLineBetween[1] &&
+    chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 5] &&
+    emptyBox[selectChessItem.indexofChesscheck + 5]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 5].setAttribute(
+      "onClick",
+      "makeMove(5)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 5].style.background =
+      "#CA2F1F";
+  }
+  let rookClassSix =
+    document.getElementById(selectChessItem.indexofChesscheck + 6) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 6)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 6)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    rookClassSix === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 6 <= currentLineBetween[1] &&
+    chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 6] &&
+    emptyBox[selectChessItem.indexofChesscheck + 6]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 6].setAttribute(
+      "onClick",
+      "makeMove(6)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 6].style.background =
+      "#CA2F1F";
+  }
+  let rookClassSeven =
+    document.getElementById(selectChessItem.indexofChesscheck + 7) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 7)
+      .getElementsByTagName("img")
+      .item(0) &&
+    document
+      .getElementById(selectChessItem.indexofChesscheck + 7)
+      .getElementsByTagName("img")
+      .item(0).className;
+  if (
+    rookClassSeven === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 7 <= currentLineBetween[1] &&
+    chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
+    chessBoard[selectChessItem.indexofChesscheck + 7] &&
+    emptyBox[selectChessItem.indexofChesscheck + 7]
+  ) {
+    emptyBox[selectChessItem.indexofChesscheck + 7].setAttribute(
+      "onClick",
+      "makeMove(7)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 7].style.background =
+      "#CA2F1F";
+  }
+
+  // BISHOP MOVE
+  if (
+    selectChessItem.indexofChesscheck + 7 > currentLineBetween[1] &&
+    chessBoard[selectChessItem.indexofChesscheck + 7] === null
+  ) {
+    let stopSuggetion = false;
+    let findIndexOne = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck + 7
+    );
+
+    if (
+      findIndexOne != -1 &&
+      selectChessItem.indexofChesscheck + 7 > currentLineBetween[1] &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 7]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck + 7].setAttribute(
+        "onClick",
+        "makeMove(7)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 7].style.background =
+        "#27AE60";
+    } else if (
+      selectChessItem.indexofChesscheck + 7 > currentLineBetween[1] &&
       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 7]
     ) {
@@ -10879,9 +11819,9 @@ function isWhiteQueen() {
     if (
       stopSuggetion == false &&
       findIndexThree != -1 &&
-      cornerNumber[findIndexThree] <= selectChessItem.indexofChesscheck + 21 &&
       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
+      cornerNumber[findIndexThree] <= selectChessItem.indexofChesscheck + 21 &&
       chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 21]
     ) {
@@ -10894,9 +11834,9 @@ function isWhiteQueen() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
-      // findIndexOne != -1 && cornerNumber[findIndexOne] <= selectChessItem.indexofChesscheck + 14 &&
       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
+      // findIndexOne != -1 && cornerNumber[findIndexOne] <= selectChessItem.indexofChesscheck + 14 &&
       chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 21]
     ) {
@@ -10913,10 +11853,10 @@ function isWhiteQueen() {
     if (
       stopSuggetion == false &&
       findIndexFour != -1 &&
-      cornerNumber[findIndexFour] <= selectChessItem.indexofChesscheck + 28 &&
       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
+      cornerNumber[findIndexFour] <= selectChessItem.indexofChesscheck + 28 &&
       chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 28]
     ) {
@@ -10948,11 +11888,11 @@ function isWhiteQueen() {
     if (
       stopSuggetion == false &&
       findIndexFive != -1 &&
-      cornerNumber[findIndexFive] <= selectChessItem.indexofChesscheck + 35 &&
       chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
+      cornerNumber[findIndexFive] <= selectChessItem.indexofChesscheck + 35 &&
       chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 35]
     ) {
@@ -10979,14 +11919,101 @@ function isWhiteQueen() {
       emptyBox[selectChessItem.indexofChesscheck + 35].style.background =
         "#27AE60";
     }
+    let findIndexSix = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck + 42
+    );
+    if (
+      stopSuggetion == false &&
+      findIndexSix != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
+      cornerNumber[findIndexSix] <= selectChessItem.indexofChesscheck + 42 &&
+      chessBoard[selectChessItem.indexofChesscheck + 42] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 42]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck + 42].setAttribute(
+        "onClick",
+        "makeMove(42)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 42].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 42] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 42]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 42].setAttribute(
+        "onClick",
+        "makeMove(42)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 42].style.background =
+        "#27AE60";
+    }
+
+    let findIndexSeven = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck + 49
+    );
+    if (
+      stopSuggetion == false &&
+      findIndexSeven != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 42] === null &&
+      cornerNumber[findIndexSeven] <= selectChessItem.indexofChesscheck + 49 &&
+      chessBoard[selectChessItem.indexofChesscheck + 49] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 49]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck + 49].setAttribute(
+        "onClick",
+        "makeMove(49)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 49].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 42] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 49] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 49]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 49].setAttribute(
+        "onClick",
+        "makeMove(49)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 49].style.background =
+        "#27AE60";
+    }
   }
-  if (chessBoard[selectChessItem.indexofChesscheck + 9] === null) {
+  if (
+    chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+    currentLineBetween &&
+    selectChessItem.indexofChesscheck + 9 <= currentLineBetween[1] + 8
+  ) {
     let stopSuggetion = false;
     let findIndexOne = cornerNumber.findIndex(
       (item) => item == selectChessItem.indexofChesscheck + 9
     );
     if (
       findIndexOne != -1 &&
+      currentLineBetween &&
+      selectChessItem.indexofChesscheck + 9 <= currentLineBetween[1] + 8 &&
       cornerNumber[findIndexOne] <= selectChessItem.indexofChesscheck + 9 &&
       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 9]
@@ -10999,6 +12026,8 @@ function isWhiteQueen() {
       emptyBox[selectChessItem.indexofChesscheck + 9].style.background =
         "#27AE60";
     } else if (
+      currentLineBetween &&
+      selectChessItem.indexofChesscheck + 9 <= currentLineBetween[1] + 8 &&
       chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 9]
     ) {
@@ -11016,6 +12045,7 @@ function isWhiteQueen() {
       stopSuggetion == false &&
       findIndexTwo != -1 &&
       cornerNumber[findIndexTwo] <= selectChessItem.indexofChesscheck + 18 &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 18]
     ) {
@@ -11028,6 +12058,7 @@ function isWhiteQueen() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 18]
     ) {
@@ -11044,6 +12075,8 @@ function isWhiteQueen() {
     if (
       stopSuggetion == false &&
       findIndexThree != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
       cornerNumber[findIndexThree] <= selectChessItem.indexofChesscheck + 27 &&
       chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 27]
@@ -11057,6 +12090,8 @@ function isWhiteQueen() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 27]
     ) {
@@ -11073,6 +12108,9 @@ function isWhiteQueen() {
     if (
       stopSuggetion == false &&
       findIndexFour != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
       cornerNumber[findIndexFour] <= selectChessItem.indexofChesscheck + 36 &&
       chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 36]
@@ -11086,6 +12124,9 @@ function isWhiteQueen() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 36]
     ) {
@@ -11102,6 +12143,10 @@ function isWhiteQueen() {
     if (
       stopSuggetion == false &&
       findIndexFive != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
       cornerNumber[findIndexFive] <= selectChessItem.indexofChesscheck + 45 &&
       chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 45]
@@ -11115,6 +12160,10 @@ function isWhiteQueen() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
       chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
       emptyBox[selectChessItem.indexofChesscheck + 45]
     ) {
@@ -11125,10 +12174,117 @@ function isWhiteQueen() {
       emptyBox[selectChessItem.indexofChesscheck + 45].style.background =
         "#27AE60";
     }
-  }
-  if (chessBoard[selectChessItem.indexofChesscheck - 7] === null) {
-    let stopSuggetion = false;
+
+    let findIndexSix = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck + 54
+    );
+
     if (
+      stopSuggetion == false &&
+      findIndexSix != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 54] === null &&
+      cornerNumber[findIndexSix] <= selectChessItem.indexofChesscheck + 54 &&
+      emptyBox[selectChessItem.indexofChesscheck + 54]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck + 54].setAttribute(
+        "onClick",
+        "makeMove(54)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 54].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 54] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 54]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 54].setAttribute(
+        "onClick",
+        "makeMove(54)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 54].style.background =
+        "#27AE60";
+    }
+
+    let findIndexSeven = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck + 63
+    );
+
+    if (
+      stopSuggetion == false &&
+      findIndexSeven != -1 &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 54] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 63] === null &&
+      cornerNumber[findIndexSeven] <= selectChessItem.indexofChesscheck + 63 &&
+      emptyBox[selectChessItem.indexofChesscheck + 63]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck + 63].setAttribute(
+        "onClick",
+        "makeMove(63)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 63].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 45] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 54] === null &&
+      chessBoard[selectChessItem.indexofChesscheck + 63] === null &&
+      emptyBox[selectChessItem.indexofChesscheck + 63]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 63].setAttribute(
+        "onClick",
+        "makeMove(63)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 63].style.background =
+        "#27AE60";
+    }
+  }
+
+  if (
+    selectChessItem.indexofChesscheck - 7 < currentLineBetween[0] &&
+    chessBoard[selectChessItem.indexofChesscheck - 7] === null
+  ) {
+    let stopSuggetion = false;
+    let findIndexMSeven = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck - 7
+    );
+
+    if (
+      findIndexMSeven != -1 &&
+      cornerNumber[findIndexMSeven] <= selectChessItem.indexofChesscheck - 7 &&
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 7]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 7].setAttribute(
+        "onClick",
+        "makeMove(-14)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 7].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
       chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 7]
     ) {
@@ -11139,6 +12295,7 @@ function isWhiteQueen() {
       emptyBox[selectChessItem.indexofChesscheck - 7].style.background =
         "#27AE60";
     }
+
     let findIndexOne = cornerNumber.findIndex(
       (item) => item == selectChessItem.indexofChesscheck - 14
     );
@@ -11176,10 +12333,10 @@ function isWhiteQueen() {
     );
     if (
       findIndextwo != -1 &&
-      cornerNumber[findIndextwo] <= selectChessItem.indexofChesscheck - 21 &&
-      stopSuggetion == false &&
       chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
+      cornerNumber[findIndextwo] <= selectChessItem.indexofChesscheck - 21 &&
+      stopSuggetion == false &&
       chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 21]
     ) {
@@ -11209,11 +12366,11 @@ function isWhiteQueen() {
     );
     if (
       findIndexThree != -1 &&
-      cornerNumber[findIndexThree] <= selectChessItem.indexofChesscheck - 28 &&
-      stopSuggetion == false &&
       chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
+      cornerNumber[findIndexThree] <= selectChessItem.indexofChesscheck - 28 &&
+      stopSuggetion == false &&
       chessBoard[selectChessItem.indexofChesscheck - 28] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 28]
     ) {
@@ -11244,12 +12401,12 @@ function isWhiteQueen() {
     );
     if (
       findIndexFour != -1 &&
-      cornerNumber[findIndexFour] <= selectChessItem.indexofChesscheck - 35 &&
-      stopSuggetion == false &&
       chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 28] === null &&
+      cornerNumber[findIndexFour] <= selectChessItem.indexofChesscheck - 35 &&
+      stopSuggetion == false &&
       chessBoard[selectChessItem.indexofChesscheck - 35] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 35]
     ) {
@@ -11276,19 +12433,20 @@ function isWhiteQueen() {
       emptyBox[selectChessItem.indexofChesscheck - 35].style.background =
         "#27AE60";
     }
-    let findIndexFive = cornerNumber.findIndex(
+
+    let findIndexSix = cornerNumber.findIndex(
       (item) => item == selectChessItem.indexofChesscheck - 42
     );
     if (
-      findIndexFive != -1 &&
-      cornerNumber[findIndexFive] <= selectChessItem.indexofChesscheck - 42 &&
-      stopSuggetion == false &&
+      findIndexSix != -1 &&
       chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 28] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 35] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 42] === null &&
+      cornerNumber[findIndexSix] <= selectChessItem.indexofChesscheck - 42 &&
+      stopSuggetion == false &&
       emptyBox[selectChessItem.indexofChesscheck - 42]
     ) {
       stopSuggetion = true;
@@ -11315,13 +12473,12 @@ function isWhiteQueen() {
       emptyBox[selectChessItem.indexofChesscheck - 42].style.background =
         "#27AE60";
     }
-    let findIndexSix = cornerNumber.findIndex(
+
+    let findIndexSeven = cornerNumber.findIndex(
       (item) => item == selectChessItem.indexofChesscheck - 49
     );
     if (
-      findIndexFive != -1 &&
-      cornerNumber[findIndexSix] <= selectChessItem.indexofChesscheck - 49 &&
-      stopSuggetion == false &&
+      findIndexSeven != -1 &&
       chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
@@ -11329,6 +12486,8 @@ function isWhiteQueen() {
       chessBoard[selectChessItem.indexofChesscheck - 35] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 42] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 49] === null &&
+      cornerNumber[findIndexSeven] <= selectChessItem.indexofChesscheck - 49 &&
+      stopSuggetion == false &&
       emptyBox[selectChessItem.indexofChesscheck - 49]
     ) {
       stopSuggetion = true;
@@ -11393,6 +12552,7 @@ function isWhiteQueen() {
       stopSuggetion == false &&
       findIndexTwo != -1 &&
       cornerNumber[findIndexTwo] <= selectChessItem.indexofChesscheck - 18 &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 18]
     ) {
@@ -11405,6 +12565,7 @@ function isWhiteQueen() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 18]
     ) {
@@ -11420,9 +12581,11 @@ function isWhiteQueen() {
     );
     if (
       findIndexThree != -1 &&
-      cornerNumber[findIndexThree] <= selectChessItem.indexofChesscheck - 27 &&
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
+      cornerNumber[findIndexThree] <= selectChessItem.indexofChesscheck - 27 &&
       emptyBox[selectChessItem.indexofChesscheck - 27]
     ) {
       stopSuggetion = true;
@@ -11434,6 +12597,8 @@ function isWhiteQueen() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 27]
     ) {
@@ -11449,9 +12614,12 @@ function isWhiteQueen() {
     );
     if (
       findIndexFour != -1 &&
-      cornerNumber[findIndexFour] <= selectChessItem.indexofChesscheck - 36 &&
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
+      cornerNumber[findIndexFour] <= selectChessItem.indexofChesscheck - 36 &&
       emptyBox[selectChessItem.indexofChesscheck - 36]
     ) {
       stopSuggetion = true;
@@ -11463,6 +12631,9 @@ function isWhiteQueen() {
         "#27AE60";
     } else if (
       stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 36]
     ) {
@@ -11476,10 +12647,30 @@ function isWhiteQueen() {
     let findIndexFive = cornerNumber.findIndex(
       (item) => item == selectChessItem.indexofChesscheck - 45
     );
-
     if (
       findIndexFive != -1 &&
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
       cornerNumber[findIndexFive] <= selectChessItem.indexofChesscheck - 45 &&
+      chessBoard[selectChessItem.indexofChesscheck - 45] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 45]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 45].setAttribute(
+        "onClick",
+        "makeMove(-45)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 45].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
       chessBoard[selectChessItem.indexofChesscheck - 45] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 45]
     ) {
@@ -11490,534 +12681,313 @@ function isWhiteQueen() {
       emptyBox[selectChessItem.indexofChesscheck - 45].style.background =
         "#27AE60";
     }
-  }
-  if (chessBoard[selectChessItem.indexofChesscheck + 8] === null) {
+
+    let findIndexSix = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck - 54
+    );
     if (
-      chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
-      emptyBox[selectChessItem.indexofChesscheck + 8]
+      findIndexSix != -1 &&
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 45] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 54] === null &&
+      cornerNumber[findIndexSix] <= selectChessItem.indexofChesscheck - 54 &&
+      emptyBox[selectChessItem.indexofChesscheck - 54]
     ) {
-      emptyBox[selectChessItem.indexofChesscheck + 8].setAttribute(
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 54].setAttribute(
         "onClick",
-        "makeMove(8)"
+        "makeMove(-54)"
       );
-      emptyBox[selectChessItem.indexofChesscheck + 8].style.background =
+      emptyBox[selectChessItem.indexofChesscheck - 54].style.background =
         "#27AE60";
-      if (
-        chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
-        emptyBox[selectChessItem.indexofChesscheck + 16]
-      ) {
-        emptyBox[selectChessItem.indexofChesscheck + 16].setAttribute(
-          "onClick",
-          "makeMove(16)"
-        );
-        emptyBox[selectChessItem.indexofChesscheck + 16].style.background =
-          "#27AE60";
-        if (
-          chessBoard[selectChessItem.indexofChesscheck + 24] === null &&
-          emptyBox[selectChessItem.indexofChesscheck + 24]
-        ) {
-          emptyBox[selectChessItem.indexofChesscheck + 24].setAttribute(
-            "onClick",
-            "makeMove(24)"
-          );
-          emptyBox[selectChessItem.indexofChesscheck + 24].style.background =
-            "#27AE60";
-          if (
-            chessBoard[selectChessItem.indexofChesscheck + 32] === null &&
-            emptyBox[selectChessItem.indexofChesscheck + 32]
-          ) {
-            emptyBox[selectChessItem.indexofChesscheck + 32].setAttribute(
-              "onClick",
-              "makeMove(32)"
-            );
-            emptyBox[selectChessItem.indexofChesscheck + 32].style.background =
-              "#27AE60";
-          }
-        }
-      }
+    } else if (
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 45] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 54] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 54]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck - 54].setAttribute(
+        "onClick",
+        "makeMove(-54)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 54].style.background =
+        "#27AE60";
+    }
+
+    let findIndexSeven = cornerNumber.findIndex(
+      (item) => item == selectChessItem.indexofChesscheck - 63
+    );
+    if (
+      findIndexSeven != -1 &&
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 45] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 54] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 63] === null &&
+      cornerNumber[findIndexSeven] <= selectChessItem.indexofChesscheck - 63 &&
+      emptyBox[selectChessItem.indexofChesscheck - 63]
+    ) {
+      stopSuggetion = true;
+      emptyBox[selectChessItem.indexofChesscheck - 63].setAttribute(
+        "onClick",
+        "makeMove(-54)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 63].style.background =
+        "#27AE60";
+    } else if (
+      stopSuggetion == false &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 45] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 54] === null &&
+      chessBoard[selectChessItem.indexofChesscheck - 63] === null &&
+      emptyBox[selectChessItem.indexofChesscheck - 63]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck - 63].setAttribute(
+        "onClick",
+        "makeMove(-63)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 63].style.background =
+        "#27AE60";
     }
   }
-  if (chessBoard[selectChessItem.indexofChesscheck - 8] === null) {
+
+  // FOR KILL -7 BLACK PIECES
+  if (
+    selectChessItem.indexofChesscheck - 7 < currentLineBetween[0] &&
+    selectChessItem.indexofChesscheck - 7 >= 0 &&
+    chessBoard[selectChessItem.indexofChesscheck - 7] == null &&
+    !currentSide.includes(selectChessItem.indexofChesscheck - 7)
+  ) {
     if (
-      chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
-      emptyBox[selectChessItem.indexofChesscheck - 8]
+      selectChessItem.indexofChesscheck - 14 >= 0 &&
+      chessBoard[selectChessItem.indexofChesscheck - 14] == null &&
+      !currentSide.includes(selectChessItem.indexofChesscheck - 14)
     ) {
-      emptyBox[selectChessItem.indexofChesscheck - 8].setAttribute(
-        "onClick",
-        "makeMove(-8)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck - 8].style.background =
-        "#27AE60";
       if (
-        chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
-        emptyBox[selectChessItem.indexofChesscheck - 16]
+        selectChessItem.indexofChesscheck - 21 >= 0 &&
+        chessBoard[selectChessItem.indexofChesscheck - 21] == null &&
+        !currentSide.includes(selectChessItem.indexofChesscheck - 21)
       ) {
-        emptyBox[selectChessItem.indexofChesscheck - 16].setAttribute(
-          "onClick",
-          "makeMove(-16)"
-        );
-        emptyBox[selectChessItem.indexofChesscheck - 16].style.background =
-          "#27AE60";
         if (
-          chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
-          emptyBox[selectChessItem.indexofChesscheck - 24]
+          selectChessItem.indexofChesscheck - 28 >= 0 &&
+          chessBoard[selectChessItem.indexofChesscheck - 28] == null &&
+          !currentSide.includes(selectChessItem.indexofChesscheck - 28)
         ) {
-          emptyBox[selectChessItem.indexofChesscheck - 24].setAttribute(
-            "onClick",
-            "makeMove(-24)"
-          );
-          emptyBox[selectChessItem.indexofChesscheck - 24].style.background =
-            "#27AE60";
           if (
-            chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
-            emptyBox[selectChessItem.indexofChesscheck - 32]
+            selectChessItem.indexofChesscheck - 35 >= 0 &&
+            chessBoard[selectChessItem.indexofChesscheck - 35] == null &&
+            !currentSide.includes(selectChessItem.indexofChesscheck - 35)
           ) {
-            emptyBox[selectChessItem.indexofChesscheck - 32].setAttribute(
-              "onClick",
-              "makeMove(-32)"
-            );
-            emptyBox[selectChessItem.indexofChesscheck - 32].style.background =
-              "#27AE60";
             if (
-              chessBoard[selectChessItem.indexofChesscheck - 40] === null &&
-              emptyBox[selectChessItem.indexofChesscheck - 40]
+              selectChessItem.indexofChesscheck - 42 >= 0 &&
+              chessBoard[selectChessItem.indexofChesscheck - 42] == null &&
+              !currentSide.includes(selectChessItem.indexofChesscheck - 42)
             ) {
-              emptyBox[selectChessItem.indexofChesscheck - 40].setAttribute(
-                "onClick",
-                "makeMove(-40)"
-              );
-              emptyBox[
-                selectChessItem.indexofChesscheck - 40
-              ].style.background = "#27AE60";
               if (
-                chessBoard[selectChessItem.indexofChesscheck - 48] === null &&
-                emptyBox[selectChessItem.indexofChesscheck - 48]
+                selectChessItem.indexofChesscheck - 49 >= 0 &&
+                chessBoard[selectChessItem.indexofChesscheck - 49]
               ) {
-                emptyBox[selectChessItem.indexofChesscheck - 48].setAttribute(
-                  "onClick",
-                  "makeMove(-48)"
-                );
-                emptyBox[
-                  selectChessItem.indexofChesscheck - 48
-                ].style.background = "#27AE60";
+                let classFNine =
+                  document.getElementById(
+                    selectChessItem.indexofChesscheck - 49
+                  ) &&
+                  document
+                    .getElementById(selectChessItem.indexofChesscheck - 49)
+                    .getElementsByTagName("img")
+                    .item(0) &&
+                  document
+                    .getElementById(selectChessItem.indexofChesscheck - 49)
+                    .getElementsByTagName("img")
+                    .item(0).className;
                 if (
-                  chessBoard[selectChessItem.indexofChesscheck - 56] === null &&
-                  emptyBox[selectChessItem.indexofChesscheck - 56]
+                  classFNine === "BLACK_PIECE" &&
+                  chessBoard[selectChessItem.indexofChesscheck - 7] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 14] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 21] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 28] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 35] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 42] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 49] &&
+                  emptyBox[selectChessItem.indexofChesscheck - 49]
                 ) {
-                  emptyBox[selectChessItem.indexofChesscheck - 56].setAttribute(
+                  emptyBox[selectChessItem.indexofChesscheck - 49].setAttribute(
                     "onClick",
-                    "makeMove(-56)"
+                    "makeMove(-49)"
                   );
                   emptyBox[
-                    selectChessItem.indexofChesscheck - 56
-                  ].style.background = "#27AE60";
+                    selectChessItem.indexofChesscheck - 49
+                  ].style.background = "#CA2F1F";
                 }
               }
+            } else {
+              let classFTwo =
+                document.getElementById(
+                  selectChessItem.indexofChesscheck - 42
+                ) &&
+                document
+                  .getElementById(selectChessItem.indexofChesscheck - 42)
+                  .getElementsByTagName("img")
+                  .item(0) &&
+                document
+                  .getElementById(selectChessItem.indexofChesscheck - 42)
+                  .getElementsByTagName("img")
+                  .item(0).className;
+              if (
+                classFTwo === "BLACK_PIECE" &&
+                chessBoard[selectChessItem.indexofChesscheck - 7] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 14] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 21] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 28] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 35] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 42] &&
+                emptyBox[selectChessItem.indexofChesscheck - 42]
+              ) {
+                emptyBox[selectChessItem.indexofChesscheck - 42].setAttribute(
+                  "onClick",
+                  "makeMove(-42)"
+                );
+                emptyBox[
+                  selectChessItem.indexofChesscheck - 42
+                ].style.background = "#CA2F1F";
+              }
+            }
+          } else {
+            let classFive =
+              document.getElementById(selectChessItem.indexofChesscheck - 35) &&
+              document
+                .getElementById(selectChessItem.indexofChesscheck - 35)
+                .getElementsByTagName("img")
+                .item(0) &&
+              document
+                .getElementById(selectChessItem.indexofChesscheck - 35)
+                .getElementsByTagName("img")
+                .item(0).className;
+            if (
+              classFive === "BLACK_PIECE" &&
+              chessBoard[selectChessItem.indexofChesscheck - 7] == null &&
+              chessBoard[selectChessItem.indexofChesscheck - 14] == null &&
+              chessBoard[selectChessItem.indexofChesscheck - 21] == null &&
+              chessBoard[selectChessItem.indexofChesscheck - 28] == null &&
+              chessBoard[selectChessItem.indexofChesscheck - 35] &&
+              emptyBox[selectChessItem.indexofChesscheck - 35]
+            ) {
+              emptyBox[selectChessItem.indexofChesscheck - 35].setAttribute(
+                "onClick",
+                "makeMove(-35)"
+              );
+              emptyBox[
+                selectChessItem.indexofChesscheck - 35
+              ].style.background = "#CA2F1F";
             }
           }
+        } else {
+          let classFour =
+            document.getElementById(selectChessItem.indexofChesscheck - 28) &&
+            document
+              .getElementById(selectChessItem.indexofChesscheck - 28)
+              .getElementsByTagName("img")
+              .item(0) &&
+            document
+              .getElementById(selectChessItem.indexofChesscheck - 28)
+              .getElementsByTagName("img")
+              .item(0).className;
+          if (
+            classFour === "BLACK_PIECE" &&
+            chessBoard[selectChessItem.indexofChesscheck - 7] == null &&
+            chessBoard[selectChessItem.indexofChesscheck - 14] == null &&
+            chessBoard[selectChessItem.indexofChesscheck - 21] == null &&
+            chessBoard[selectChessItem.indexofChesscheck - 28] &&
+            emptyBox[selectChessItem.indexofChesscheck - 28]
+          ) {
+            emptyBox[selectChessItem.indexofChesscheck - 28].setAttribute(
+              "onClick",
+              "makeMove(-28)"
+            );
+            emptyBox[selectChessItem.indexofChesscheck - 28].style.background =
+              "#CA2F1F";
+          }
+        }
+      } else {
+        let classThree =
+          document.getElementById(selectChessItem.indexofChesscheck - 21) &&
+          document
+            .getElementById(selectChessItem.indexofChesscheck - 21)
+            .getElementsByTagName("img")
+            .item(0) &&
+          document
+            .getElementById(selectChessItem.indexofChesscheck - 21)
+            .getElementsByTagName("img")
+            .item(0).className;
+        if (
+          classThree === "BLACK_PIECE" &&
+          chessBoard[selectChessItem.indexofChesscheck - 7] == null &&
+          chessBoard[selectChessItem.indexofChesscheck - 14] == null &&
+          chessBoard[selectChessItem.indexofChesscheck - 21] &&
+          emptyBox[selectChessItem.indexofChesscheck - 21]
+        ) {
+          emptyBox[selectChessItem.indexofChesscheck - 21].setAttribute(
+            "onClick",
+            "makeMove(-21)"
+          );
+          emptyBox[selectChessItem.indexofChesscheck - 21].style.background =
+            "#CA2F1F";
         }
       }
+    } else {
+      let classTwo =
+        document.getElementById(selectChessItem.indexofChesscheck - 14) &&
+        document
+          .getElementById(selectChessItem.indexofChesscheck - 14)
+          .getElementsByTagName("img")
+          .item(0) &&
+        document
+          .getElementById(selectChessItem.indexofChesscheck - 14)
+          .getElementsByTagName("img")
+          .item(0).className;
+      if (
+        classTwo === "BLACK_PIECE" &&
+        chessBoard[selectChessItem.indexofChesscheck - 14] &&
+        emptyBox[selectChessItem.indexofChesscheck - 14]
+      ) {
+        emptyBox[selectChessItem.indexofChesscheck - 14].setAttribute(
+          "onClick",
+          "makeMove(-14)"
+        );
+        emptyBox[selectChessItem.indexofChesscheck - 14].style.background =
+          "#CA2F1F";
+      }
     }
-  }
-  if (chessBoard[selectChessItem.indexofChesscheck + 1] === null) {
-    let stopSuggetion = false;
-    let rookIndexOne = cornerNumber.findIndex(
-      (item) => item == selectChessItem.indexofChesscheck + 1
-    );
+  } else if (
+    selectChessItem.indexofChesscheck - 7 < currentLineBetween[0] &&
+    chessBoard[selectChessItem.indexofChesscheck - 7]
+  ) {
+    let classOne =
+      document.getElementById(selectChessItem.indexofChesscheck - 7) &&
+      document
+        .getElementById(selectChessItem.indexofChesscheck - 7)
+        .getElementsByTagName("img")
+        .item(0) &&
+      document
+        .getElementById(selectChessItem.indexofChesscheck - 7)
+        .getElementsByTagName("img")
+        .item(0).className;
     if (
-      rookIndexOne != -1 &&
-      cornerNumber[rookIndexOne] <= selectChessItem.indexofChesscheck + 1 &&
-      chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-      emptyBox[selectChessItem.indexofChesscheck + 1]
-    ) {
-      stopSuggetion = true;
-      emptyBox[selectChessItem.indexofChesscheck + 1].setAttribute(
-        "onClick",
-        "makeMove(1)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck + 1].style.background =
-        "#27AE60";
-    } else if (
-      chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-      emptyBox[selectChessItem.indexofChesscheck + 1]
-    ) {
-      emptyBox[selectChessItem.indexofChesscheck + 1].setAttribute(
-        "onClick",
-        "makeMove(1)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck + 1].style.background =
-        "#27AE60";
-    }
-    let rookIndexTwo = cornerNumber.findIndex(
-      (item) => item == selectChessItem.indexofChesscheck + 2
-    );
-    if (
-      stopSuggetion == false &&
-      rookIndexTwo != -1 &&
-      cornerNumber[rookIndexTwo] <= selectChessItem.indexofChesscheck + 2 &&
-      chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-      emptyBox[selectChessItem.indexofChesscheck + 2]
-    ) {
-      stopSuggetion = true;
-      emptyBox[selectChessItem.indexofChesscheck + 2].setAttribute(
-        "onClick",
-        "makeMove(2)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck + 2].style.background =
-        "#27AE60";
-    } else if (
-      stopSuggetion == false &&
-      chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-      emptyBox[selectChessItem.indexofChesscheck + 2]
-    ) {
-      emptyBox[selectChessItem.indexofChesscheck + 2].setAttribute(
-        "onClick",
-        "makeMove(2)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck + 2].style.background =
-        "#27AE60";
-    }
-    let rookIndexThree = cornerNumber.findIndex(
-      (item) => item == selectChessItem.indexofChesscheck + 3
-    );
-    if (
-      stopSuggetion == false &&
-      rookIndexThree != -1 &&
-      cornerNumber[rookIndexThree] <= selectChessItem.indexofChesscheck + 3 &&
-      chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-      emptyBox[selectChessItem.indexofChesscheck + 3]
-    ) {
-      stopSuggetion = true;
-      emptyBox[selectChessItem.indexofChesscheck + 3].setAttribute(
-        "onClick",
-        "makeMove(3)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck + 3].style.background =
-        "#27AE60";
-    } else if (
-      stopSuggetion == false &&
-      chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-      emptyBox[selectChessItem.indexofChesscheck + 3]
-    ) {
-      emptyBox[selectChessItem.indexofChesscheck + 3].setAttribute(
-        "onClick",
-        "makeMove(3)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck + 3].style.background =
-        "#27AE60";
-    }
-    let rookIndexFour = cornerNumber.findIndex(
-      (item) => item == selectChessItem.indexofChesscheck + 4
-    );
-    if (
-      stopSuggetion == false &&
-      rookIndexFour != -1 &&
-      cornerNumber[rookIndexFour] <= selectChessItem.indexofChesscheck + 4 &&
-      chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
-      emptyBox[selectChessItem.indexofChesscheck + 4]
-    ) {
-      stopSuggetion = true;
-      emptyBox[selectChessItem.indexofChesscheck + 4].setAttribute(
-        "onClick",
-        "makeMove(4)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck + 4].style.background =
-        "#27AE60";
-    } else if (
-      stopSuggetion == false &&
-      chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
-      emptyBox[selectChessItem.indexofChesscheck + 4]
-    ) {
-      emptyBox[selectChessItem.indexofChesscheck + 4].setAttribute(
-        "onClick",
-        "makeMove(4)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck + 4].style.background =
-        "#27AE60";
-    }
-    let rookIndexFive = cornerNumber.findIndex(
-      (item) => item == selectChessItem.indexofChesscheck + 5
-    );
-    if (
-      stopSuggetion == false &&
-      rookIndexFive != -1 &&
-      cornerNumber[rookIndexFive] <= selectChessItem.indexofChesscheck + 5 &&
-      chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
-      emptyBox[selectChessItem.indexofChesscheck + 5]
-    ) {
-      stopSuggetion = true;
-      emptyBox[selectChessItem.indexofChesscheck + 5].setAttribute(
-        "onClick",
-        "makeMove(5)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck + 5].style.background =
-        "#27AE60";
-    } else if (
-      stopSuggetion == false &&
-      chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
-      emptyBox[selectChessItem.indexofChesscheck + 5]
-    ) {
-      emptyBox[selectChessItem.indexofChesscheck + 5].setAttribute(
-        "onClick",
-        "makeMove(5)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck + 5].style.background =
-        "#27AE60";
-    }
-    let rookIndexFSix = cornerNumber.findIndex(
-      (item) => item == selectChessItem.indexofChesscheck + 6
-    );
-    if (
-      stopSuggetion == false &&
-      rookIndexFSix != -1 &&
-      cornerNumber[rookIndexFSix] <= selectChessItem.indexofChesscheck + 6 &&
-      chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
-      emptyBox[selectChessItem.indexofChesscheck + 6]
-    ) {
-      stopSuggetion = true;
-      emptyBox[selectChessItem.indexofChesscheck + 6].setAttribute(
-        "onClick",
-        "makeMove(6)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck + 6].style.background =
-        "#27AE60";
-    } else if (
-      stopSuggetion == false &&
-      chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
-      emptyBox[selectChessItem.indexofChesscheck + 6]
-    ) {
-      emptyBox[selectChessItem.indexofChesscheck + 6].setAttribute(
-        "onClick",
-        "makeMove(6)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck + 6].style.background =
-        "#27AE60";
-    }
-    let rookIndexFSeven = cornerNumber.findIndex(
-      (item) => item == selectChessItem.indexofChesscheck + 7
-    );
-    if (
-      stopSuggetion == false &&
-      rookIndexFSeven != -1 &&
-      cornerNumber[rookIndexFSeven] <= selectChessItem.indexofChesscheck + 7 &&
-      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-      emptyBox[selectChessItem.indexofChesscheck + 7]
-    ) {
-      stopSuggetion = true;
-      emptyBox[selectChessItem.indexofChesscheck + 7].setAttribute(
-        "onClick",
-        "makeMove(7)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck + 7].style.background =
-        "#27AE60";
-    } else if (
-      stopSuggetion == false &&
-      chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-      emptyBox[selectChessItem.indexofChesscheck + 7]
-    ) {
-      emptyBox[selectChessItem.indexofChesscheck + 7].setAttribute(
-        "onClick",
-        "makeMove(7)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck + 7].style.background =
-        "#27AE60";
-    }
-  }
-
-  if (chessBoard[selectChessItem.indexofChesscheck - 1] === null) {
-    let stopSuggetion = false;
-    let rookIndexOne = cornerNumber.findIndex(
-      (item) => item == selectChessItem.indexofChesscheck - 1
-    );
-    if (
-      rookIndexOne != -1 &&
-      cornerNumber[rookIndexOne] <= selectChessItem.indexofChesscheck + 1 &&
-      chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-      emptyBox[selectChessItem.indexofChesscheck - 1]
-    ) {
-      stopSuggetion = true;
-      emptyBox[selectChessItem.indexofChesscheck - 1].setAttribute(
-        "onClick",
-        "makeMove(-1)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck - 1].style.background =
-        "#27AE60";
-    } else if (
-      chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-      emptyBox[selectChessItem.indexofChesscheck - 1]
-    ) {
-      emptyBox[selectChessItem.indexofChesscheck - 1].setAttribute(
-        "onClick",
-        "makeMove(-1)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck - 1].style.background =
-        "#27AE60";
-    }
-    let rookIndexTwo = cornerNumber.findIndex(
-      (item) => item == selectChessItem.indexofChesscheck - 2
-    );
-    if (
-      stopSuggetion == false &&
-      rookIndexTwo != -1 &&
-      cornerNumber[rookIndexTwo] <= selectChessItem.indexofChesscheck - 2 &&
-      chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-      emptyBox[selectChessItem.indexofChesscheck - 2]
-    ) {
-      stopSuggetion = true;
-      emptyBox[selectChessItem.indexofChesscheck - 2].setAttribute(
-        "onClick",
-        "makeMove(-2)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck - 2].style.background =
-        "#27AE60";
-    } else if (
-      stopSuggetion == false &&
-      chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-      emptyBox[selectChessItem.indexofChesscheck - 2]
-    ) {
-      emptyBox[selectChessItem.indexofChesscheck - 2].setAttribute(
-        "onClick",
-        "makeMove(-2)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck - 2].style.background =
-        "#27AE60";
-    }
-    let rookIndexThree = cornerNumber.findIndex(
-      (item) => item == selectChessItem.indexofChesscheck - 3
-    );
-    if (
-      stopSuggetion == false &&
-      rookIndexThree != -1 &&
-      cornerNumber[rookIndexThree] <= selectChessItem.indexofChesscheck - 3 &&
-      chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
-      emptyBox[selectChessItem.indexofChesscheck - 3]
-    ) {
-      stopSuggetion = true;
-      emptyBox[selectChessItem.indexofChesscheck - 3].setAttribute(
-        "onClick",
-        "makeMove(-3)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck - 3].style.background =
-        "#27AE60";
-    } else if (
-      stopSuggetion == false &&
-      chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
-      emptyBox[selectChessItem.indexofChesscheck - 3]
-    ) {
-      emptyBox[selectChessItem.indexofChesscheck - 3].setAttribute(
-        "onClick",
-        "makeMove(-3)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck - 3].style.background =
-        "#27AE60";
-    }
-    let rookIndexFour = cornerNumber.findIndex(
-      (item) => item == selectChessItem.indexofChesscheck - 4
-    );
-    if (
-      stopSuggetion == false &&
-      rookIndexFour != -1 &&
-      cornerNumber[rookIndexFour] <= selectChessItem.indexofChesscheck - 4 &&
-      chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
-      emptyBox[selectChessItem.indexofChesscheck - 4]
-    ) {
-      stopSuggetion = true;
-      emptyBox[selectChessItem.indexofChesscheck - 4].setAttribute(
-        "onClick",
-        "makeMove(-4)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck - 4].style.background =
-        "#27AE60";
-    } else if (
-      stopSuggetion == false &&
-      chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
-      emptyBox[selectChessItem.indexofChesscheck - 4]
-    ) {
-      emptyBox[selectChessItem.indexofChesscheck - 4].setAttribute(
-        "onClick",
-        "makeMove(-4)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck - 4].style.background =
-        "#27AE60";
-    }
-    let rookIndexFive = cornerNumber.findIndex(
-      (item) => item == selectChessItem.indexofChesscheck - 5
-    );
-    if (
-      stopSuggetion == false &&
-      rookIndexFive != -1 &&
-      cornerNumber[rookIndexFive] <= selectChessItem.indexofChesscheck - 5 &&
-      chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
-      emptyBox[selectChessItem.indexofChesscheck - 5]
-    ) {
-      stopSuggetion = true;
-      emptyBox[selectChessItem.indexofChesscheck - 5].setAttribute(
-        "onClick",
-        "makeMove(-5)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck - 5].style.background =
-        "#27AE60";
-    } else if (
-      stopSuggetion == false &&
-      chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
-      emptyBox[selectChessItem.indexofChesscheck - 5]
-    ) {
-      emptyBox[selectChessItem.indexofChesscheck - 5].setAttribute(
-        "onClick",
-        "makeMove(-5)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck - 5].style.background =
-        "#27AE60";
-    }
-    let rookIndexFSix = cornerNumber.findIndex(
-      (item) => item == selectChessItem.indexofChesscheck - 6
-    );
-    if (
-      stopSuggetion == false &&
-      rookIndexFSix != -1 &&
-      cornerNumber[rookIndexFSix] <= selectChessItem.indexofChesscheck - 6 &&
-      chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
-      emptyBox[selectChessItem.indexofChesscheck - 6]
-    ) {
-      stopSuggetion = true;
-      emptyBox[selectChessItem.indexofChesscheck - 6].setAttribute(
-        "onClick",
-        "makeMove(-6)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck - 6].style.background =
-        "#27AE60";
-    } else if (
-      stopSuggetion == false &&
-      chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
-      emptyBox[selectChessItem.indexofChesscheck - 6]
-    ) {
-      emptyBox[selectChessItem.indexofChesscheck - 6].setAttribute(
-        "onClick",
-        "makeMove(-6)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck - 6].style.background =
-        "#27AE60";
-    }
-    let rookIndexFSeven = cornerNumber.findIndex(
-      (item) => item == selectChessItem.indexofChesscheck - 7
-    );
-    if (
-      stopSuggetion == false &&
-      rookIndexFSeven != -1 &&
-      cornerNumber[rookIndexFSeven] <= selectChessItem.indexofChesscheck - 7 &&
-      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
-      emptyBox[selectChessItem.indexofChesscheck - 7]
-    ) {
-      stopSuggetion = true;
-      emptyBox[selectChessItem.indexofChesscheck - 7].setAttribute(
-        "onClick",
-        "makeMove(-7)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck - 7].style.background =
-        "#27AE60";
-    } else if (
-      stopSuggetion == false &&
-      chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
+      classOne === "BLACK_PIECE" &&
+      chessBoard[selectChessItem.indexofChesscheck - 7] &&
       emptyBox[selectChessItem.indexofChesscheck - 7]
     ) {
       emptyBox[selectChessItem.indexofChesscheck - 7].setAttribute(
@@ -12025,1269 +12995,713 @@ function isWhiteQueen() {
         "makeMove(-7)"
       );
       emptyBox[selectChessItem.indexofChesscheck - 7].style.background =
-        "#27AE60";
+        "#CA2F1F";
     }
   }
 
-  let wQClassEight =
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 8)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 8)
-      .getElementsByTagName("img")
-      .item(0).className;
+  // FOR KILL -9 BLACK PIECES
   if (
-    wQClassEight === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 8] &&
-    emptyBox[selectChessItem.indexofChesscheck - 8]
+    selectChessItem.indexofChesscheck - 9 >= currentLineBetween[0] - 8 &&
+    selectChessItem.indexofChesscheck - 9 >= 0 &&
+    chessBoard[selectChessItem.indexofChesscheck - 9] == null &&
+    !currentSide.includes(selectChessItem.indexofChesscheck - 9)
   ) {
-    emptyBox[selectChessItem.indexofChesscheck - 8].setAttribute(
-      "onClick",
-      "makeMove(-8)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 8].style.background =
-      "#CA2F1F";
-  }
-  let wQClassPEight =
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 8)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 8)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassPEight === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 8] &&
-    emptyBox[selectChessItem.indexofChesscheck + 8]
+    if (
+      selectChessItem.indexofChesscheck - 18 >= 0 &&
+      chessBoard[selectChessItem.indexofChesscheck - 18] == null &&
+      !currentSide.includes(selectChessItem.indexofChesscheck - 18)
+    ) {
+      if (
+        selectChessItem.indexofChesscheck - 27 >= 0 &&
+        chessBoard[selectChessItem.indexofChesscheck - 27] == null &&
+        !currentSide.includes(selectChessItem.indexofChesscheck - 27)
+      ) {
+        if (
+          selectChessItem.indexofChesscheck - 36 >= 0 &&
+          chessBoard[selectChessItem.indexofChesscheck - 36] == null &&
+          !currentSide.includes(selectChessItem.indexofChesscheck - 36)
+        ) {
+          if (
+            selectChessItem.indexofChesscheck - 45 >= 0 &&
+            chessBoard[selectChessItem.indexofChesscheck - 45] == null &&
+            !currentSide.includes(selectChessItem.indexofChesscheck - 45)
+          ) {
+            if (
+              selectChessItem.indexofChesscheck - 54 >= 0 &&
+              chessBoard[selectChessItem.indexofChesscheck - 54] == null &&
+              !currentSide.includes(selectChessItem.indexofChesscheck - 54)
+            ) {
+              if (
+                selectChessItem.indexofChesscheck - 63 >= 0 &&
+                chessBoard[selectChessItem.indexofChesscheck - 63]
+              ) {
+                let classSThree =
+                  document.getElementById(
+                    selectChessItem.indexofChesscheck - 63
+                  ) &&
+                  document
+                    .getElementById(selectChessItem.indexofChesscheck - 63)
+                    .getElementsByTagName("img")
+                    .item(0) &&
+                  document
+                    .getElementById(selectChessItem.indexofChesscheck - 63)
+                    .getElementsByTagName("img")
+                    .item(0).className;
+                if (
+                  classSThree === "BLACK_PIECE" &&
+                  chessBoard[selectChessItem.indexofChesscheck - 9] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 18] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 27] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 36] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 45] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 54] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck - 63] &&
+                  emptyBox[selectChessItem.indexofChesscheck - 63]
+                ) {
+                  emptyBox[selectChessItem.indexofChesscheck - 63].setAttribute(
+                    "onClick",
+                    "makeMove(-63)"
+                  );
+                  emptyBox[
+                    selectChessItem.indexofChesscheck - 63
+                  ].style.background = "#CA2F1F";
+                }
+              }
+            } else {
+              let classFFour =
+                document.getElementById(
+                  selectChessItem.indexofChesscheck - 54
+                ) &&
+                document
+                  .getElementById(selectChessItem.indexofChesscheck - 54)
+                  .getElementsByTagName("img")
+                  .item(0) &&
+                document
+                  .getElementById(selectChessItem.indexofChesscheck - 54)
+                  .getElementsByTagName("img")
+                  .item(0).className;
+              if (
+                classFFour === "BLACK_PIECE" &&
+                chessBoard[selectChessItem.indexofChesscheck - 9] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 18] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 27] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 36] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 45] == null &&
+                chessBoard[selectChessItem.indexofChesscheck - 54] &&
+                emptyBox[selectChessItem.indexofChesscheck - 54]
+              ) {
+                emptyBox[selectChessItem.indexofChesscheck - 54].setAttribute(
+                  "onClick",
+                  "makeMove(-54)"
+                );
+                emptyBox[
+                  selectChessItem.indexofChesscheck - 54
+                ].style.background = "#CA2F1F";
+              }
+            }
+          } else {
+            let classFFive =
+              document.getElementById(selectChessItem.indexofChesscheck - 45) &&
+              document
+                .getElementById(selectChessItem.indexofChesscheck - 45)
+                .getElementsByTagName("img")
+                .item(0) &&
+              document
+                .getElementById(selectChessItem.indexofChesscheck - 45)
+                .getElementsByTagName("img")
+                .item(0).className;
+            if (
+              classFFive === "BLACK_PIECE" &&
+              chessBoard[selectChessItem.indexofChesscheck - 9] == null &&
+              chessBoard[selectChessItem.indexofChesscheck - 18] == null &&
+              chessBoard[selectChessItem.indexofChesscheck - 27] == null &&
+              chessBoard[selectChessItem.indexofChesscheck - 36] == null &&
+              chessBoard[selectChessItem.indexofChesscheck - 45] &&
+              emptyBox[selectChessItem.indexofChesscheck - 45]
+            ) {
+              emptyBox[selectChessItem.indexofChesscheck - 45].setAttribute(
+                "onClick",
+                "makeMove(-45)"
+              );
+              emptyBox[
+                selectChessItem.indexofChesscheck - 45
+              ].style.background = "#CA2F1F";
+            }
+          }
+        } else {
+          let classNine =
+            document.getElementById(selectChessItem.indexofChesscheck - 36) &&
+            document
+              .getElementById(selectChessItem.indexofChesscheck - 36)
+              .getElementsByTagName("img")
+              .item(0) &&
+            document
+              .getElementById(selectChessItem.indexofChesscheck - 36)
+              .getElementsByTagName("img")
+              .item(0).className;
+          if (
+            classNine === "BLACK_PIECE" &&
+            chessBoard[selectChessItem.indexofChesscheck - 9] == null &&
+            chessBoard[selectChessItem.indexofChesscheck - 18] == null &&
+            chessBoard[selectChessItem.indexofChesscheck - 27] == null &&
+            chessBoard[selectChessItem.indexofChesscheck - 36] &&
+            emptyBox[selectChessItem.indexofChesscheck - 36]
+          ) {
+            emptyBox[selectChessItem.indexofChesscheck - 36].setAttribute(
+              "onClick",
+              "makeMove(-36)"
+            );
+            emptyBox[selectChessItem.indexofChesscheck - 36].style.background =
+              "#CA2F1F";
+          }
+        }
+      } else {
+        let classEight =
+          document.getElementById(selectChessItem.indexofChesscheck - 27) &&
+          document
+            .getElementById(selectChessItem.indexofChesscheck - 27)
+            .getElementsByTagName("img")
+            .item(0) &&
+          document
+            .getElementById(selectChessItem.indexofChesscheck - 27)
+            .getElementsByTagName("img")
+            .item(0).className;
+        if (
+          classEight === "BLACK_PIECE" &&
+          chessBoard[selectChessItem.indexofChesscheck - 9] == null &&
+          chessBoard[selectChessItem.indexofChesscheck - 18] == null &&
+          chessBoard[selectChessItem.indexofChesscheck - 27] &&
+          emptyBox[selectChessItem.indexofChesscheck - 27]
+        ) {
+          emptyBox[selectChessItem.indexofChesscheck - 27].setAttribute(
+            "onClick",
+            "makeMove(-27)"
+          );
+          emptyBox[selectChessItem.indexofChesscheck - 27].style.background =
+            "#CA2F1F";
+        }
+      }
+    } else {
+      let classSeven =
+        document.getElementById(selectChessItem.indexofChesscheck - 18) &&
+        document
+          .getElementById(selectChessItem.indexofChesscheck - 18)
+          .getElementsByTagName("img")
+          .item(0) &&
+        document
+          .getElementById(selectChessItem.indexofChesscheck - 18)
+          .getElementsByTagName("img")
+          .item(0).className;
+      if (
+        classSeven === "BLACK_PIECE" &&
+        chessBoard[selectChessItem.indexofChesscheck - 9] == null &&
+        chessBoard[selectChessItem.indexofChesscheck - 18] &&
+        emptyBox[selectChessItem.indexofChesscheck - 18]
+      ) {
+        emptyBox[selectChessItem.indexofChesscheck - 18].setAttribute(
+          "onClick",
+          "makeMove(-18)"
+        );
+        emptyBox[selectChessItem.indexofChesscheck - 18].style.background =
+          "#CA2F1F";
+      }
+    }
+  } else if (
+    selectChessItem.indexofChesscheck - 9 >= currentLineBetween[0] - 8 &&
+    chessBoard[selectChessItem.indexofChesscheck - 9]
   ) {
-    emptyBox[selectChessItem.indexofChesscheck + 8].setAttribute(
-      "onClick",
-      "makeMove(8)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 8].style.background =
-      "#CA2F1F";
-  }
-  let wQClassSixteen =
-    document.getElementById(selectChessItem.indexofChesscheck - 16) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 16)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 16)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassSixteen === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 16] &&
-    emptyBox[selectChessItem.indexofChesscheck - 16]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 16].setAttribute(
-      "onClick",
-      "makeMove(-16)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 16].style.background =
-      "#CA2F1F";
-  }
-  let wQClassPSixteen =
-    document.getElementById(selectChessItem.indexofChesscheck + 16) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 16)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 16)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassPSixteen === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 16] &&
-    emptyBox[selectChessItem.indexofChesscheck + 16]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 16].setAttribute(
-      "onClick",
-      "makeMove(16)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 16].style.background =
-      "#CA2F1F";
-  }
-  let wQClasssixteen =
-    document.getElementById(selectChessItem.indexofChesscheck - 24) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 24)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 24)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClasssixteen === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 24] &&
-    emptyBox[selectChessItem.indexofChesscheck - 24]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 24].setAttribute(
-      "onClick",
-      "makeMove(-24)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 24].style.background =
-      "#CA2F1F";
-  }
-  let wQClassPTF =
-    document.getElementById(selectChessItem.indexofChesscheck + 24) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 24)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 24)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassPTF === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 24] &&
-    emptyBox[selectChessItem.indexofChesscheck + 24]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 24].setAttribute(
-      "onClick",
-      "makeMove(24)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 24].style.background =
-      "#CA2F1F";
-  }
-  let wQClassTF =
-    document.getElementById(selectChessItem.indexofChesscheck - 32) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 32)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 32)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassTF === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 32] &&
-    emptyBox[selectChessItem.indexofChesscheck - 32]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 32].setAttribute(
-      "onClick",
-      "makeMove(-32)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 32].style.background =
-      "#CA2F1F";
-  }
-  let wQClassPTT =
-    document.getElementById(selectChessItem.indexofChesscheck + 32) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 32)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 32)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassPTT === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 24] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 32] &&
-    emptyBox[selectChessItem.indexofChesscheck + 32]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 32].setAttribute(
-      "onClick",
-      "makeMove(32)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 32].style.background =
-      "#CA2F1F";
-  }
-  let wQClassFourty =
-    document.getElementById(selectChessItem.indexofChesscheck - 40) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 40)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 40)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassFourty === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 40] &&
-    emptyBox[selectChessItem.indexofChesscheck - 40]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 40].setAttribute(
-      "onClick",
-      "makeMove(-40)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 40].style.background =
-      "#CA2F1F";
-  }
-  let wQClassPFourty =
-    document.getElementById(selectChessItem.indexofChesscheck + 40) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 40)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 40)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassPFourty === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 24] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 32] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 40] &&
-    emptyBox[selectChessItem.indexofChesscheck + 40]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 40].setAttribute(
-      "onClick",
-      "makeMove(40)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 40].style.background =
-      "#CA2F1F";
-  }
-  let wQClassFE =
-    document.getElementById(selectChessItem.indexofChesscheck - 48) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 48)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 48)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassFE === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 40] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 48] &&
-    emptyBox[selectChessItem.indexofChesscheck - 48]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 48].setAttribute(
-      "onClick",
-      "makeMove(-48)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 48].style.background =
-      "#CA2F1F";
-  }
-  let wQClassPFE =
-    document.getElementById(selectChessItem.indexofChesscheck + 48) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 48)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 48)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassPFE === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 24] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 32] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 40] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 48] &&
-    emptyBox[selectChessItem.indexofChesscheck + 48]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 48].setAttribute(
-      "onClick",
-      "makeMove(48)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 48].style.background =
-      "#CA2F1F";
-  }
-  let wQClassFS =
-    document.getElementById(selectChessItem.indexofChesscheck - 56) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 56)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 56)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassFS === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 8] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 16] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 24] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 32] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 40] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 48] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 56] &&
-    emptyBox[selectChessItem.indexofChesscheck - 56]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 56].setAttribute(
-      "onClick",
-      "makeMove(-56)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 56].style.background =
-      "#CA2F1F";
-  }
-  let wQClassPFS =
-    document.getElementById(selectChessItem.indexofChesscheck + 56) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 56)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 56)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassPFS === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 8] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 16] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 24] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 32] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 40] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 48] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 56] &&
-    emptyBox[selectChessItem.indexofChesscheck + 56]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 56].setAttribute(
-      "onClick",
-      "makeMove(56)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 56].style.background =
-      "#CA2F1F";
+    let classSix =
+      document.getElementById(selectChessItem.indexofChesscheck - 9) &&
+      document
+        .getElementById(selectChessItem.indexofChesscheck - 9)
+        .getElementsByTagName("img")
+        .item(0) &&
+      document
+        .getElementById(selectChessItem.indexofChesscheck - 9)
+        .getElementsByTagName("img")
+        .item(0).className;
+    if (
+      classSix === "BLACK_PIECE" &&
+      chessBoard[selectChessItem.indexofChesscheck - 9] &&
+      emptyBox[selectChessItem.indexofChesscheck - 9]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck - 9].setAttribute(
+        "onClick",
+        "makeMove(-9)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck - 9].style.background =
+        "#CA2F1F";
+    }
   }
 
-  let wQClassOne =
-    document.getElementById(selectChessItem.indexofChesscheck + 1) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 1)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 1)
-      .getElementsByTagName("img")
-      .item(0).className;
+  // FOR KILL 7 BLACK PIECES
   if (
-    wQClassOne === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 1] &&
-    emptyBox[selectChessItem.indexofChesscheck + 1]
+    selectChessItem.indexofChesscheck + 7 > currentLineBetween[1] &&
+    selectChessItem.indexofChesscheck + 7 <= 63 &&
+    chessBoard[selectChessItem.indexofChesscheck + 7] == null &&
+    !currentSide.includes(selectChessItem.indexofChesscheck + 7)
   ) {
-    emptyBox[selectChessItem.indexofChesscheck + 1].setAttribute(
-      "onClick",
-      "makeMove(1)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 1].style.background =
-      "#CA2F1F";
-  }
-  let wQClassMinusOne =
-    document.getElementById(selectChessItem.indexofChesscheck - 1) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 1)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 1)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassMinusOne === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 1] &&
-    emptyBox[selectChessItem.indexofChesscheck - 1]
+    if (
+      selectChessItem.indexofChesscheck + 14 <= 63 &&
+      chessBoard[selectChessItem.indexofChesscheck + 14] == null &&
+      !currentSide.includes(selectChessItem.indexofChesscheck + 14)
+    ) {
+      if (
+        selectChessItem.indexofChesscheck + 21 <= 63 &&
+        chessBoard[selectChessItem.indexofChesscheck + 21] == null &&
+        !currentSide.includes(selectChessItem.indexofChesscheck + 21)
+      ) {
+        if (
+          selectChessItem.indexofChesscheck + 28 <= 63 &&
+          chessBoard[selectChessItem.indexofChesscheck + 28] == null &&
+          !currentSide.includes(selectChessItem.indexofChesscheck + 28)
+        ) {
+          if (
+            selectChessItem.indexofChesscheck + 35 <= 63 &&
+            chessBoard[selectChessItem.indexofChesscheck + 35] == null &&
+            !currentSide.includes(selectChessItem.indexofChesscheck + 35)
+          ) {
+            if (
+              selectChessItem.indexofChesscheck + 42 <= 63 &&
+              chessBoard[selectChessItem.indexofChesscheck + 42] == null &&
+              !currentSide.includes(selectChessItem.indexofChesscheck + 42)
+            ) {
+              if (
+                selectChessItem.indexofChesscheck + 49 <= 63 &&
+                chessBoard[selectChessItem.indexofChesscheck + 49]
+              ) {
+                let classFNine =
+                  document.getElementById(
+                    selectChessItem.indexofChesscheck + 49
+                  ) &&
+                  document
+                    .getElementById(selectChessItem.indexofChesscheck + 49)
+                    .getElementsByTagName("img")
+                    .item(0) &&
+                  document
+                    .getElementById(selectChessItem.indexofChesscheck + 49)
+                    .getElementsByTagName("img")
+                    .item(0).className;
+                if (
+                  classFNine === "BLACK_PIECE" &&
+                  chessBoard[selectChessItem.indexofChesscheck + 7] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 14] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 21] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 28] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 35] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 42] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 49] &&
+                  emptyBox[selectChessItem.indexofChesscheck + 49]
+                ) {
+                  emptyBox[selectChessItem.indexofChesscheck + 49].setAttribute(
+                    "onClick",
+                    "makeMove(49)"
+                  );
+                  emptyBox[
+                    selectChessItem.indexofChesscheck + 49
+                  ].style.background = "#CA2F1F";
+                }
+              }
+            } else {
+              let classFTwo =
+                document.getElementById(
+                  selectChessItem.indexofChesscheck + 42
+                ) &&
+                document
+                  .getElementById(selectChessItem.indexofChesscheck + 42)
+                  .getElementsByTagName("img")
+                  .item(0) &&
+                document
+                  .getElementById(selectChessItem.indexofChesscheck + 42)
+                  .getElementsByTagName("img")
+                  .item(0).className;
+              if (
+                classFTwo === "BLACK_PIECE" &&
+                chessBoard[selectChessItem.indexofChesscheck + 7] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 14] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 21] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 28] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 35] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 42] &&
+                emptyBox[selectChessItem.indexofChesscheck + 42]
+              ) {
+                emptyBox[selectChessItem.indexofChesscheck + 42].setAttribute(
+                  "onClick",
+                  "makeMove(42)"
+                );
+                emptyBox[
+                  selectChessItem.indexofChesscheck + 42
+                ].style.background = "#CA2F1F";
+              }
+            }
+          } else {
+            let classFive =
+              document.getElementById(selectChessItem.indexofChesscheck + 35) &&
+              document
+                .getElementById(selectChessItem.indexofChesscheck + 35)
+                .getElementsByTagName("img")
+                .item(0) &&
+              document
+                .getElementById(selectChessItem.indexofChesscheck + 35)
+                .getElementsByTagName("img")
+                .item(0).className;
+            if (
+              classFive === "BLACK_PIECE" &&
+              chessBoard[selectChessItem.indexofChesscheck + 7] == null &&
+              chessBoard[selectChessItem.indexofChesscheck + 14] == null &&
+              chessBoard[selectChessItem.indexofChesscheck + 21] == null &&
+              chessBoard[selectChessItem.indexofChesscheck + 28] == null &&
+              chessBoard[selectChessItem.indexofChesscheck + 35] &&
+              emptyBox[selectChessItem.indexofChesscheck + 35]
+            ) {
+              emptyBox[selectChessItem.indexofChesscheck + 35].setAttribute(
+                "onClick",
+                "makeMove(35)"
+              );
+              emptyBox[
+                selectChessItem.indexofChesscheck + 35
+              ].style.background = "#CA2F1F";
+            }
+          }
+        } else {
+          let classFour =
+            document.getElementById(selectChessItem.indexofChesscheck + 28) &&
+            document
+              .getElementById(selectChessItem.indexofChesscheck + 28)
+              .getElementsByTagName("img")
+              .item(0) &&
+            document
+              .getElementById(selectChessItem.indexofChesscheck + 28)
+              .getElementsByTagName("img")
+              .item(0).className;
+          if (
+            classFour === "BLACK_PIECE" &&
+            chessBoard[selectChessItem.indexofChesscheck + 7] == null &&
+            chessBoard[selectChessItem.indexofChesscheck + 14] == null &&
+            chessBoard[selectChessItem.indexofChesscheck + 21] == null &&
+            chessBoard[selectChessItem.indexofChesscheck + 28] &&
+            emptyBox[selectChessItem.indexofChesscheck + 28]
+          ) {
+            emptyBox[selectChessItem.indexofChesscheck + 28].setAttribute(
+              "onClick",
+              "makeMove(28)"
+            );
+            emptyBox[selectChessItem.indexofChesscheck + 28].style.background =
+              "#CA2F1F";
+          }
+        }
+      } else {
+        let classThree =
+          document.getElementById(selectChessItem.indexofChesscheck + 21) &&
+          document
+            .getElementById(selectChessItem.indexofChesscheck + 21)
+            .getElementsByTagName("img")
+            .item(0) &&
+          document
+            .getElementById(selectChessItem.indexofChesscheck + 21)
+            .getElementsByTagName("img")
+            .item(0).className;
+        if (
+          classThree === "BLACK_PIECE" &&
+          chessBoard[selectChessItem.indexofChesscheck + 7] == null &&
+          chessBoard[selectChessItem.indexofChesscheck + 14] == null &&
+          chessBoard[selectChessItem.indexofChesscheck + 21] &&
+          emptyBox[selectChessItem.indexofChesscheck + 21]
+        ) {
+          emptyBox[selectChessItem.indexofChesscheck + 21].setAttribute(
+            "onClick",
+            "makeMove(21)"
+          );
+          emptyBox[selectChessItem.indexofChesscheck + 21].style.background =
+            "#CA2F1F";
+        }
+      }
+    } else {
+      let classTwo =
+        document.getElementById(selectChessItem.indexofChesscheck + 14) &&
+        document
+          .getElementById(selectChessItem.indexofChesscheck + 14)
+          .getElementsByTagName("img")
+          .item(0) &&
+        document
+          .getElementById(selectChessItem.indexofChesscheck + 14)
+          .getElementsByTagName("img")
+          .item(0).className;
+      if (
+        classTwo === "BLACK_PIECE" &&
+        chessBoard[selectChessItem.indexofChesscheck + 7] == null &&
+        chessBoard[selectChessItem.indexofChesscheck + 14] &&
+        emptyBox[selectChessItem.indexofChesscheck + 14]
+      ) {
+        emptyBox[selectChessItem.indexofChesscheck + 14].setAttribute(
+          "onClick",
+          "makeMove(14)"
+        );
+        emptyBox[selectChessItem.indexofChesscheck + 14].style.background =
+          "#CA2F1F";
+      }
+    }
+  } else if (
+    selectChessItem.indexofChesscheck + 7 > currentLineBetween[1] &&
+    chessBoard[selectChessItem.indexofChesscheck + 7]
   ) {
-    emptyBox[selectChessItem.indexofChesscheck - 1].setAttribute(
-      "onClick",
-      "makeMove(-1)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 1].style.background =
-      "#CA2F1F";
-  }
-  let wQClassTwo =
-    document.getElementById(selectChessItem.indexofChesscheck + 2) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 2)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 2)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassTwo === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 2] &&
-    emptyBox[selectChessItem.indexofChesscheck + 2]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 2].setAttribute(
-      "onClick",
-      "makeMove(2)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 2].style.background =
-      "#CA2F1F";
-  }
-  let wQClassMinusTwo =
-    document.getElementById(selectChessItem.indexofChesscheck - 2) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 2)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 2)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassMinusTwo === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 2] &&
-    emptyBox[selectChessItem.indexofChesscheck - 2]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 2].setAttribute(
-      "onClick",
-      "makeMove(-2)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 2].style.background =
-      "#CA2F1F";
-  }
-  let WQClassThree =
-    document.getElementById(selectChessItem.indexofChesscheck + 3) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 3)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 3)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    WQClassThree === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 3] &&
-    emptyBox[selectChessItem.indexofChesscheck + 3]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 3].setAttribute(
-      "onClick",
-      "makeMove(3)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 3].style.background =
-      "#CA2F1F";
-  }
-  let WQClassMinusThree =
-    document.getElementById(selectChessItem.indexofChesscheck - 3) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 3)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 3)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    WQClassMinusThree === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 3] &&
-    emptyBox[selectChessItem.indexofChesscheck - 3]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 3].setAttribute(
-      "onClick",
-      "makeMove(-3)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 3].style.background =
-      "#CA2F1F";
-  }
-  let wQClassFour =
-    document.getElementById(selectChessItem.indexofChesscheck + 4) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 4)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 4)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassFour === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 4] &&
-    emptyBox[selectChessItem.indexofChesscheck + 4]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 4].setAttribute(
-      "onClick",
-      "makeMove(4)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 4].style.background =
-      "#CA2F1F";
-  }
-  let wQClassMinusFour =
-    document.getElementById(selectChessItem.indexofChesscheck - 4) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 4)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 4)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassMinusFour === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 4] &&
-    emptyBox[selectChessItem.indexofChesscheck - 4]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 4].setAttribute(
-      "onClick",
-      "makeMove(-4)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 4].style.background =
-      "#CA2F1F";
-  }
-  let wQClassFive =
-    document.getElementById(selectChessItem.indexofChesscheck + 5) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 5)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 5)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassFive === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 5] &&
-    emptyBox[selectChessItem.indexofChesscheck + 5]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 5].setAttribute(
-      "onClick",
-      "makeMove(5)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 5].style.background =
-      "#CA2F1F";
-  }
-  let wQClassMinusFive =
-    document.getElementById(selectChessItem.indexofChesscheck - 5) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 5)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 5)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassMinusFive === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 5] &&
-    emptyBox[selectChessItem.indexofChesscheck - 5]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 5].setAttribute(
-      "onClick",
-      "makeMove(-5)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 5].style.background =
-      "#CA2F1F";
-  }
-  let wQClassSix =
-    document.getElementById(selectChessItem.indexofChesscheck + 6) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 6)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 6)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassSix === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 6] &&
-    emptyBox[selectChessItem.indexofChesscheck + 6]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 6].setAttribute(
-      "onClick",
-      "makeMove(6)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 6].style.background =
-      "#CA2F1F";
-  }
-  let wQClassMinusSix =
-    document.getElementById(selectChessItem.indexofChesscheck - 6) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 6)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 6)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassMinusSix === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 6] &&
-    emptyBox[selectChessItem.indexofChesscheck - 6]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 6].setAttribute(
-      "onClick",
-      "makeMove(-6)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 6].style.background =
-      "#CA2F1F";
-  }
-  let wQClassSeven =
-    document.getElementById(selectChessItem.indexofChesscheck + 7) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 7)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 7)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassSeven === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 1] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 2] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 3] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 4] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 5] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 7] &&
-    emptyBox[selectChessItem.indexofChesscheck + 7]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 7].setAttribute(
-      "onClick",
-      "makeMove(7)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 7].style.background =
-      "#CA2F1F";
-  }
-  let wQClassminusSeven =
-    document.getElementById(selectChessItem.indexofChesscheck - 7) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 7)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 7)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassminusSeven === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 1] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 2] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 3] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 4] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 5] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 7] &&
-    emptyBox[selectChessItem.indexofChesscheck - 7]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 7].setAttribute(
-      "onClick",
-      "makeMove(-7)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 7].style.background =
-      "#CA2F1F";
-  }
-  let wQClassFourteen =
-    document.getElementById(selectChessItem.indexofChesscheck + 14) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 14)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 14)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassFourteen === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 14] &&
-    emptyBox[selectChessItem.indexofChesscheck + 14]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 14].setAttribute(
-      "onClick",
-      "makeMove(14)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 14].style.background =
-      "#CA2F1F";
-  }
-  let wQClasstOne =
-    document.getElementById(selectChessItem.indexofChesscheck + 21) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 21)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 21)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClasstOne === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 21] &&
-    emptyBox[selectChessItem.indexofChesscheck + 21]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 21].setAttribute(
-      "onClick",
-      "makeMove(21)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 21].style.background =
-      "#CA2F1F";
-  }
-  let wQClassTE =
-    document.getElementById(selectChessItem.indexofChesscheck + 28) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 28)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 28)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassTE === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 28] &&
-    emptyBox[selectChessItem.indexofChesscheck + 28]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 28].setAttribute(
-      "onClick",
-      "makeMove(28)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 28].style.background =
-      "#CA2F1F";
-  }
-  let wQClasstTF =
-    document.getElementById(selectChessItem.indexofChesscheck + 35) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 35)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 35)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClasstTF === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 35] &&
-    emptyBox[selectChessItem.indexofChesscheck + 35]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 35].setAttribute(
-      "onClick",
-      "makeMove(35)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 35].style.background =
-      "#CA2F1F";
-  }
-  let wQClasstTG =
-    document.getElementById(selectChessItem.indexofChesscheck + 42) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 42)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClasstTG === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 42] &&
-    emptyBox[selectChessItem.indexofChesscheck + 42]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 42].setAttribute(
-      "onClick",
-      "makeMove(42)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 42].style.background =
-      "#CA2F1F";
-  }
-  let wQClasstTH =
-    document.getElementById(selectChessItem.indexofChesscheck + 49) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 49)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClasstTH === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 7] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 14] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 21] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 28] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 35] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 42] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 49] &&
-    emptyBox[selectChessItem.indexofChesscheck + 49]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 49].setAttribute(
-      "onClick",
-      "makeMove(49)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 49].style.background =
-      "#CA2F1F";
-  }
-  let wQMinusSeven =
-    document.getElementById(selectChessItem.indexofChesscheck - 7) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 7)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 7)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQMinusSeven === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 7] &&
-    emptyBox[selectChessItem.indexofChesscheck - 7]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 7].setAttribute(
-      "onClick",
-      "makeMove(-7)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 7].style.background =
-      "#CA2F1F";
-  }
-  let wQMinusFourteen =
-    document.getElementById(selectChessItem.indexofChesscheck - 14) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 14)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 14)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQMinusFourteen === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 14] &&
-    emptyBox[selectChessItem.indexofChesscheck - 14]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 14].setAttribute(
-      "onClick",
-      "makeMove(-14)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 14].style.background =
-      "#CA2F1F";
-  }
-  let wQMinusTwentyOne =
-    document.getElementById(selectChessItem.indexofChesscheck - 21) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 21)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 21)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQMinusTwentyOne === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 21] &&
-    emptyBox[selectChessItem.indexofChesscheck - 21]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 21].setAttribute(
-      "onClick",
-      "makeMove(-21)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 21].style.background =
-      "#CA2F1F";
+    let classOne =
+      document.getElementById(selectChessItem.indexofChesscheck + 7) &&
+      document
+        .getElementById(selectChessItem.indexofChesscheck + 7)
+        .getElementsByTagName("img")
+        .item(0) &&
+      document
+        .getElementById(selectChessItem.indexofChesscheck + 7)
+        .getElementsByTagName("img")
+        .item(0).className;
+    if (
+      classOne === "BLACK_PIECE" &&
+      chessBoard[selectChessItem.indexofChesscheck + 7] &&
+      emptyBox[selectChessItem.indexofChesscheck + 7]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 7].setAttribute(
+        "onClick",
+        "makeMove(7)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 7].style.background =
+        "#CA2F1F";
+    }
   }
 
-  let wQMinusTwentyEight =
-    document.getElementById(selectChessItem.indexofChesscheck - 28) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 28)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 28)
-      .getElementsByTagName("img")
-      .item(0).className;
+  // FOR KILL 9 BLACK PIECES
   if (
-    wQMinusTwentyEight === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 28] &&
-    emptyBox[selectChessItem.indexofChesscheck - 28]
+    selectChessItem.indexofChesscheck + 9 <= currentLineBetween[1] + 8 &&
+    selectChessItem.indexofChesscheck + 9 <= 63 &&
+    chessBoard[selectChessItem.indexofChesscheck + 9] == null &&
+    !currentSide.includes(selectChessItem.indexofChesscheck + 9)
   ) {
-    emptyBox[selectChessItem.indexofChesscheck - 28].setAttribute(
-      "onClick",
-      "makeMove(-28)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 28].style.background =
-      "#CA2F1F";
-  }
-  let wQMinusThirtyFive =
-    document.getElementById(selectChessItem.indexofChesscheck - 35) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 35)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 35)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQMinusThirtyFive === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 28] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 35] &&
-    emptyBox[selectChessItem.indexofChesscheck - 35]
+    if (
+      selectChessItem.indexofChesscheck + 18 <= 63 &&
+      chessBoard[selectChessItem.indexofChesscheck + 18] == null &&
+      !currentSide.includes(selectChessItem.indexofChesscheck + 18)
+    ) {
+      if (
+        selectChessItem.indexofChesscheck + 27 <= 63 &&
+        chessBoard[selectChessItem.indexofChesscheck + 27] == null &&
+        !currentSide.includes(selectChessItem.indexofChesscheck + 27)
+      ) {
+        if (
+          selectChessItem.indexofChesscheck + 36 <= 63 &&
+          chessBoard[selectChessItem.indexofChesscheck + 36] == null &&
+          !currentSide.includes(selectChessItem.indexofChesscheck + 36)
+        ) {
+          if (
+            selectChessItem.indexofChesscheck + 45 <= 63 &&
+            chessBoard[selectChessItem.indexofChesscheck + 45] == null &&
+            !currentSide.includes(selectChessItem.indexofChesscheck + 45)
+          ) {
+            if (
+              selectChessItem.indexofChesscheck + 54 <= 63 &&
+              chessBoard[selectChessItem.indexofChesscheck + 54] == null &&
+              !currentSide.includes(selectChessItem.indexofChesscheck + 54)
+            ) {
+              if (
+                selectChessItem.indexofChesscheck + 63 <= 63 &&
+                chessBoard[selectChessItem.indexofChesscheck + 63]
+              ) {
+                let classPSThree =
+                  document.getElementById(
+                    selectChessItem.indexofChesscheck + 63
+                  ) &&
+                  document
+                    .getElementById(selectChessItem.indexofChesscheck + 63)
+                    .getElementsByTagName("img")
+                    .item(0) &&
+                  document
+                    .getElementById(selectChessItem.indexofChesscheck + 63)
+                    .getElementsByTagName("img")
+                    .item(0).className;
+                if (
+                  classPSThree === "BLACK_PIECE" &&
+                  chessBoard[selectChessItem.indexofChesscheck + 9] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 18] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 27] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 36] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 45] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 54] == null &&
+                  chessBoard[selectChessItem.indexofChesscheck + 63] &&
+                  emptyBox[selectChessItem.indexofChesscheck + 63]
+                ) {
+                  emptyBox[selectChessItem.indexofChesscheck + 63].setAttribute(
+                    "onClick",
+                    "makeMove(63)"
+                  );
+                  emptyBox[
+                    selectChessItem.indexofChesscheck + 63
+                  ].style.background = "#CA2F1F";
+                }
+              }
+            } else {
+              let classPFFour =
+                document.getElementById(
+                  selectChessItem.indexofChesscheck + 54
+                ) &&
+                document
+                  .getElementById(selectChessItem.indexofChesscheck + 54)
+                  .getElementsByTagName("img")
+                  .item(0) &&
+                document
+                  .getElementById(selectChessItem.indexofChesscheck + 54)
+                  .getElementsByTagName("img")
+                  .item(0).className;
+              if (
+                classPFFour === "BLACK_PIECE" &&
+                chessBoard[selectChessItem.indexofChesscheck + 9] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 18] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 27] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 36] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 45] == null &&
+                chessBoard[selectChessItem.indexofChesscheck + 54] &&
+                emptyBox[selectChessItem.indexofChesscheck + 54]
+              ) {
+                emptyBox[selectChessItem.indexofChesscheck + 54].setAttribute(
+                  "onClick",
+                  "makeMove(54)"
+                );
+                emptyBox[
+                  selectChessItem.indexofChesscheck + 54
+                ].style.background = "#CA2F1F";
+              }
+            }
+          } else {
+            let classPFFive =
+              document.getElementById(selectChessItem.indexofChesscheck + 45) &&
+              document
+                .getElementById(selectChessItem.indexofChesscheck + 45)
+                .getElementsByTagName("img")
+                .item(0) &&
+              document
+                .getElementById(selectChessItem.indexofChesscheck + 45)
+                .getElementsByTagName("img")
+                .item(0).className;
+            if (
+              classPFFive === "BLACK_PIECE" &&
+              chessBoard[selectChessItem.indexofChesscheck + 9] == null &&
+              chessBoard[selectChessItem.indexofChesscheck + 18] == null &&
+              chessBoard[selectChessItem.indexofChesscheck + 27] == null &&
+              chessBoard[selectChessItem.indexofChesscheck + 36] == null &&
+              chessBoard[selectChessItem.indexofChesscheck + 45] &&
+              emptyBox[selectChessItem.indexofChesscheck + 45]
+            ) {
+              emptyBox[selectChessItem.indexofChesscheck + 45].setAttribute(
+                "onClick",
+                "makeMove(45)"
+              );
+              emptyBox[
+                selectChessItem.indexofChesscheck + 45
+              ].style.background = "#CA2F1F";
+            }
+          }
+        } else {
+          let classPTSix =
+            document.getElementById(selectChessItem.indexofChesscheck + 36) &&
+            document
+              .getElementById(selectChessItem.indexofChesscheck + 36)
+              .getElementsByTagName("img")
+              .item(0) &&
+            document
+              .getElementById(selectChessItem.indexofChesscheck + 36)
+              .getElementsByTagName("img")
+              .item(0).className;
+          if (
+            classPTSix === "BLACK_PIECE" &&
+            chessBoard[selectChessItem.indexofChesscheck + 9] == null &&
+            chessBoard[selectChessItem.indexofChesscheck + 18] == null &&
+            chessBoard[selectChessItem.indexofChesscheck + 27] == null &&
+            chessBoard[selectChessItem.indexofChesscheck + 36] &&
+            emptyBox[selectChessItem.indexofChesscheck + 36]
+          ) {
+            emptyBox[selectChessItem.indexofChesscheck + 36].setAttribute(
+              "onClick",
+              "makeMove(36)"
+            );
+            emptyBox[selectChessItem.indexofChesscheck + 36].style.background =
+              "#CA2F1F";
+          }
+        }
+      } else {
+        let classPTSeven =
+          document.getElementById(selectChessItem.indexofChesscheck + 27) &&
+          document
+            .getElementById(selectChessItem.indexofChesscheck + 27)
+            .getElementsByTagName("img")
+            .item(0) &&
+          document
+            .getElementById(selectChessItem.indexofChesscheck + 27)
+            .getElementsByTagName("img")
+            .item(0).className;
+        if (
+          classPTSeven === "BLACK_PIECE" &&
+          chessBoard[selectChessItem.indexofChesscheck + 9] == null &&
+          chessBoard[selectChessItem.indexofChesscheck + 18] == null &&
+          chessBoard[selectChessItem.indexofChesscheck + 27] &&
+          emptyBox[selectChessItem.indexofChesscheck + 27]
+        ) {
+          emptyBox[selectChessItem.indexofChesscheck + 27].setAttribute(
+            "onClick",
+            "makeMove(27)"
+          );
+          emptyBox[selectChessItem.indexofChesscheck + 27].style.background =
+            "#CA2F1F";
+        }
+      }
+    } else {
+      let classPEighty =
+        document.getElementById(selectChessItem.indexofChesscheck + 18) &&
+        document
+          .getElementById(selectChessItem.indexofChesscheck + 18)
+          .getElementsByTagName("img")
+          .item(0) &&
+        document
+          .getElementById(selectChessItem.indexofChesscheck + 18)
+          .getElementsByTagName("img")
+          .item(0).className;
+      if (
+        classPEighty === "BLACK_PIECE" &&
+        chessBoard[selectChessItem.indexofChesscheck + 9] == null &&
+        chessBoard[selectChessItem.indexofChesscheck + 18] &&
+        emptyBox[selectChessItem.indexofChesscheck + 18]
+      ) {
+        emptyBox[selectChessItem.indexofChesscheck + 18].setAttribute(
+          "onClick",
+          "makeMove(18)"
+        );
+        emptyBox[selectChessItem.indexofChesscheck + 18].style.background =
+          "#CA2F1F";
+      }
+    }
+  } else if (
+    selectChessItem.indexofChesscheck + 9 <= currentLineBetween[1] + 8 &&
+    chessBoard[selectChessItem.indexofChesscheck + 9]
   ) {
-    emptyBox[selectChessItem.indexofChesscheck - 35].setAttribute(
-      "onClick",
-      "makeMove(-35)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 35].style.background =
-      "#CA2F1F";
-  }
-  let wQMinusFourtyTwo =
-    document.getElementById(selectChessItem.indexofChesscheck - 42) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 42)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 42)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQMinusFourtyTwo === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 28] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 35] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 42] &&
-    emptyBox[selectChessItem.indexofChesscheck - 42]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 42].setAttribute(
-      "onClick",
-      "makeMove(-42)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 42].style.background =
-      "#CA2F1F";
-  }
-  let wQMinusFourtyNine =
-    document.getElementById(selectChessItem.indexofChesscheck - 49) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 49)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 49)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQMinusFourtyNine === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 7] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 14] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 21] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 28] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 35] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 42] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 49] &&
-    emptyBox[selectChessItem.indexofChesscheck - 49]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 49].setAttribute(
-      "onClick",
-      "makeMove(-49)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 49].style.background =
-      "#CA2F1F";
-  }
-  let wQClassnine =
-    document.getElementById(selectChessItem.indexofChesscheck + 9) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 9)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 9)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassnine === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 9] &&
-    emptyBox[selectChessItem.indexofChesscheck + 9]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 9].setAttribute(
-      "onClick",
-      "makeMove(9)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 9].style.background =
-      "#CA2F1F";
-  }
-  let wQClassMinusNine =
-    document.getElementById(selectChessItem.indexofChesscheck - 9) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 9)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 9)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassMinusNine === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 9] &&
-    emptyBox[selectChessItem.indexofChesscheck - 9]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 9].setAttribute(
-      "onClick",
-      "makeMove(-9)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 9].style.background =
-      "#CA2F1F";
-  }
-  let wQClasseighteen =
-    document.getElementById(selectChessItem.indexofChesscheck + 18) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 18)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 18)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClasseighteen === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 18] &&
-    emptyBox[selectChessItem.indexofChesscheck + 18]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 18].setAttribute(
-      "onClick",
-      "makeMove(18)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 18].style.background =
-      "#CA2F1F";
-  }
-  let wQClassMinusNighteen =
-    document.getElementById(selectChessItem.indexofChesscheck - 18) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 18)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 18)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClassMinusNighteen === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 18] &&
-    emptyBox[selectChessItem.indexofChesscheck - 18]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 18].setAttribute(
-      "onClick",
-      "makeMove(-18)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 18].style.background =
-      "#CA2F1F";
-  }
-  let wQClasstTS =
-    document.getElementById(selectChessItem.indexofChesscheck + 27) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 27)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 27)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClasstTS === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 27] &&
-    emptyBox[selectChessItem.indexofChesscheck + 27]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 27].setAttribute(
-      "onClick",
-      "makeMove(27)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 27].style.background =
-      "#CA2F1F";
-  }
-  let wQClasstMinusTS =
-    document.getElementById(selectChessItem.indexofChesscheck - 27) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 27)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 27)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClasstMinusTS === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 27] &&
-    emptyBox[selectChessItem.indexofChesscheck - 27]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 27].setAttribute(
-      "onClick",
-      "makeMove(-27)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 27].style.background =
-      "#CA2F1F";
-  }
-  let wQClasstTSix =
-    document.getElementById(selectChessItem.indexofChesscheck + 36) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 36)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 36)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClasstTSix === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 36] &&
-    emptyBox[selectChessItem.indexofChesscheck + 36]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 36].setAttribute(
-      "onClick",
-      "makeMove(36)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 36].style.background =
-      "#CA2F1F";
-  }
-  let wQClasstMinusTSix =
-    document.getElementById(selectChessItem.indexofChesscheck - 36) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 36)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 36)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClasstMinusTSix === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 36] &&
-    emptyBox[selectChessItem.indexofChesscheck - 36]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 36].setAttribute(
-      "onClick",
-      "makeMove(-36)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 36].style.background =
-      "#CA2F1F";
-  }
-  let wQClasstFF =
-    document.getElementById(selectChessItem.indexofChesscheck + 45) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 45)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck + 45)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClasstFF === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck + 9] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 18] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 27] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 36] === null &&
-    chessBoard[selectChessItem.indexofChesscheck + 45] &&
-    emptyBox[selectChessItem.indexofChesscheck + 45]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck + 45].setAttribute(
-      "onClick",
-      "makeMove(45)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck + 45].style.background =
-      "#CA2F1F";
-  }
-  let wQClasstMinusFF =
-    document.getElementById(selectChessItem.indexofChesscheck - 45) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 45)
-      .getElementsByTagName("img")
-      .item(0) &&
-    document
-      .getElementById(selectChessItem.indexofChesscheck - 45)
-      .getElementsByTagName("img")
-      .item(0).className;
-  if (
-    wQClasstMinusFF === "BLACK_PIECE" &&
-    chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 18] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 27] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 36] === null &&
-    chessBoard[selectChessItem.indexofChesscheck - 45] &&
-    emptyBox[selectChessItem.indexofChesscheck - 45]
-  ) {
-    emptyBox[selectChessItem.indexofChesscheck - 45].setAttribute(
-      "onClick",
-      "makeMove(-45)"
-    );
-    emptyBox[selectChessItem.indexofChesscheck - 45].style.background =
-      "#CA2F1F";
+    let classPNine =
+      document.getElementById(selectChessItem.indexofChesscheck + 9) &&
+      document
+        .getElementById(selectChessItem.indexofChesscheck + 9)
+        .getElementsByTagName("img")
+        .item(0) &&
+      document
+        .getElementById(selectChessItem.indexofChesscheck + 9)
+        .getElementsByTagName("img")
+        .item(0).className;
+    if (
+      classPNine === "BLACK_PIECE" &&
+      chessBoard[selectChessItem.indexofChesscheck + 9] &&
+      emptyBox[selectChessItem.indexofChesscheck + 9]
+    ) {
+      emptyBox[selectChessItem.indexofChesscheck + 9].setAttribute(
+        "onClick",
+        "makeMove(9)"
+      );
+      emptyBox[selectChessItem.indexofChesscheck + 9].style.background =
+        "#CA2F1F";
+    }
   }
 }
 
@@ -13467,101 +13881,101 @@ function rejoinGame({ tableData, remainTime }) {
       let tdId = piece.id;
       let tdElement = document.getElementById(tdId);
       if (piece.name == "BLACK_ROOK_1") {
-        tdElement.innerHTML = `<img
-        src="./images/pieces/black/black_rook.png"
-        class="BLACK_PIECE"
-        id="BLACK_ROOK_1"
-      />`;
-      } else if (piece.name == "BLACK_KNIGHT_1") {
-        tdElement.innerHTML = `<img
-        class="BLACK_PIECE"
-        src="images/pieces/black/black_knight.png"
-        id="BLACK_KNIGHT_1"
-      />`;
-      } else if (piece.name == "BLACK_BISHOP_1") {
-        tdElement.innerHTML = `<img
-        class="BLACK_PIECE"
-        src="images/pieces/black/black_bishop.png"
-        id="BLACK_BISHOP_1"
-      />`;
-      } else if (piece.name == "BLACK_QUREEN") {
-        tdElement.innerHTML = `<img
-        class="BLACK_PIECE"
-        src="images/pieces/black/black_queen.png"
-        id="BLACK_QUREEN_1"
-      />`;
-      } else if (piece.name == "BLACK_KING") {
-        tdElement.innerHTML = `<img
-        class="BLACK_PIECE"
-        src="images/pieces/black/black_king.png"
-        id="BLACK_KING"
-      />`;
-      } else if (piece.name == "BLACK_BISHOP_2") {
-        tdElement.innerHTML = `<img
-        class="BLACK_PIECE"
-        src="images/pieces/black/black_bishop.png"
-        id="BLACK_BISHOP_2"
-      />`;
-      } else if (piece.name == "BLACK_KNIGHT_2") {
-        tdElement.innerHTML = `<img
-        class="BLACK_PIECE"
-        src="images/pieces/black/black_knight.png"
-        id="BLACK_KNIGHT_2"
-      />`;
-      } else if (piece.name == "BLACK_ROOK_2") {
-        tdElement.innerHTML = `<img
-        class="BLACK_PIECE"
-        src="images/pieces/black/black_rook.png"
-        id="BLACK_ROOK_2"
-      />`;
-      } else if (piece.name == "BLACK_PAWN_1") {
-        tdElement.innerHTML = `<img
-        class="BLACK_PIECE"
-        src="images/pieces/black/black_pawn.png"
-        id="BLACK_PAWN_1"
-      />`;
-      } else if (piece.name == "BLACK_PAWN_2") {
-        tdElement.innerHTML = `<img
-        class="BLACK_PIECE"
-        src="images/pieces/black/black_pawn.png"
-        id="BLACK_PAWN_2"
-      />`;
-      } else if (piece.name == "BLACK_PAWN_3") {
-        tdElement.innerHTML = `<img
-        class="BLACK_PIECE"
-        src="images/pieces/black/black_pawn.png"
-        id="BLACK_PAWN_3"
-      />`;
-      } else if (piece.name == "BLACK_PAWN_4") {
-        tdElement.innerHTML = `<img
-        class="BLACK_PIECE"
-        src="images/pieces/black/black_pawn.png"
-        id="BLACK_PAWN_4"
-      />`;
-      } else if (piece.name == "BLACK_PAWN_5") {
-        tdElement.innerHTML = `<img
-        class="BLACK_PIECE"
-        src="images/pieces/black/black_pawn.png"
-        id="BLACK_PAWN_5"
-      />`;
-      } else if (piece.name == "BLACK_PAWN_6") {
-        tdElement.innerHTML = `<img
-        class="BLACK_PIECE"
-        src="images/pieces/black/black_pawn.png"
-        id="BLACK_PAWN_6"
-      />`;
-      } else if (piece.name == "BLACK_PAWN_7") {
-        tdElement.innerHTML = `<img
-        class="BLACK_PIECE"
-        src="images/pieces/black/black_pawn.png"
-        id="BLACK_PAWN_7"
-      />`;
-      } else if (piece.name == "BLACK_PAWN_8") {
-        tdElement.innerHTML = `<img
-        class="BLACK_PIECE"
-        src="images/pieces/black/black_pawn.png"
-        id="BLACK_PAWN_8"
-      />`;
+        //   tdElement.innerHTML = `<img
+        //   src="./images/pieces/black/black_rook.png"
+        //   class="BLACK_PIECE"
+        //   id="BLACK_ROOK_1"
+        // />`;
+        // } else if (piece.name == "BLACK_KNIGHT_1") {
+        //   tdElement.innerHTML = `<img
+        //   class="BLACK_PIECE"
+        //   src="images/pieces/black/black_knight.png"
+        //   id="BLACK_KNIGHT_1"
+        // />`;
+        // } else if (piece.name == "BLACK_BISHOP_1") {
+        //   tdElement.innerHTML = `<img
+        //   class="BLACK_PIECE"
+        //   src="images/pieces/black/black_bishop.png"
+        //   id="BLACK_BISHOP_1"
+        // />`;
+        // } else if (piece.name == "BLACK_QUREEN") {
+        //   tdElement.innerHTML = `<img
+        //   class="BLACK_PIECE"
+        //   src="images/pieces/black/black_queen.png"
+        //   id="BLACK_QUREEN_1"
+        // />`;
+        // } else if (piece.name == "BLACK_KING") {
+        //   tdElement.innerHTML = `<img
+        //   class="BLACK_PIECE"
+        //   src="images/pieces/black/black_king.png"
+        //   id="BLACK_KING"
+        // />`;
+        // } else if (piece.name == "BLACK_BISHOP_2") {
+        //   tdElement.innerHTML = `<img
+        //   class="BLACK_PIECE"
+        //   src="images/pieces/black/black_bishop.png"
+        //   id="BLACK_BISHOP_2"
+        // />`;
+        // } else if (piece.name == "BLACK_KNIGHT_2") {
+        //   tdElement.innerHTML = `<img
+        //   class="BLACK_PIECE"
+        //   src="images/pieces/black/black_knight.png"
+        //   id="BLACK_KNIGHT_2"
+        // />`;
+        // } else if (piece.name == "BLACK_ROOK_2") {
+        //   tdElement.innerHTML = `<img
+        //   class="BLACK_PIECE"
+        //   src="images/pieces/black/black_rook.png"
+        //   id="BLACK_ROOK_2"
+        // />`;
+        // } else if (piece.name == "BLACK_PAWN_1") {
+        //   tdElement.innerHTML = `<img
+        //   class="BLACK_PIECE"
+        //   src="images/pieces/black/black_pawn.png"
+        //   id="BLACK_PAWN_1"
+        // />`;
+        // } else if (piece.name == "BLACK_PAWN_2") {
+        //   tdElement.innerHTML = `<img
+        //   class="BLACK_PIECE"
+        //   src="images/pieces/black/black_pawn.png"
+        //   id="BLACK_PAWN_2"
+        // />`;
+        // } else if (piece.name == "BLACK_PAWN_3") {
+        //   tdElement.innerHTML = `<img
+        //   class="BLACK_PIECE"
+        //   src="images/pieces/black/black_pawn.png"
+        //   id="BLACK_PAWN_3"
+        // />`;
+        // } else if (piece.name == "BLACK_PAWN_4") {
+        //   tdElement.innerHTML = `<img
+        //   class="BLACK_PIECE"
+        //   src="images/pieces/black/black_pawn.png"
+        //   id="BLACK_PAWN_4"
+        // />`;
+        // } else if (piece.name == "BLACK_PAWN_5") {
+        //   tdElement.innerHTML = `<img
+        //   class="BLACK_PIECE"
+        //   src="images/pieces/black/black_pawn.png"
+        //   id="BLACK_PAWN_5"
+        // />`;
+        // } else if (piece.name == "BLACK_PAWN_6") {
+        //   tdElement.innerHTML = `<img
+        //   class="BLACK_PIECE"
+        //   src="images/pieces/black/black_pawn.png"
+        //   id="BLACK_PAWN_6"
+        // />`;
+        // } else if (piece.name == "BLACK_PAWN_7") {
+        //   tdElement.innerHTML = `<img
+        //   class="BLACK_PIECE"
+        //   src="images/pieces/black/black_pawn.png"
+        //   id="BLACK_PAWN_7"
+        // />`;
+        // } else if (piece.name == "BLACK_PAWN_8") {
+        //   tdElement.innerHTML = `<img
+        //   class="BLACK_PIECE"
+        //   src="images/pieces/black/black_pawn.png"
+        //   id="BLACK_PAWN_8"
+        // />`;
       } else if (piece.name == "WHITE_PAWN_1") {
         tdElement.innerHTML = `<img
         class="WHITE_PIECE"

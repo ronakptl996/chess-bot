@@ -12,12 +12,12 @@ const botTurn = async (tableId: string) => {
   console.log("BOT TABLE DATA >>", tableData);
 
   logger.info("===================BOT TIMER DELAY START");
-  await turnTimerDelay({
-    data: {
-      nextTurn: tableData.currentTurn,
-    },
-    tableId,
-  });
+  // await turnTimerDelay({
+  //   data: {
+  //     nextTurn: tableData.currentTurn,
+  //   },
+  //   tableId,
+  // });
 
   // Random Move
   await botPossibleMove(tableData);

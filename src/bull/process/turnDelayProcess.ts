@@ -65,12 +65,12 @@ const turnDelayProcess = async (job: any) => {
 
     Event.sendToRoom(tableData._id, updateData);
 
-    await turnTimerDelay({
-      data: {
-        nextTurn: sendData.nextTurn,
-      },
-      tableId: tableData._id,
-    });
+    // await turnTimerDelay({
+    //   data: {
+    //     nextTurn: sendData.nextTurn,
+    //   },
+    //   tableId: tableData._id,
+    // });
   } else {
     let winnerId;
     tableData.playerInfo.filter((user: IUser) => {

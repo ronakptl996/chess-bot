@@ -44,12 +44,12 @@ startGameTimer.process(async (job: any) => {
 
   Event.sendToRoom(tableId, startedData);
 
-  await turnTimerDelay({
-    data: {
-      nextTurn: currentTurn,
-    },
-    tableId,
-  });
+  // await turnTimerDelay({
+  //   data: {
+  //     nextTurn: currentTurn,
+  //   },
+  //   tableId,
+  // });
 });
 
 export { startGameQueue, startGameTimer };

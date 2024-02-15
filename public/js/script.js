@@ -7110,6 +7110,7 @@ function isWhiteBishop() {
     );
     if (
       findIndexOne != -1 &&
+      selectChessItem.indexofChesscheck - 9 >= currentLineBetween[0] - 8 &&
       cornerNumber[findIndexOne] <= selectChessItem.indexofChesscheck - 9 &&
       chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 9]
@@ -10163,6 +10164,8 @@ function isWhiteQueen() {
     return;
   }
 
+  let stopSuggetion = false;
+
   let whiteMRookone =
     document.getElementById(selectChessItem.indexofChesscheck - 8) &&
     document
@@ -11115,7 +11118,8 @@ function isWhiteQueen() {
     document.getElementById(selectChessItem.indexofChesscheck + 40) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 40)
-      .getElementsByTagName("img") &&
+      .getElementsByTagName("img")
+      .item(0) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 40)
       .getElementsByTagName("img")
@@ -11140,7 +11144,8 @@ function isWhiteQueen() {
     document.getElementById(selectChessItem.indexofChesscheck + 48) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 48)
-      .getElementsByTagName("img") &&
+      .getElementsByTagName("img")
+      .item(0) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 48)
       .getElementsByTagName("img")
@@ -11166,7 +11171,8 @@ function isWhiteQueen() {
     document.getElementById(selectChessItem.indexofChesscheck + 56) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 56)
-      .getElementsByTagName("img") &&
+      .getElementsByTagName("img")
+      .item(0) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 56)
       .getElementsByTagName("img")
@@ -12516,13 +12522,17 @@ function isWhiteQueen() {
         "#27AE60";
     }
   }
-  if (chessBoard[selectChessItem.indexofChesscheck - 9] === null) {
+  if (
+    chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+    selectChessItem.indexofChesscheck - 9 >= currentLineBetween[0] - 8
+  ) {
     let stopSuggetion = false;
     let findIndexOne = cornerNumber.findIndex(
       (item) => item == selectChessItem.indexofChesscheck - 9
     );
     if (
       findIndexOne != -1 &&
+      selectChessItem.indexofChesscheck - 9 >= currentLineBetween[0] - 8 &&
       cornerNumber[findIndexOne] <= selectChessItem.indexofChesscheck - 9 &&
       chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 9]

@@ -130,6 +130,8 @@ const possibleBishopkillMove = async (
   // FOR KILL WHITE TO +9 MOVE
   if (
     Number(chooseTurnItem.id) + 9 <= 63 &&
+    currentLineBetween &&
+    Number(chooseTurnItem.id) + 9 <= currentLineBetween[1] + 8 &&
     board[Number(chooseTurnItem.id) + 9]?.name.includes("WHITE")
   ) {
     return {
@@ -138,6 +140,8 @@ const possibleBishopkillMove = async (
     };
   } else if (
     Number(chooseTurnItem.id) + 9 <= 63 &&
+    currentLineBetween &&
+    Number(chooseTurnItem.id) + 9 <= currentLineBetween[1] + 8 &&
     board[Number(chooseTurnItem.id) + 9] == null &&
     !cornerNumber.includes(Number(chooseTurnItem.id) + 9)
   ) {
@@ -340,6 +344,8 @@ const possibleBishopkillMove = async (
   // FOR KILL WHITE TO -9 MOVE
   if (
     Number(chooseTurnItem.id) - 9 >= 0 &&
+    currentLineBetween &&
+    Number(chooseTurnItem.id) - 9 >= currentLineBetween[0] - 8 &&
     board[Number(chooseTurnItem.id) - 9]?.name.includes("WHITE")
   ) {
     return {
@@ -348,6 +354,8 @@ const possibleBishopkillMove = async (
     };
   } else if (
     Number(chooseTurnItem.id) - 9 >= 0 &&
+    currentLineBetween &&
+    Number(chooseTurnItem.id) - 9 >= currentLineBetween[0] - 8 &&
     board[Number(chooseTurnItem.id) - 9] == null &&
     !cornerNumber.includes(Number(chooseTurnItem.id) - 9)
   ) {

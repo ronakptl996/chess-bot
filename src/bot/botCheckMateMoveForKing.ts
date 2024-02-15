@@ -127,7 +127,7 @@ const botCheckMateMoveForKing = (
       board[Number(chooseTurnItem.id) - 1] == null
     ) {
       return {
-        move: 1,
+        move: -1,
       };
     }
     if (

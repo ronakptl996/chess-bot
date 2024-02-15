@@ -7144,7 +7144,10 @@ function isWhiteBishop() {
         "#27AE60";
     }
   }
-  if (chessBoard[selectChessItem.indexofChesscheck - 9] === null) {
+  if (
+    chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
+    selectChessItem.indexofChesscheck - 9 >= currentLineBetween[0] - 8
+  ) {
     let stopSuggetion = false;
     let findIndexOne = cornerNumber.findIndex(
       (item) => item == selectChessItem.indexofChesscheck - 9
@@ -7164,6 +7167,7 @@ function isWhiteBishop() {
       emptyBox[selectChessItem.indexofChesscheck - 9].style.background =
         "#27AE60";
     } else if (
+      selectChessItem.indexofChesscheck - 9 >= currentLineBetween[0] - 8 &&
       chessBoard[selectChessItem.indexofChesscheck - 9] === null &&
       emptyBox[selectChessItem.indexofChesscheck - 9]
     ) {

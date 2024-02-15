@@ -5764,6 +5764,11 @@ function isWhiteKnight() {
     return;
   }
 
+  let currentLineBetween;
+  currentLineBetween = currentLine.find(
+    (arr) => selectChessItem.indexofChesscheck <= arr[1]
+  );
+
   let stopSuggetion = false;
   let wKIndexOne = cornerNumber.findIndex(
     (item) => item == selectChessItem.indexofChesscheck + 15
@@ -5771,6 +5776,7 @@ function isWhiteKnight() {
   if (
     wKIndexOne != -1 &&
     cornerNumber[selectChessItem.indexofChesscheck % 2] == 1 &&
+    selectChessItem.indexofChesscheck + 15 > currentLineBetween[1] + 8 &&
     cornerNumber[wKIndexOne] <= selectChessItem.indexofChesscheck + 15 &&
     chessBoard[selectChessItem.indexofChesscheck + 15] === null &&
     emptyBox[selectChessItem.indexofChesscheck + 15]
@@ -5783,7 +5789,7 @@ function isWhiteKnight() {
     emptyBox[selectChessItem.indexofChesscheck + 15].style.background =
       "#27AE60";
   } else if (
-    wKIndexOne == -1 &&
+    selectChessItem.indexofChesscheck + 15 > currentLineBetween[1] + 8 &&
     chessBoard[selectChessItem.indexofChesscheck + 15] === null &&
     emptyBox[selectChessItem.indexofChesscheck + 15]
   ) {
@@ -5800,7 +5806,7 @@ function isWhiteKnight() {
   if (
     stopSuggetion == false &&
     wkIndexTwo != -1 &&
-    selectChessItem.indexofChesscheck <= 8 &&
+    selectChessItem.indexofChesscheck + 17 <= currentLineBetween[1] + 16 &&
     cornerNumber[wkIndexTwo] <= selectChessItem.indexofChesscheck + 17 &&
     chessBoard[selectChessItem.indexofChesscheck + 17] === null &&
     emptyBox[selectChessItem.indexofChesscheck + 17]
@@ -5814,7 +5820,7 @@ function isWhiteKnight() {
       "#27AE60";
   } else if (
     wkIndexTwo != -1 &&
-    selectChessItem.indexofChesscheck <= 8 &&
+    selectChessItem.indexofChesscheck + 17 <= currentLineBetween[1] + 16 &&
     chessBoard[selectChessItem.indexofChesscheck + 17] === null &&
     emptyBox[selectChessItem.indexofChesscheck + 17]
   ) {
@@ -5826,6 +5832,7 @@ function isWhiteKnight() {
       "#27AE60";
   } else if (
     wkIndexTwo == -1 &&
+    selectChessItem.indexofChesscheck + 17 <= currentLineBetween[1] + 16 &&
     chessBoard[selectChessItem.indexofChesscheck + 17] === null &&
     emptyBox[selectChessItem.indexofChesscheck + 17]
   ) {
@@ -5844,6 +5851,7 @@ function isWhiteKnight() {
     stopSuggetion == false &&
     wkIndexThree != -1 &&
     cornerNumber.includes(selectChessItem.indexofChesscheck) &&
+    selectChessItem.indexofChesscheck + 6 > currentLineBetween[1] &&
     selectChessItem.indexofChesscheck % 2 != 0 &&
     chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
     emptyBox[selectChessItem.indexofChesscheck + 6]
@@ -5860,6 +5868,7 @@ function isWhiteKnight() {
     wkIndexThree != -1 &&
     cornerNumber.includes(selectChessItem.indexofChesscheck) &&
     selectChessItem.indexofChesscheck % 2 == 0 &&
+    selectChessItem.indexofChesscheck + 6 > currentLineBetween[1] &&
     chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
     emptyBox[selectChessItem.indexofChesscheck + 6]
   ) {
@@ -5872,6 +5881,7 @@ function isWhiteKnight() {
   } else if (
     stopSuggetion == false &&
     wkIndexThree != -1 &&
+    selectChessItem.indexofChesscheck + 6 > currentLineBetween[1] &&
     (selectChessItem.indexofChesscheck + 6) % 2 == 0 &&
     chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
     emptyBox[selectChessItem.indexofChesscheck + 6]
@@ -5887,6 +5897,7 @@ function isWhiteKnight() {
     wkIndexThree == -1 &&
     (!cornerNumber.includes(selectChessItem.indexofChesscheck) ||
       selectChessItem.indexofChesscheck % 2 != 0) &&
+    selectChessItem.indexofChesscheck + 6 > currentLineBetween[1] &&
     chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
     emptyBox[selectChessItem.indexofChesscheck + 6]
   ) {
@@ -5904,6 +5915,7 @@ function isWhiteKnight() {
   if (
     stopSuggetion == false &&
     wkIndexFour != -1 &&
+    selectChessItem.indexofChesscheck + 10 <= currentLineBetween[1] + 8 &&
     cornerNumber[wkIndexFour] <= selectChessItem.indexofChesscheck + 10 &&
     chessBoard[selectChessItem.indexofChesscheck + 10] === null &&
     emptyBox[selectChessItem.indexofChesscheck + 10]
@@ -5919,6 +5931,7 @@ function isWhiteKnight() {
   } else if (
     stopSuggetion == false &&
     wkIndexFour == -1 &&
+    selectChessItem.indexofChesscheck + 10 <= currentLineBetween[1] + 8 &&
     chessBoard[selectChessItem.indexofChesscheck + 10] === null &&
     emptyBox[selectChessItem.indexofChesscheck + 10]
   ) {
@@ -5931,6 +5944,7 @@ function isWhiteKnight() {
   } else if (
     stopSuggetion == true &&
     wkIndexFour == -1 &&
+    selectChessItem.indexofChesscheck + 10 <= currentLineBetween[1] + 8 &&
     chessBoard[selectChessItem.indexofChesscheck + 10] === null &&
     emptyBox[selectChessItem.indexofChesscheck + 10]
   ) {
@@ -5948,6 +5962,7 @@ function isWhiteKnight() {
   if (
     wKIndexMinusOne != -1 &&
     cornerNumber[wKIndexMinusOne] <= selectChessItem.indexofChesscheck - 15 &&
+    selectChessItem.indexofChesscheck - 15 < currentLineBetween[0] - 8 &&
     chessBoard[selectChessItem.indexofChesscheck - 15] === null &&
     emptyBox[selectChessItem.indexofChesscheck - 15]
   ) {
@@ -5959,6 +5974,7 @@ function isWhiteKnight() {
     emptyBox[selectChessItem.indexofChesscheck - 15].style.background =
       "#27AE60";
   } else if (
+    selectChessItem.indexofChesscheck - 15 < currentLineBetween[0] - 8 &&
     chessBoard[selectChessItem.indexofChesscheck - 15] === null &&
     emptyBox[selectChessItem.indexofChesscheck - 15]
   ) {
@@ -5977,7 +5993,8 @@ function isWhiteKnight() {
   if (
     stopSuggetion == false &&
     wkIndexMinusTwo != -1 &&
-    cornerNumber[wkIndexMinusTwo] <= selectChessItem.indexofChesscheck + 17 &&
+    cornerNumber[wkIndexMinusTwo] <= selectChessItem.indexofChesscheck - 17 &&
+    selectChessItem.indexofChesscheck - 17 >= currentLineBetween[0] - 16 &&
     chessBoard[selectChessItem.indexofChesscheck - 17] === null &&
     emptyBox[selectChessItem.indexofChesscheck - 17]
   ) {
@@ -5990,6 +6007,7 @@ function isWhiteKnight() {
       "#27AE60";
   } else if (
     wkIndexMinusTwo == -1 &&
+    selectChessItem.indexofChesscheck - 17 >= currentLineBetween[0] - 16 &&
     chessBoard[selectChessItem.indexofChesscheck - 17] === null &&
     emptyBox[selectChessItem.indexofChesscheck - 17]
   ) {
@@ -6009,6 +6027,7 @@ function isWhiteKnight() {
     stopSuggetion == false &&
     wkIndexMinusThree != -1 &&
     selectChessItem.indexofChesscheck % 2 == 0 &&
+    selectChessItem.indexofChesscheck - 6 < currentLineBetween[0] &&
     cornerNumber.includes(selectChessItem.indexofChesscheck) &&
     chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
     emptyBox[selectChessItem.indexofChesscheck - 6]
@@ -6024,6 +6043,7 @@ function isWhiteKnight() {
     wkIndexMinusThree == -1 &&
     stopSuggetion == false &&
     selectChessItem.indexofChesscheck % 2 == 0 &&
+    selectChessItem.indexofChesscheck - 6 < currentLineBetween[0] &&
     cornerNumber.includes(selectChessItem.indexofChesscheck) &&
     chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
     emptyBox[selectChessItem.indexofChesscheck - 6]
@@ -6036,6 +6056,7 @@ function isWhiteKnight() {
       "#27AE60";
   } else if (
     wkIndexMinusThree == -1 &&
+    selectChessItem.indexofChesscheck - 6 < currentLineBetween[0] &&
     !cornerNumber.includes(selectChessItem.indexofChesscheck) &&
     chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
     emptyBox[selectChessItem.indexofChesscheck - 6]
@@ -6049,6 +6070,7 @@ function isWhiteKnight() {
   } else if (
     wkIndexMinusThree != -1 &&
     stopSuggetion == true &&
+    selectChessItem.indexofChesscheck - 6 < currentLineBetween[0] &&
     !cornerNumber.includes(selectChessItem.indexofChesscheck) &&
     (selectChessItem.indexofChesscheck - 6) % 2 != 0 &&
     chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
@@ -6063,6 +6085,7 @@ function isWhiteKnight() {
   } else if (
     wkIndexMinusThree != -1 &&
     stopSuggetion == false &&
+    selectChessItem.indexofChesscheck - 6 < currentLineBetween[0] &&
     cornerNumber.includes(selectChessItem.indexofChesscheck - 6) &&
     (selectChessItem.indexofChesscheck - 6) % 2 != 0 &&
     chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
@@ -6083,6 +6106,7 @@ function isWhiteKnight() {
   if (
     stopSuggetion == false &&
     wkIndexMinusFour != -1 &&
+    selectChessItem.indexofChesscheck - 10 >= currentLineBetween[0] - 8 &&
     cornerNumber[wkIndexMinusFour] <= selectChessItem.indexofChesscheck - 10 &&
     chessBoard[selectChessItem.indexofChesscheck - 10] === null &&
     emptyBox[selectChessItem.indexofChesscheck - 10]
@@ -6096,6 +6120,7 @@ function isWhiteKnight() {
       "#27AE60";
   } else if (
     stopSuggetion == false &&
+    selectChessItem.indexofChesscheck - 10 >= currentLineBetween[0] - 8 &&
     chessBoard[selectChessItem.indexofChesscheck - 10] === null &&
     emptyBox[selectChessItem.indexofChesscheck - 10]
   ) {
@@ -6108,6 +6133,7 @@ function isWhiteKnight() {
   } else if (
     wkIndexMinusFour == -1 &&
     stopSuggetion == true &&
+    selectChessItem.indexofChesscheck - 10 >= currentLineBetween[0] - 8 &&
     chessBoard[selectChessItem.indexofChesscheck - 10] === null &&
     emptyBox[selectChessItem.indexofChesscheck - 10]
   ) {
@@ -6120,6 +6146,7 @@ function isWhiteKnight() {
   }
 
   let classOne =
+    document.getElementById(selectChessItem.indexofChesscheck + 6) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 6)
       .getElementsByTagName("img")
@@ -6130,6 +6157,7 @@ function isWhiteKnight() {
       .item(0).className;
   if (
     classOne === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 6 > currentLineBetween[1] &&
     chessBoard[selectChessItem.indexofChesscheck + 6] &&
     emptyBox[selectChessItem.indexofChesscheck + 6] &&
     !cornerNumber.includes(selectChessItem.indexofChesscheck)
@@ -6142,6 +6170,7 @@ function isWhiteKnight() {
       "#CA2F1F";
   }
   let classTwo =
+    document.getElementById(selectChessItem.indexofChesscheck + 10) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 10)
       .getElementsByTagName("img")
@@ -6153,6 +6182,7 @@ function isWhiteKnight() {
   if (
     classTwo === "BLACK_PIECE" &&
     cornerNumber.includes(selectChessItem.indexofChesscheck + 10) &&
+    selectChessItem.indexofChesscheck + 10 <= currentLineBetween[1] + 8 &&
     (selectChessItem.indexofChesscheck + 10) % 2 != 0 &&
     chessBoard[selectChessItem.indexofChesscheck + 10] &&
     emptyBox[selectChessItem.indexofChesscheck + 10]
@@ -6165,6 +6195,7 @@ function isWhiteKnight() {
       "#CA2F1F";
   } else if (
     classTwo === "BLACK_PIECE" &&
+    Number(chooseTurnItem.id) + 10 <= currentLineBetween[1] + 8 &&
     !cornerNumber.includes(selectChessItem.indexofChesscheck + 10) &&
     chessBoard[selectChessItem.indexofChesscheck + 10] &&
     emptyBox[selectChessItem.indexofChesscheck + 10]
@@ -6177,6 +6208,7 @@ function isWhiteKnight() {
       "#CA2F1F";
   }
   let classThree =
+    document.getElementById(selectChessItem.indexofChesscheck + 15) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 15)
       .getElementsByTagName("img")
@@ -6187,6 +6219,7 @@ function isWhiteKnight() {
       .item(0).className;
   if (
     classThree === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 15 > currentLineBetween[1] + 8 &&
     chessBoard[selectChessItem.indexofChesscheck + 15] &&
     emptyBox[selectChessItem.indexofChesscheck + 15]
   ) {
@@ -6198,6 +6231,7 @@ function isWhiteKnight() {
       "#CA2F1F";
   }
   let classFour =
+    document.getElementById(selectChessItem.indexofChesscheck + 17) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 17)
       .getElementsByTagName("img")
@@ -6208,6 +6242,7 @@ function isWhiteKnight() {
       .item(0).className;
   if (
     classFour === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck + 17 <= currentLineBetween[1] + 16 &&
     chessBoard[selectChessItem.indexofChesscheck + 17] &&
     emptyBox[selectChessItem.indexofChesscheck + 17]
   ) {
@@ -6227,6 +6262,7 @@ function isWhiteKnight() {
   }
 
   let classFive =
+    document.getElementById(selectChessItem.indexofChesscheck - 6) &&
     document
       .getElementById(selectChessItem.indexofChesscheck - 6)
       .getElementsByTagName("img")
@@ -6237,6 +6273,7 @@ function isWhiteKnight() {
       .item(0).className;
   if (
     classFive === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 6 < currentLineBetween[0] &&
     chessBoard[selectChessItem.indexofChesscheck - 6] &&
     emptyBox[selectChessItem.indexofChesscheck - 6]
   ) {
@@ -6248,6 +6285,7 @@ function isWhiteKnight() {
       "#CA2F1F";
   }
   let classSix =
+    document.getElementById(selectChessItem.indexofChesscheck - 10) &&
     document
       .getElementById(selectChessItem.indexofChesscheck - 10)
       .getElementsByTagName("img")
@@ -6258,6 +6296,7 @@ function isWhiteKnight() {
       .item(0).className;
   if (
     classSix === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 10 >= currentLineBetween[0] - 8 &&
     chessBoard[selectChessItem.indexofChesscheck - 10] &&
     emptyBox[selectChessItem.indexofChesscheck - 10]
   ) {
@@ -6269,6 +6308,7 @@ function isWhiteKnight() {
       "#CA2F1F";
   }
   let classSeven =
+    document.getElementById(selectChessItem.indexofChesscheck - 15) &&
     document
       .getElementById(selectChessItem.indexofChesscheck - 15)
       .getElementsByTagName("img")
@@ -6279,6 +6319,7 @@ function isWhiteKnight() {
       .item(0).className;
   if (
     classSeven === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 15 < currentLineBetween[0] - 8 &&
     chessBoard[selectChessItem.indexofChesscheck - 15] &&
     emptyBox[selectChessItem.indexofChesscheck - 15]
   ) {
@@ -6290,6 +6331,7 @@ function isWhiteKnight() {
       "#CA2F1F";
   }
   let classEight =
+    document.getElementById(selectChessItem.indexofChesscheck - 17) &&
     document
       .getElementById(selectChessItem.indexofChesscheck - 17)
       .getElementsByTagName("img")
@@ -6300,6 +6342,7 @@ function isWhiteKnight() {
       .item(0).className;
   if (
     classEight === "BLACK_PIECE" &&
+    selectChessItem.indexofChesscheck - 17 >= currentLineBetween[0] - 16 &&
     chessBoard[selectChessItem.indexofChesscheck - 17] &&
     emptyBox[selectChessItem.indexofChesscheck - 17]
   ) {
@@ -6331,8 +6374,6 @@ function isWhiteBishop() {
   currentLineBetween = currentLine.find(
     (arr) => selectChessItem.indexofChesscheck <= arr[1]
   );
-
-  console.log("currentLineBetween >>", currentLineBetween);
 
   if (
     selectChessItem.indexofChesscheck + 7 > currentLineBetween[1] &&

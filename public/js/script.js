@@ -5893,10 +5893,6 @@ function isWhiteKnight() {
     emptyBox[selectChessItem.indexofChesscheck + 6].style.background =
       "#27AE60";
   } else if (
-    stopSuggetion == false &&
-    wkIndexThree == -1 &&
-    (!cornerNumber.includes(selectChessItem.indexofChesscheck) ||
-      selectChessItem.indexofChesscheck % 2 != 0) &&
     selectChessItem.indexofChesscheck + 6 > currentLineBetween[1] &&
     chessBoard[selectChessItem.indexofChesscheck + 6] === null &&
     emptyBox[selectChessItem.indexofChesscheck + 6]
@@ -6086,8 +6082,6 @@ function isWhiteKnight() {
     wkIndexMinusThree != -1 &&
     stopSuggetion == false &&
     selectChessItem.indexofChesscheck - 6 < currentLineBetween[0] &&
-    cornerNumber.includes(selectChessItem.indexofChesscheck - 6) &&
-    (selectChessItem.indexofChesscheck - 6) % 2 != 0 &&
     chessBoard[selectChessItem.indexofChesscheck - 6] === null &&
     emptyBox[selectChessItem.indexofChesscheck - 6]
   ) {
@@ -6159,8 +6153,7 @@ function isWhiteKnight() {
     classOne === "BLACK_PIECE" &&
     selectChessItem.indexofChesscheck + 6 > currentLineBetween[1] &&
     chessBoard[selectChessItem.indexofChesscheck + 6] &&
-    emptyBox[selectChessItem.indexofChesscheck + 6] &&
-    !cornerNumber.includes(selectChessItem.indexofChesscheck)
+    emptyBox[selectChessItem.indexofChesscheck + 6]
   ) {
     emptyBox[selectChessItem.indexofChesscheck + 6].setAttribute(
       "onClick",
@@ -6195,8 +6188,7 @@ function isWhiteKnight() {
       "#CA2F1F";
   } else if (
     classTwo === "BLACK_PIECE" &&
-    Number(chooseTurnItem.id) + 10 <= currentLineBetween[1] + 8 &&
-    !cornerNumber.includes(selectChessItem.indexofChesscheck + 10) &&
+    selectChessItem.indexofChesscheck + 10 <= currentLineBetween[1] + 8 &&
     chessBoard[selectChessItem.indexofChesscheck + 10] &&
     emptyBox[selectChessItem.indexofChesscheck + 10]
   ) {
@@ -6246,19 +6238,12 @@ function isWhiteKnight() {
     chessBoard[selectChessItem.indexofChesscheck + 17] &&
     emptyBox[selectChessItem.indexofChesscheck + 17]
   ) {
-    if (
-      !(
-        selectChessItem.indexofChesscheck % 2 != 0 &&
-        cornerNumber.includes(selectChessItem.indexofChesscheck)
-      )
-    ) {
-      emptyBox[selectChessItem.indexofChesscheck + 17].setAttribute(
-        "onClick",
-        "makeMove(17)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck + 17].style.background =
-        "#CA2F1F";
-    }
+    emptyBox[selectChessItem.indexofChesscheck + 17].setAttribute(
+      "onClick",
+      "makeMove(17)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck + 17].style.background =
+      "#CA2F1F";
   }
 
   let classFive =
@@ -6346,19 +6331,12 @@ function isWhiteKnight() {
     chessBoard[selectChessItem.indexofChesscheck - 17] &&
     emptyBox[selectChessItem.indexofChesscheck - 17]
   ) {
-    if (
-      !(
-        selectChessItem.indexofChesscheck % 2 != 0 &&
-        cornerNumber.includes(selectChessItem.indexofChesscheck)
-      )
-    ) {
-      emptyBox[selectChessItem.indexofChesscheck - 17].setAttribute(
-        "onClick",
-        "makeMove(-17)"
-      );
-      emptyBox[selectChessItem.indexofChesscheck - 17].style.background =
-        "#CA2F1F";
-    }
+    emptyBox[selectChessItem.indexofChesscheck - 17].setAttribute(
+      "onClick",
+      "makeMove(-17)"
+    );
+    emptyBox[selectChessItem.indexofChesscheck - 17].style.background =
+      "#CA2F1F";
   }
 }
 
@@ -9315,7 +9293,8 @@ function isWhiteRook() {
     document.getElementById(selectChessItem.indexofChesscheck + 40) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 40)
-      .getElementsByTagName("img") &&
+      .getElementsByTagName("img")
+      .item(0) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 40)
       .getElementsByTagName("img")
@@ -9340,7 +9319,8 @@ function isWhiteRook() {
     document.getElementById(selectChessItem.indexofChesscheck + 48) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 48)
-      .getElementsByTagName("img") &&
+      .getElementsByTagName("img")
+      .item(0) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 48)
       .getElementsByTagName("img")
@@ -9366,7 +9346,8 @@ function isWhiteRook() {
     document.getElementById(selectChessItem.indexofChesscheck + 56) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 56)
-      .getElementsByTagName("img") &&
+      .getElementsByTagName("img")
+      .item(0) &&
     document
       .getElementById(selectChessItem.indexofChesscheck + 56)
       .getElementsByTagName("img")
@@ -13784,6 +13765,14 @@ function makeMove(number) {
     },
   });
 
+  let tdElements = document.querySelectorAll("td");
+
+  tdElements.forEach((el) => {
+    if (el.getAttribute("onclick").includes("makeMove")) {
+      el.setAttribute("onclick", `chessClick(${el.getAttribute("id")})`);
+    }
+  });
+
   clearInterval(turnDownTimerInterval);
   clearInterval(movePiecesInterval);
   // turnDownTimer = 10;
@@ -13936,101 +13925,101 @@ function rejoinGame({ tableData, remainTime }) {
       let tdId = piece.id;
       let tdElement = document.getElementById(tdId);
       if (piece.name == "BLACK_ROOK_1") {
-        //   tdElement.innerHTML = `<img
-        //   src="./images/pieces/black/black_rook.png"
-        //   class="BLACK_PIECE"
-        //   id="BLACK_ROOK_1"
-        // />`;
-        // } else if (piece.name == "BLACK_KNIGHT_1") {
-        //   tdElement.innerHTML = `<img
-        //   class="BLACK_PIECE"
-        //   src="images/pieces/black/black_knight.png"
-        //   id="BLACK_KNIGHT_1"
-        // />`;
-        // } else if (piece.name == "BLACK_BISHOP_1") {
-        //   tdElement.innerHTML = `<img
-        //   class="BLACK_PIECE"
-        //   src="images/pieces/black/black_bishop.png"
-        //   id="BLACK_BISHOP_1"
-        // />`;
-        // } else if (piece.name == "BLACK_QUREEN") {
-        //   tdElement.innerHTML = `<img
-        //   class="BLACK_PIECE"
-        //   src="images/pieces/black/black_queen.png"
-        //   id="BLACK_QUREEN_1"
-        // />`;
-        // } else if (piece.name == "BLACK_KING") {
-        //   tdElement.innerHTML = `<img
-        //   class="BLACK_PIECE"
-        //   src="images/pieces/black/black_king.png"
-        //   id="BLACK_KING"
-        // />`;
-        // } else if (piece.name == "BLACK_BISHOP_2") {
-        //   tdElement.innerHTML = `<img
-        //   class="BLACK_PIECE"
-        //   src="images/pieces/black/black_bishop.png"
-        //   id="BLACK_BISHOP_2"
-        // />`;
-        // } else if (piece.name == "BLACK_KNIGHT_2") {
-        //   tdElement.innerHTML = `<img
-        //   class="BLACK_PIECE"
-        //   src="images/pieces/black/black_knight.png"
-        //   id="BLACK_KNIGHT_2"
-        // />`;
-        // } else if (piece.name == "BLACK_ROOK_2") {
-        //   tdElement.innerHTML = `<img
-        //   class="BLACK_PIECE"
-        //   src="images/pieces/black/black_rook.png"
-        //   id="BLACK_ROOK_2"
-        // />`;
-        // } else if (piece.name == "BLACK_PAWN_1") {
-        //   tdElement.innerHTML = `<img
-        //   class="BLACK_PIECE"
-        //   src="images/pieces/black/black_pawn.png"
-        //   id="BLACK_PAWN_1"
-        // />`;
-        // } else if (piece.name == "BLACK_PAWN_2") {
-        //   tdElement.innerHTML = `<img
-        //   class="BLACK_PIECE"
-        //   src="images/pieces/black/black_pawn.png"
-        //   id="BLACK_PAWN_2"
-        // />`;
-        // } else if (piece.name == "BLACK_PAWN_3") {
-        //   tdElement.innerHTML = `<img
-        //   class="BLACK_PIECE"
-        //   src="images/pieces/black/black_pawn.png"
-        //   id="BLACK_PAWN_3"
-        // />`;
-        // } else if (piece.name == "BLACK_PAWN_4") {
-        //   tdElement.innerHTML = `<img
-        //   class="BLACK_PIECE"
-        //   src="images/pieces/black/black_pawn.png"
-        //   id="BLACK_PAWN_4"
-        // />`;
-        // } else if (piece.name == "BLACK_PAWN_5") {
-        //   tdElement.innerHTML = `<img
-        //   class="BLACK_PIECE"
-        //   src="images/pieces/black/black_pawn.png"
-        //   id="BLACK_PAWN_5"
-        // />`;
-        // } else if (piece.name == "BLACK_PAWN_6") {
-        //   tdElement.innerHTML = `<img
-        //   class="BLACK_PIECE"
-        //   src="images/pieces/black/black_pawn.png"
-        //   id="BLACK_PAWN_6"
-        // />`;
-        // } else if (piece.name == "BLACK_PAWN_7") {
-        //   tdElement.innerHTML = `<img
-        //   class="BLACK_PIECE"
-        //   src="images/pieces/black/black_pawn.png"
-        //   id="BLACK_PAWN_7"
-        // />`;
-        // } else if (piece.name == "BLACK_PAWN_8") {
-        //   tdElement.innerHTML = `<img
-        //   class="BLACK_PIECE"
-        //   src="images/pieces/black/black_pawn.png"
-        //   id="BLACK_PAWN_8"
-        // />`;
+        tdElement.innerHTML = `<img
+          src="./images/pieces/black/black_rook.png"
+          class="BLACK_PIECE"
+          id="BLACK_ROOK_1"
+        />`;
+      } else if (piece.name == "BLACK_KNIGHT_1") {
+        tdElement.innerHTML = `<img
+          class="BLACK_PIECE"
+          src="images/pieces/black/black_knight.png"
+          id="BLACK_KNIGHT_1"
+        />`;
+      } else if (piece.name == "BLACK_BISHOP_1") {
+        tdElement.innerHTML = `<img
+          class="BLACK_PIECE"
+          src="images/pieces/black/black_bishop.png"
+          id="BLACK_BISHOP_1"
+        />`;
+      } else if (piece.name == "BLACK_QUREEN") {
+        tdElement.innerHTML = `<img
+          class="BLACK_PIECE"
+          src="images/pieces/black/black_queen.png"
+          id="BLACK_QUREEN_1"
+        />`;
+      } else if (piece.name == "BLACK_KING") {
+        tdElement.innerHTML = `<img
+          class="BLACK_PIECE"
+          src="images/pieces/black/black_king.png"
+          id="BLACK_KING"
+        />`;
+      } else if (piece.name == "BLACK_BISHOP_2") {
+        tdElement.innerHTML = `<img
+          class="BLACK_PIECE"
+          src="images/pieces/black/black_bishop.png"
+          id="BLACK_BISHOP_2"
+        />`;
+      } else if (piece.name == "BLACK_KNIGHT_2") {
+        tdElement.innerHTML = `<img
+          class="BLACK_PIECE"
+          src="images/pieces/black/black_knight.png"
+          id="BLACK_KNIGHT_2"
+        />`;
+      } else if (piece.name == "BLACK_ROOK_2") {
+        tdElement.innerHTML = `<img
+          class="BLACK_PIECE"
+          src="images/pieces/black/black_rook.png"
+          id="BLACK_ROOK_2"
+        />`;
+      } else if (piece.name == "BLACK_PAWN_1") {
+        tdElement.innerHTML = `<img
+          class="BLACK_PIECE"
+          src="images/pieces/black/black_pawn.png"
+          id="BLACK_PAWN_1"
+        />`;
+      } else if (piece.name == "BLACK_PAWN_2") {
+        tdElement.innerHTML = `<img
+          class="BLACK_PIECE"
+          src="images/pieces/black/black_pawn.png"
+          id="BLACK_PAWN_2"
+        />`;
+      } else if (piece.name == "BLACK_PAWN_3") {
+        tdElement.innerHTML = `<img
+          class="BLACK_PIECE"
+          src="images/pieces/black/black_pawn.png"
+          id="BLACK_PAWN_3"
+        />`;
+      } else if (piece.name == "BLACK_PAWN_4") {
+        tdElement.innerHTML = `<img
+          class="BLACK_PIECE"
+          src="images/pieces/black/black_pawn.png"
+          id="BLACK_PAWN_4"
+        />`;
+      } else if (piece.name == "BLACK_PAWN_5") {
+        tdElement.innerHTML = `<img
+          class="BLACK_PIECE"
+          src="images/pieces/black/black_pawn.png"
+          id="BLACK_PAWN_5"
+        />`;
+      } else if (piece.name == "BLACK_PAWN_6") {
+        tdElement.innerHTML = `<img
+          class="BLACK_PIECE"
+          src="images/pieces/black/black_pawn.png"
+          id="BLACK_PAWN_6"
+        />`;
+      } else if (piece.name == "BLACK_PAWN_7") {
+        tdElement.innerHTML = `<img
+          class="BLACK_PIECE"
+          src="images/pieces/black/black_pawn.png"
+          id="BLACK_PAWN_7"
+        />`;
+      } else if (piece.name == "BLACK_PAWN_8") {
+        tdElement.innerHTML = `<img
+          class="BLACK_PIECE"
+          src="images/pieces/black/black_pawn.png"
+          id="BLACK_PAWN_8"
+        />`;
       } else if (piece.name == "WHITE_PAWN_1") {
         tdElement.innerHTML = `<img
         class="WHITE_PIECE"

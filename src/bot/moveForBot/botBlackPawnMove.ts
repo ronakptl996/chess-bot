@@ -19,6 +19,8 @@ const botBlackPawnMove = async (
     if (firstTurnMovePawn == 1) {
       if (
         board[Number(chooseTurnItem.id) + 7] &&
+        currentLineBetween &&
+        Number(chooseTurnItem.id) + 7 > currentLineBetween[1] &&
         board[Number(chooseTurnItem.id) + 7]?.name.includes("WHITE")
       ) {
         chooseTurnItem.isFirstMove = false;
@@ -26,6 +28,8 @@ const botBlackPawnMove = async (
         botMoveChange(tableData);
         return;
       } else if (
+        currentLineBetween &&
+        Number(chooseTurnItem.id) + 9 <= currentLineBetween[1] + 8 &&
         board[Number(chooseTurnItem.id) + 9] &&
         board[Number(chooseTurnItem.id) + 9]?.name.includes("WHITE")
       ) {
@@ -44,6 +48,8 @@ const botBlackPawnMove = async (
     } else {
       if (
         board[Number(chooseTurnItem.id) + 7] &&
+        currentLineBetween &&
+        Number(chooseTurnItem.id) + 7 > currentLineBetween[1] &&
         board[Number(chooseTurnItem.id) + 7]?.name.includes("WHITE")
       ) {
         chooseTurnItem.isFirstMove = false;
@@ -51,6 +57,8 @@ const botBlackPawnMove = async (
         botMoveChange(tableData);
         return;
       } else if (
+        currentLineBetween &&
+        Number(chooseTurnItem.id) + 9 <= currentLineBetween[1] + 8 &&
         board[Number(chooseTurnItem.id) + 9] &&
         board[Number(chooseTurnItem.id) + 9]?.name.includes("WHITE")
       ) {
@@ -91,6 +99,8 @@ const botBlackPawnMove = async (
       return;
     } else if (
       board[Number(chooseTurnItem.id) + 9] &&
+      currentLineBetween &&
+      Number(chooseTurnItem.id) + 9 <= currentLineBetween[1] + 8 &&
       board[Number(chooseTurnItem.id) + 9]?.name.includes("WHITE")
     ) {
       tableData.board = makeBotBoard(board, chooseTurnItem, 9, tableData._id);
